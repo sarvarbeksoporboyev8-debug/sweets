@@ -46,7 +46,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final gridColumns = Responsive.getGridColumns(context, mobile: 2, tablet: 3, desktop: 4);
+    final gridColumns = Responsive.getGridColumns(context, mobileColumns: 2, tabletColumns: 3, desktopColumns: 4);
     
     return Scaffold(
       backgroundColor: SweetsColors.white,
@@ -70,9 +70,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   const SizedBox(height: Spacing.lg),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: Spacing.md),
-                    child: const Text(
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: Spacing.md),
+                    child: Text(
                       'Categories',
                       style: TextStyle(
                         fontFamily: 'Geist',

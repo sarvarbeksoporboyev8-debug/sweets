@@ -45,12 +45,12 @@ class Responsive {
   
   /// Get responsive grid column count
   static int getGridColumns(BuildContext context, {
-    int mobile = 2,
-    int tablet = 3,
-    int desktop = 4,
+    int mobileColumns = 2,
+    int tabletColumns = 3,
+    int desktopColumns = 4,
   }) {
-    if (isDesktop(context)) return desktop;
-    if (isTablet(context)) return tablet;
-    return mobile;
+    if (isDesktop(context)) return desktopColumns;
+    if (isTablet(context)) return tabletColumns;
+    return mobileColumns;
   }
 }

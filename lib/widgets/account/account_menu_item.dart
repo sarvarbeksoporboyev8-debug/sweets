@@ -32,7 +32,7 @@ class AccountMenuItem extends StatelessWidget {
               size: 20,
               color: SweetsColors.grayDarker,
             ),
-            SizedBox(width: Spacing.sm),
+            const SizedBox(width: Spacing.sm),
             Expanded(
               child: Text(
                 label,
@@ -79,7 +79,7 @@ class LogoutMenuItem extends StatelessWidget {
               size: 20,
               color: Color(0xFFFA5252),
             ),
-            SizedBox(width: Spacing.sm),
+            const SizedBox(width: Spacing.sm),
             const Expanded(
               child: Text(
                 'Logout',

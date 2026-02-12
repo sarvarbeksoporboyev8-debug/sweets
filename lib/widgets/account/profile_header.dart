@@ -80,7 +80,7 @@ class ProfileHeader extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(height: Spacing.spacing20),
+        const SizedBox(height: Spacing.spacing20),
         // Name and email
         Text(
           name,
