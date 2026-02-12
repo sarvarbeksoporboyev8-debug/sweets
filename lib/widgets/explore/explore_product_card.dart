@@ -139,14 +139,14 @@ class ExploreProductCard extends StatelessWidget {
                   ),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
-                    children: const [
-                      Icon(
+                    children: [
+                      const Icon(
                         Icons.shopping_bag_outlined,
                         size: 20,
                         color: SweetsColors.grayDarker,
                       ),
-                      SizedBox(width: Spacing.xs),
-                      Text(
+                      const SizedBox(width: Spacing.xs),
+                      const Text(
                         'Add to cart',
                         style: TextStyle(
                           fontFamily: 'Geist',

@@ -90,8 +90,8 @@ class HomeTopBar extends StatelessWidget {
                       Navigator.of(context).pushNamed('/notifications');
                     },
                     child: Stack(
-                      children: const [
-                        CircleIconButton(
+                      children: [
+                        const CircleIconButton(
                           icon: Icons.notifications_none_rounded,
                         ),
                         Positioned(

@@ -75,12 +75,12 @@ class ExploreTopBar extends StatelessWidget {
                 ],
               ),
               Row(
-                children: const [
-                  CircleIconButton(icon: Icons.more_horiz),
-                  SizedBox(width: Spacing.sm),
+                children: [
+                  const CircleIconButton(icon: Icons.more_horiz),
+                  const SizedBox(width: Spacing.sm),
                   Stack(
                     children: [
-                      CircleIconButton(icon: Icons.notifications_none),
+                      const CircleIconButton(icon: Icons.notifications_none),
                       Positioned(
                         right: 8,
                         top: 8,
