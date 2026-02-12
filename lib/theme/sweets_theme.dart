@@ -1,24 +1,8 @@
 import 'package:flutter/material.dart';
+import '../constants/colors.dart';
 
 /// Design tokens and theme configuration for the Sweets app
-/// based on the provided Figma file.
-class SweetsColors {
-  static const primary = Color(0xFFFD7E14); // Primary-accent/Primary
-  static const primaryLighter = Color(0xFFFFA94D); // Primary-accent/Primary Lighter
-  static const primaryDark = Color(0xFFF76707); // Primary-accent/Primary Dark
-  static const black = Color(0xFF000000); // Neutral/Black/100
-  static const grayDarker = Color(0xFF343A40); // Neutral/Gray/Gray Darker
-  static const grayDark = Color(0xFF495057); // Neutral/Gray/Gray Dark
-  static const gray = Color(0xFF868E96); // Neutral/Gray/Gray
-  static const grayLighter = Color(0xFFF1F3F5); // Neutral/Gray/Gray Lighter
-  static const border = Color(0xFFDEE2E6); // Borders/100
-  static const white = Color(0xFFFFFFFF); // Neutral/White/100
-  static const white75 = Color(0xBFFFFFFF); // Neutral/White/75
-  static const successDarker = Color(0xFF66A80F); // State/Success/Success Darker
-  static const successBackground = Color(0x80A9E34B); // rgba(169,227,75,0.5)
-  static const dangerDarker = Color(0xFFE03131); // State/Danger/Danger Darker
-  static const dangerBackground = Color(0x80FF8787); // rgba(255,135,135,0.5)
-}
+/// Colors are now imported from lib/constants/colors.dart
 
 ThemeData buildSweetsTheme() {
   const baseTextColor = SweetsColors.black;
@@ -67,12 +51,14 @@ ThemeData buildSweetsTheme() {
 
   return ThemeData(
     useMaterial3: true,
-    scaffoldBackgroundColor: SweetsColors.white,
+    scaffoldBackgroundColor: SweetsColors.background, // #E0D2BA
+    primaryColor: SweetsColors.primary, // #D1B57C
     colorScheme: ColorScheme.fromSeed(
       seedColor: SweetsColors.primary,
-      primary: SweetsColors.primary,
-      secondary: SweetsColors.primary,
-      surface: SweetsColors.white,
+      primary: SweetsColors.primary, // #D1B57C
+      secondary: SweetsColors.primary, // #D1B57C
+      surface: SweetsColors.background, // #E0D2BA
+      background: SweetsColors.background, // #E0D2BA
       brightness: Brightness.light,
     ),
     textTheme: const TextTheme(
@@ -84,7 +70,7 @@ ThemeData buildSweetsTheme() {
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: SweetsColors.white,
+      fillColor: SweetsColors.white, // Keep inputs white for better contrast
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(
@@ -102,7 +88,7 @@ ThemeData buildSweetsTheme() {
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(
-          color: SweetsColors.primary,
+          color: SweetsColors.primary, // #D1B57C
           width: 1.2,
         ),
       ),
@@ -115,7 +101,7 @@ ThemeData buildSweetsTheme() {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: SweetsColors.primary,
+        backgroundColor: SweetsColors.primary, // #D1B57C
         foregroundColor: SweetsColors.white,
         elevation: 0,
         shape: RoundedRectangleBorder(
@@ -124,6 +110,14 @@ ThemeData buildSweetsTheme() {
         padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
         textStyle: buttonLarge,
       ),
+    ),
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: SweetsColors.primary, // #D1B57C
+      ),
+    ),
+    buttonTheme: const ButtonThemeData(
+      buttonColor: SweetsColors.primary, // #D1B57C
     ),
   );
 }

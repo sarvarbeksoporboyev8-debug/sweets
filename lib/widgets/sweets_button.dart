@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme/sweets_theme.dart';
+import '../constants/colors.dart';
 
 class SweetsPrimaryButton extends StatelessWidget {
   const SweetsPrimaryButton({

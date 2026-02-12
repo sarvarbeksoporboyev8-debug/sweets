@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../theme/sweets_theme.dart';
+import '../constants/colors.dart';
 import '../constants/spacing.dart';
 import 'sweets_home_indicator.dart';
 
@@ -115,9 +115,9 @@ class _NavItem extends StatelessWidget {
                 color: isActive ? SweetsColors.primary : Colors.transparent,
                 borderRadius: BorderRadius.circular(SweetsSpacing.radiusSmall),
                 boxShadow: isActive
-                    ? const [
+                    ? [
                         BoxShadow(
-                          color: Color(0x66FD7E14),
+                          color: SweetsColors.primary.withOpacity(0.4), // Updated to use new primary
                           blurRadius: 12,
                           offset: Offset(0, 6),
                         ),
