@@ -9,6 +9,7 @@ class SweetsTextField extends StatelessWidget {
     this.controller,
     this.keyboardType,
     this.validator,
+    this.onChanged,
   });
 
   final String label;
@@ -16,6 +17,7 @@ class SweetsTextField extends StatelessWidget {
   final TextEditingController? controller;
   final TextInputType? keyboardType;
   final String? Function(String?)? validator;
+  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -34,6 +36,7 @@ class SweetsTextField extends StatelessWidget {
           controller: controller,
           keyboardType: keyboardType,
           validator: validator,
+          onChanged: onChanged,
           decoration: InputDecoration(
             hintText: hint,
           ),
