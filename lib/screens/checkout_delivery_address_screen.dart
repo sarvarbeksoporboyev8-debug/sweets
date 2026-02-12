@@ -35,179 +35,183 @@ class _CheckoutDeliveryAddressScreenState
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: SweetsColors.white,
-      body: Container(
-        decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFFFFE6D1),
-              Color(0xFFFFFFFF),
-            ],
-            stops: [0.0, 0.3],
-          ),
-        ),
-        child: SafeArea(
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                      size: 20,
-                      color: SweetsColors.grayDarker,
-                    ),
-                    SizedBox(width: 8),
-                    Text(
-                      'Checkout',
-                      style: TextStyle(
-                        fontFamily: 'Geist',
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14,
-                        height: 20 / 14,
-                        color: SweetsColors.grayDarker,
-                      ),
-                    ),
-                  ],
-                ),
+      body: Stack(
+        children: [
+          Container(
+            decoration: const BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topCenter,
+                end: Alignment.bottomCenter,
+                colors: [
+                  Color(0xFFFFE6D1),
+                  Color(0xFFFFFFFF),
+                ],
+                stops: [0.0, 0.3],
               ),
-              const SizedBox(height: 24),
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16),
-                child: SweetsCheckoutStepper(currentStep: 1),
-              ),
-              const SizedBox(height: 24),
-              Expanded(
-                child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      const Text(
-                        'Choose delivery address',
-                        style: TextStyle(
-                          fontFamily: 'Geist',
-                          fontWeight: FontWeight.w600,
-                          fontSize: 24,
-                          height: 24 / 24,
-                          letterSpacing: -0.72,
-                          color: SweetsColors.black,
+            ),
+            child: SafeArea(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    child: Row(
+                      children: [
+                        Icon(
+                          Icons.arrow_back_ios_new_rounded,
+                          size: 20,
+                          color: SweetsColors.grayDarker,
                         ),
-                      ),
-                      const SizedBox(height: 20),
-                      AddressSelectionCard(
-                        address: '3600 Maple Street',
-                        city: 'Santa Ana, California, Zip code: 92705',
-                        isDefault: true,
-                        isSelected: selectedAddress == 'address1',
-                        onTap: () {
-                          setState(() {
-                            selectedAddress = 'address1';
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 8),
-                      AddressSelectionCard(
-                        address: '3600 Maple Street',
-                        city: 'Santa Ana, California, Zip code: 92705',
-                        isDefault: false,
-                        isSelected: selectedAddress == 'address2',
-                        onTap: () {
-                          setState(() {
-                            selectedAddress = 'address2';
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 8),
-                      AddressSelectionCard(
-                        address: '3600 Maple Street',
-                        city: 'Santa Ana, California, Zip code: 92705',
-                        isDefault: false,
-                        isSelected: selectedAddress == 'address3',
-                        onTap: () {
-                          setState(() {
-                            selectedAddress = 'address3';
-                          });
-                        },
-                      ),
-                      const SizedBox(height: 20),
-                      SizedBox(
-                        width: double.infinity,
-                        child: OutlinedButton(
-                          onPressed: () {
-                            setState(() {
-                              showAddAddressModal = true;
-                            });
-                          },
-                          style: OutlinedButton.styleFrom(
-                            foregroundColor: SweetsColors.primary,
-                            side: const BorderSide(color: SweetsColors.primary),
-                            shape: RoundedRectangleBorder(
-                              borderRadius: BorderRadius.circular(16),
-                            ),
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 20,
-                              vertical: 14,
-                            ),
+                        SizedBox(width: 8),
+                        Text(
+                          'Checkout',
+                          style: TextStyle(
+                            fontFamily: 'Geist',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            height: 20 / 14,
+                            color: SweetsColors.grayDarker,
                           ),
-                          child: const Text(
-                            'Add new address',
+                        ),
+                      ],
+                    ),
+                  ),
+                  const SizedBox(height: 24),
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: SweetsCheckoutStepper(currentStep: 1),
+                  ),
+                  const SizedBox(height: 24),
+                  Expanded(
+                    child: SingleChildScrollView(
+                      padding: const EdgeInsets.symmetric(horizontal: 16),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            'Choose delivery address',
                             style: TextStyle(
                               fontFamily: 'Geist',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 16,
-                              height: 24 / 16,
-                              color: SweetsColors.primary,
+                              fontWeight: FontWeight.w600,
+                              fontSize: 24,
+                              height: 24 / 24,
+                              letterSpacing: -0.72,
+                              color: SweetsColors.black,
                             ),
                           ),
+                          const SizedBox(height: 20),
+                          AddressSelectionCard(
+                            address: '3600 Maple Street',
+                            city: 'Santa Ana, California, Zip code: 92705',
+                            isDefault: true,
+                            isSelected: selectedAddress == 'address1',
+                            onTap: () {
+                              setState(() {
+                                selectedAddress = 'address1';
+                              });
+                            },
+                          ),
+                          const SizedBox(height: 8),
+                          AddressSelectionCard(
+                            address: '3600 Maple Street',
+                            city: 'Santa Ana, California, Zip code: 92705',
+                            isDefault: false,
+                            isSelected: selectedAddress == 'address2',
+                            onTap: () {
+                              setState(() {
+                                selectedAddress = 'address2';
+                              });
+                            },
+                          ),
+                          const SizedBox(height: 8),
+                          AddressSelectionCard(
+                            address: '3600 Maple Street',
+                            city: 'Santa Ana, California, Zip code: 92705',
+                            isDefault: false,
+                            isSelected: selectedAddress == 'address3',
+                            onTap: () {
+                              setState(() {
+                                selectedAddress = 'address3';
+                              });
+                            },
+                          ),
+                          const SizedBox(height: 20),
+                          SizedBox(
+                            width: double.infinity,
+                            child: OutlinedButton(
+                              onPressed: () {
+                                setState(() {
+                                  showAddAddressModal = true;
+                                });
+                              },
+                              style: OutlinedButton.styleFrom(
+                                foregroundColor: SweetsColors.primary,
+                                side: const BorderSide(color: SweetsColors.primary),
+                                shape: RoundedRectangleBorder(
+                                  borderRadius: BorderRadius.circular(16),
+                                ),
+                                padding: const EdgeInsets.symmetric(
+                                  horizontal: 20,
+                                  vertical: 14,
+                                ),
+                              ),
+                              child: const Text(
+                                'Add new address',
+                                style: TextStyle(
+                                  fontFamily: 'Geist',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 16,
+                                  height: 24 / 16,
+                                  color: SweetsColors.primary,
+                                ),
+                              ),
+                            ),
+                          ),
+                          const SizedBox(height: 100),
+                        ],
+                      ),
+                    ),
+                  ),
+                  Container(
+                    decoration: BoxDecoration(
+                      color: SweetsColors.white,
+                      border: Border(
+                        top: BorderSide(
+                          color: SweetsColors.border.withOpacity(0.75),
                         ),
                       ),
-                      const SizedBox(height: 100),
-                    ],
-                  ),
-                ),
-              ),
-              Container(
-                decoration: BoxDecoration(
-                  color: SweetsColors.white,
-                  border: Border(
-                    top: BorderSide(
-                      color: SweetsColors.border.withOpacity(0.75),
+                    ),
+                    padding: const EdgeInsets.all(16),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        SweetsPrimaryButton(
+                          label: 'Next',
+                          onPressed: selectedAddress != null
+                              ? () {
+                                  // TODO: Navigate to order summary
+                                }
+                              : null,
+                        ),
+                        const SweetsHomeIndicator(),
+                      ],
                     ),
                   ),
-                ),
-                padding: const EdgeInsets.all(16),
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    SweetsPrimaryButton(
-                      label: 'Next',
-                      onPressed: selectedAddress != null
-                          ? () {
-                              // TODO: Navigate to order summary
-                            }
-                          : null,
-                    ),
-                    const SweetsHomeIndicator(),
-                  ],
-                ),
+                ],
               ),
-              if (showAddAddressModal)
-                Positioned.fill(
-                  child: _AddAddressModal(
-                    onClose: () {
-                      setState(() {
-                        showAddAddressModal = false;
-                      });
-                    },
-                  ),
-                ),
-            ],
+            ),
           ),
-        ),
+          if (showAddAddressModal)
+            Positioned.fill(
+              child: _AddAddressModal(
+                onClose: () {
+                  setState(() {
+                    showAddAddressModal = false;
+                  });
+                },
+              ),
+            ),
+        ],
       ),
     );
   }
