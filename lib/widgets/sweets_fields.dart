@@ -8,12 +8,14 @@ class SweetsTextField extends StatelessWidget {
     required this.hint,
     this.controller,
     this.keyboardType,
+    this.validator,
   });
 
   final String label;
   final String hint;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class SweetsTextField extends StatelessWidget {
         TextFormField(
           controller: controller,
           keyboardType: keyboardType,
+          validator: validator,
           decoration: InputDecoration(
             hintText: hint,
           ),
