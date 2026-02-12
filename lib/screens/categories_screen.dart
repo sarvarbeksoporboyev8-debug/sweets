@@ -69,9 +69,9 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  SizedBox(height: Spacing.lg),
+                  const SizedBox(height: Spacing.lg),
                   Padding(
-                    padding: EdgeInsets.symmetric(horizontal: Spacing.md),
+                    padding: const EdgeInsets.symmetric(horizontal: Spacing.md),
                     child: const Text(
                       'Categories',
                       style: TextStyle(
@@ -84,10 +84,10 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                       ),
                     ),
                   ),
-                  SizedBox(height: Spacing.lg),
+                  const SizedBox(height: Spacing.lg),
                   Expanded(
                     child: SingleChildScrollView(
-                      padding: EdgeInsets.only(
+                      padding: const EdgeInsets.only(
                         left: Spacing.md,
                         right: Spacing.md,
                         bottom: 100,

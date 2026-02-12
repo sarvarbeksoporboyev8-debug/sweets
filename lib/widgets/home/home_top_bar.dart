@@ -94,10 +94,10 @@ class HomeTopBar extends StatelessWidget {
                         const CircleIconButton(
                           icon: Icons.notifications_none_rounded,
                         ),
-                        Positioned(
+                        const Positioned(
                           right: 8,
                           top: 8,
-                          child: const CircleAvatar(
+                          child: CircleAvatar(
                             radius: 5,
                             backgroundColor: SweetsColors.primary,
                           ),

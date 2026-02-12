@@ -81,10 +81,10 @@ class ExploreTopBar extends StatelessWidget {
                   Stack(
                     children: [
                       const CircleIconButton(icon: Icons.notifications_none),
-                      Positioned(
+                      const Positioned(
                         right: 8,
                         top: 8,
-                        child: const CircleAvatar(
+                        child: CircleAvatar(
                           radius: 5,
                           backgroundColor: SweetsColors.primary,
                         ),

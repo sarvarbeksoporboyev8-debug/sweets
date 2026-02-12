@@ -21,7 +21,7 @@ class ProfileHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(height: Spacing.lg),
+        const SizedBox(height: Spacing.lg),
         // Profile avatar
         Stack(
           children: [
@@ -93,14 +93,14 @@ class ProfileHeader extends StatelessWidget {
             color: SweetsColors.black,
           ),
         ),
-        SizedBox(height: Spacing.xs),
+        const SizedBox(height: Spacing.xs),
         Text(
           email,
           style: Theme.of(context).textTheme.bodySmall?.copyWith(
                 color: SweetsColors.gray,
               ),
         ),
-        SizedBox(height: Spacing.spacing20),
+        const SizedBox(height: Spacing.spacing20),
       ],
     );
   }

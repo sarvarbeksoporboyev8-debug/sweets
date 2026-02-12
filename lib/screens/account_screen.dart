@@ -37,7 +37,7 @@ class AccountScreen extends StatelessWidget {
             child: SafeArea(
               top: false,
               child: SingleChildScrollView(
-                padding: EdgeInsets.symmetric(horizontal: Spacing.md),
+                padding: const EdgeInsets.symmetric(horizontal: Spacing.md),
                 child: Column(
                   children: [
                     AccountMenuItem(
@@ -47,7 +47,7 @@ class AccountScreen extends StatelessWidget {
                         Navigator.of(context).pushNamed('/personalInformation');
                       },
                     ),
-                    SizedBox(height: Spacing.sm),
+                    const SizedBox(height: Spacing.sm),
                     AccountMenuItem(
                       icon: Icons.shopping_bag_outlined,
                       label: 'Orders',
@@ -55,7 +55,7 @@ class AccountScreen extends StatelessWidget {
                         Navigator.of(context).pushNamed('/orders');
                       },
                     ),
-                    SizedBox(height: Spacing.sm),
+                    const SizedBox(height: Spacing.sm),
                     AccountMenuItem(
                       icon: Icons.favorite_outline,
                       label: 'Favorites',
@@ -63,7 +63,7 @@ class AccountScreen extends StatelessWidget {
                         Navigator.of(context).pushNamed('/favorites');
                       },
                     ),
-                    SizedBox(height: Spacing.sm),
+                    const SizedBox(height: Spacing.sm),
                     AccountMenuItem(
                       icon: Icons.location_on_outlined,
                       label: 'Addresses',
@@ -71,7 +71,7 @@ class AccountScreen extends StatelessWidget {
                         Navigator.of(context).pushNamed('/addresses');
                       },
                     ),
-                    SizedBox(height: Spacing.sm),
+                    const SizedBox(height: Spacing.sm),
                     LogoutMenuItem(
                       onTap: () {
                         // TODO: Handle logout

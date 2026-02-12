@@ -20,7 +20,7 @@ class AccountMenuItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(Spacing.md),
+        padding: const EdgeInsets.all(Spacing.md),
         decoration: BoxDecoration(
           color: SweetsColors.grayLighter.withOpacity(0.5),
           borderRadius: BorderRadius.circular(12),
@@ -71,7 +71,7 @@ class LogoutMenuItem extends StatelessWidget {
     return GestureDetector(
       onTap: onTap,
       child: Container(
-        padding: EdgeInsets.all(Spacing.md),
+        padding: const EdgeInsets.all(Spacing.md),
         child: Row(
           children: [
             const Icon(
