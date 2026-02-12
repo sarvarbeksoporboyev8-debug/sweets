@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/sweets_theme.dart';
+import '../constants/colors.dart';
 import '../constants/spacing.dart';
 import '../widgets/sweets_home_indicator.dart';
 import '../widgets/sweets_bottom_nav_bar.dart';

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../theme/sweets_theme.dart';
+import '../../constants/colors.dart';
 import '../../models/checkout_item_model.dart';
 
 /// Reusable widget for displaying order items with quantity controls

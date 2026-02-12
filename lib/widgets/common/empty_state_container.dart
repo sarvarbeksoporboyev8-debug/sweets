@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../theme/sweets_theme.dart';
+import '../../constants/colors.dart';
 import '../../constants/spacing.dart';
 
 /// Reusable empty state container for cart, favorites, notifications, etc.

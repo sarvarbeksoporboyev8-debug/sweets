@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../theme/sweets_theme.dart';
+import '../../constants/colors.dart';
 import '../../theme/spacing.dart';
 
 /// A reusable profile avatar widget with an edit button.

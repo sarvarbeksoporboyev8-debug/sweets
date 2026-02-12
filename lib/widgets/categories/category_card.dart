@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../theme/sweets_theme.dart';
+import '../../constants/colors.dart';
 
 /// Category card widget that displays a category with an image and label.
 /// Supports flexible sizing and tap interactions.

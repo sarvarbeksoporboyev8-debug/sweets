@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../models/order_model.dart';
 import '../../theme/sweets_theme.dart';
+import '../../constants/colors.dart';
 import 'order_status_indicator.dart';
 
 /// Reusable order card component with expandable timeline

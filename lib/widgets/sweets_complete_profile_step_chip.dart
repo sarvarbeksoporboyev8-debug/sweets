@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/sweets_theme.dart';
+import '../constants/colors.dart';
 
 /// Step chip for "05  Complete profile" used in the onboarding flow.
 ///

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../theme/sweets_theme.dart';
+import '../../constants/colors.dart';
 
 /// Reusable star rating widget component
 class StarRatingWidget extends StatelessWidget {

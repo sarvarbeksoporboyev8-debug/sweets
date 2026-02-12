@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import '../../models/order_model.dart';
 import '../../theme/sweets_theme.dart';
+import '../../constants/colors.dart';
 
 /// Order status indicator component - displays timeline of order statuses
 class OrderStatusIndicator extends StatelessWidget {

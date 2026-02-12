@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../theme/sweets_theme.dart';
+import '../../constants/colors.dart';
 
 /// Reusable widget for displaying pricing breakdown rows
 class PricingBreakdown extends StatelessWidget {

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../../theme/sweets_theme.dart';
+import '../../constants/colors.dart';
 
 /// Reusable gender selector component with radio buttons
 class GenderSelector extends StatelessWidget {

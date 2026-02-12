@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import '../theme/sweets_theme.dart';
+import '../constants/colors.dart';
 
 /// Generic step chip used for the numbered onboarding labels like
 /// "06  Home", "07  Categories", "08  Explore", etc.
