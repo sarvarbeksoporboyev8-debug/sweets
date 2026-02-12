@@ -1,9 +1,14 @@
 ﻿import 'package:flutter/material.dart';
 import '../theme/sweets_theme.dart';
+import '../theme/spacing.dart';
+import '../theme/gradients.dart';
 import '../widgets/sweets_navigation_bar.dart';
 import '../widgets/sweets_button.dart';
 import '../widgets/sweets_home_indicator.dart';
+import '../widgets/auth/success_message.dart';
 
+/// Login success screen that displays a success message after login.
+/// Uses responsive layout and reusable success message component.
 class LoginSuccessScreen extends StatelessWidget {
   const LoginSuccessScreen({super.key});
 
@@ -12,71 +17,36 @@ class LoginSuccessScreen extends StatelessWidget {
     return Scaffold(
       body: Container(
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFFFFE6D1), // #ffe6d1
-              Color(0xFFFFFFFF), // white at 55%
-            ],
-            stops: [0.0, 0.55],
-          ),
+          gradient: SweetsGradients.successBackground,
         ),
         child: SafeArea(
           bottom: false,
           child: Column(
             children: [
-              // Navigation bar
               const SweetsNavigationBar(title: 'Login'),
-              // Main content - scrollable, no Spacer in unbounded context
+              
               Expanded(
                 child: SingleChildScrollView(
-                  padding: const EdgeInsets.symmetric(horizontal: 16),
+                  padding: EdgeInsets.symmetric(horizontal: Spacing.lg),
                   child: Column(
                     children: [
-                      const SizedBox(height: 80),
-                      // Image (180x180)
-                      SizedBox(
-                        width: 180,
-                        height: 180,
-                        child: Image.asset(
-                          'images/figma/8391d07c-2f01-4c22-a677-05731c7713b0.png',
-                          fit: BoxFit.contain,
-                          errorBuilder: (context, error, stackTrace) {
-                            return const Icon(
-                              Icons.check_circle,
-                              size: 180,
-                              color: SweetsColors.primary,
-                            );
-                          },
-                        ),
+                      SizedBox(height: Spacing.gapLg),
+                      
+                      const SuccessMessage(
+                        imagePath: 'images/figma/8391d07c-2f01-4c22-a677-05731c7713b0.png',
+                        title: 'Welcome! 👋',
+                        description: 'Go to the homepage and browse the products now.',
                       ),
-                      const SizedBox(height: 12),
-                      // Title
-                      Text(
-                        'Welcome! 👋',
-                        style: Theme.of(context).textTheme.headlineLarge,
-                        textAlign: TextAlign.center,
-                      ),
-                      const SizedBox(height: 12),
-                      // Description
-                      SizedBox(
-                        width: 303,
-                        child: Text(
-                          'Go to the homepage and browse the products now.',
-                          style: Theme.of(context).textTheme.bodyMedium,
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      const SizedBox(height: 80),
+                      
+                      SizedBox(height: Spacing.gapLg),
                     ],
                   ),
                 ),
               ),
-              // Button - fixed at bottom
-              const Padding(
-                padding: EdgeInsets.all(16),
-                child: SweetsPrimaryButton(
+              
+              Padding(
+                padding: EdgeInsets.all(Spacing.lg),
+                child: const SweetsPrimaryButton(
                   label: 'Get started',
                   onPressed: null,
                 ),

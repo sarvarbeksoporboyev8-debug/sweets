@@ -1,10 +1,76 @@
 import 'package:flutter/material.dart';
 import '../theme/sweets_theme.dart';
+import '../theme/spacing.dart';
 import '../widgets/sweets_navigation_bar.dart';
 import '../widgets/sweets_home_indicator.dart';
+import '../widgets/auth/profile_avatar.dart';
+import '../widgets/auth/gender_selector.dart';
+import '../widgets/auth/labeled_text_field.dart';
 
-class CompleteProfileScreen01 extends StatelessWidget {
+/// Complete profile screen for adding user information.
+/// Uses StatefulWidget with TextEditingController for proper state management.
+class CompleteProfileScreen01 extends StatefulWidget {
   const CompleteProfileScreen01({super.key});
+
+  @override
+  State<CompleteProfileScreen01> createState() => _CompleteProfileScreen01State();
+}
+
+class _CompleteProfileScreen01State extends State<CompleteProfileScreen01> {
+  late TextEditingController _firstNameController;
+  late TextEditingController _lastNameController;
+  late TextEditingController _dateOfBirthController;
+  String? _selectedGender;
+
+  @override
+  void initState() {
+    super.initState();
+    _firstNameController = TextEditingController();
+    _lastNameController = TextEditingController();
+    _dateOfBirthController = TextEditingController();
+    _selectedGender = 'Male'; // Default selection
+    
+    // Add listeners to trigger rebuilds on text changes
+    _firstNameController.addListener(_updateFormState);
+    _lastNameController.addListener(_updateFormState);
+    _dateOfBirthController.addListener(_updateFormState);
+  }
+
+  @override
+  void dispose() {
+    _firstNameController.removeListener(_updateFormState);
+    _lastNameController.removeListener(_updateFormState);
+    _dateOfBirthController.removeListener(_updateFormState);
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _dateOfBirthController.dispose();
+    super.dispose();
+  }
+
+  void _updateFormState() {
+    setState(() {
+      // Triggers rebuild to update button state
+    });
+  }
+
+  void _handleAddPressed() {
+    // TODO: Validate and save profile data
+  }
+
+  void _handleEditPhoto() {
+    // TODO: Open image picker
+  }
+
+  void _handleDateOfBirthTap() {
+    // TODO: Open date picker
+  }
+
+  bool get _isFormValid {
+    return _firstNameController.text.isNotEmpty &&
+           _lastNameController.text.isNotEmpty &&
+           _dateOfBirthController.text.isNotEmpty &&
+           _selectedGender != null;
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,97 +82,109 @@ class CompleteProfileScreen01 extends StatelessWidget {
         bottom: false,
         child: Column(
           children: [
-            // Navigation bar
             const SweetsNavigationBar(title: 'Complete Profile'),
-            // Main content - scrollable
+            
             Expanded(
               child: SingleChildScrollView(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: EdgeInsets.symmetric(horizontal: Spacing.lg),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    const SizedBox(height: 40),
-                    _AvatarPlaceholder(),
-                    const SizedBox(height: 24),
+                    SizedBox(height: Spacing.xxxxl),
+                    
+                    ProfileAvatar(onEditPressed: _handleEditPhoto),
+                    
+                    SizedBox(height: Spacing.xxl),
+                    
                     Text(
                       'Add Information',
                       style: theme.textTheme.headlineLarge,
                       textAlign: TextAlign.center,
                     ),
-                    const SizedBox(height: 24),
-                    Align(
-                      alignment: Alignment.centerLeft,
-                      child: Text(
-                        'Gender',
-                        style: theme.textTheme.labelSmall?.copyWith(
-                          color: SweetsColors.grayDarker,
-                        ),
-                      ),
+                    
+                    SizedBox(height: Spacing.xxl),
+                    
+                    GenderSelector(
+                      selectedGender: _selectedGender,
+                      onGenderChanged: (gender) {
+                        setState(() {
+                          _selectedGender = gender;
+                        });
+                      },
                     ),
-                    const SizedBox(height: 8),
-                    const Row(
-                      children: [
-                        _GenderOption(label: 'Male', selected: true),
-                        SizedBox(width: 16),
-                        _GenderOption(label: 'Female', selected: false),
-                      ],
-                    ),
-                    const SizedBox(height: 16),
-                    _LabeledField(
+                    
+                    SizedBox(height: Spacing.lg),
+                    
+                    LabeledTextField(
                       label: 'Full Name',
                       hint: 'Full Name',
+                      controller: _firstNameController,
                     ),
-                    const SizedBox(height: 16),
-                    _LabeledField(
+                    
+                    SizedBox(height: Spacing.lg),
+                    
+                    LabeledTextField(
                       label: 'Last Name',
                       hint: 'Last Name',
+                      controller: _lastNameController,
                     ),
-                    const SizedBox(height: 16),
-                    const _DateOfBirthField(
+                    
+                    SizedBox(height: Spacing.lg),
+                    
+                    LabeledTextField(
                       label: 'Date of Birth',
                       hint: 'Day / Month / Year',
+                      controller: _dateOfBirthController,
+                      keyboardType: TextInputType.datetime,
+                      readOnly: true,
+                      onTap: _handleDateOfBirthTap,
+                      suffixIcon: const Icon(
+                        Icons.calendar_today_rounded,
+                        size: 20,
+                        color: SweetsColors.primary,
+                      ),
                     ),
-                    const SizedBox(height: 40),
+                    
+                    SizedBox(height: Spacing.xxxxl),
                   ],
                 ),
               ),
             ),
-            // Bottom CTA block - fixed at bottom
+            
             Padding(
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SizedBox(
-                    height: 56,
-                    width: double.infinity,
-                    child: ElevatedButton(
-                      onPressed: null,
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: SweetsColors.primaryLighter,
-                        foregroundColor: SweetsColors.white75,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 20,
-                          vertical: 14,
-                        ),
-                      ),
-                      child: const Text(
-                        'Add',
-                        style: TextStyle(
-                          fontFamily: 'Geist',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          height: 24 / 16,
-                          letterSpacing: 0,
-                        ),
-                        textAlign: TextAlign.center,
-                      ),
+              padding: EdgeInsets.all(Spacing.lg),
+              child: SizedBox(
+                height: Spacing.buttonHeight,
+                width: double.infinity,
+                child: ElevatedButton(
+                  onPressed: _isFormValid ? _handleAddPressed : null,
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: _isFormValid
+                        ? SweetsColors.primary
+                        : SweetsColors.primaryLighter,
+                    foregroundColor: _isFormValid
+                        ? SweetsColors.white
+                        : SweetsColors.white75,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(Spacing.lg),
+                    ),
+                    padding: EdgeInsets.symmetric(
+                      horizontal: Spacing.xl,
+                      vertical: Spacing.buttonPadding,
                     ),
                   ),
-                ],
+                  child: const Text(
+                    'Add',
+                    style: TextStyle(
+                      fontFamily: 'Geist',
+                      fontWeight: FontWeight.w500,
+                      fontSize: 16,
+                      height: 24 / 16,
+                      letterSpacing: 0,
+                    ),
+                    textAlign: TextAlign.center,
+                  ),
+                ),
               ),
             ),
             const SweetsHomeIndicator(),
@@ -116,188 +194,3 @@ class CompleteProfileScreen01 extends StatelessWidget {
     );
   }
 }
-
-class _AvatarPlaceholder extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: 104,
-      height: 104,
-      decoration: const BoxDecoration(
-        color: SweetsColors.grayLighter,
-        shape: BoxShape.circle,
-      ),
-      child: Stack(
-        alignment: Alignment.center,
-        children: [
-          const Icon(
-            Icons.person,
-            size: 40,
-            color: SweetsColors.gray,
-          ),
-          Positioned(
-            bottom: -4,
-            right: -4,
-            child: Container(
-              width: 32,
-              height: 32,
-              decoration: const BoxDecoration(
-                color: SweetsColors.primary,
-                shape: BoxShape.circle,
-              ),
-              child: const Icon(
-                Icons.photo,
-                size: 18,
-                color: SweetsColors.white,
-              ),
-            ),
-          ),
-        ],
-      ),
-    );
-  }
-}
-
-class _GenderOption extends StatelessWidget {
-  const _GenderOption({
-    required this.label,
-    required this.selected,
-  });
-
-  final String label;
-  final bool selected;
-
-  @override
-  Widget build(BuildContext context) {
-    return Row(
-      children: [
-        Container(
-          padding: const EdgeInsets.all(4),
-          child: Container(
-            width: 16,
-            height: 16,
-            decoration: BoxDecoration(
-              color: selected ? SweetsColors.primary : SweetsColors.white,
-              borderRadius: BorderRadius.circular(12),
-              border: Border.all(
-                color: selected ? SweetsColors.primary : SweetsColors.border,
-                width: 1,
-              ),
-            ),
-            child: selected
-                ? Container(
-                    margin: const EdgeInsets.all(4),
-                    decoration: const BoxDecoration(
-                      color: SweetsColors.white,
-                      shape: BoxShape.circle,
-                    ),
-                  )
-                : null,
-          ),
-        ),
-        const SizedBox(width: 4),
-        Text(
-          label,
-          style: const TextStyle(
-            fontFamily: 'Geist',
-            fontWeight: FontWeight.w400,
-            fontSize: 14,
-            height: 20 / 14,
-            color: SweetsColors.grayDarker,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _LabeledField extends StatelessWidget {
-  const _LabeledField({
-    required this.label,
-    required this.hint,
-    this.value,
-  });
-
-  final String label;
-  final String hint;
-  final String? value;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: theme.textTheme.labelSmall?.copyWith(
-            color: SweetsColors.grayDarker,
-          ),
-        ),
-        const SizedBox(height: 4),
-        TextFormField(
-          initialValue: value,
-          decoration: InputDecoration(
-            hintText: hint,
-          ),
-          style: TextStyle(
-            fontFamily: 'Geist',
-            fontWeight: FontWeight.w400,
-            fontSize: 14,
-            height: 20 / 14,
-            color: value != null ? SweetsColors.grayDarker : SweetsColors.gray,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _DateOfBirthField extends StatelessWidget {
-  const _DateOfBirthField({
-    required this.label,
-    required this.hint,
-    this.value,
-  });
-
-  final String label;
-  final String hint;
-  final String? value;
-
-  @override
-  Widget build(BuildContext context) {
-    final theme = Theme.of(context);
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Text(
-          label,
-          style: theme.textTheme.labelSmall?.copyWith(
-            color: SweetsColors.grayDarker,
-          ),
-        ),
-        const SizedBox(height: 4),
-        TextFormField(
-          initialValue: value,
-          decoration: InputDecoration(
-            hintText: hint,
-            suffixIcon: const Icon(
-              Icons.calendar_today_rounded,
-              size: 20,
-              color: SweetsColors.primary,
-            ),
-          ),
-          keyboardType: TextInputType.datetime,
-          style: TextStyle(
-            fontFamily: 'Geist',
-            fontWeight: FontWeight.w400,
-            fontSize: 14,
-            height: 20 / 14,
-            color: value != null ? SweetsColors.grayDarker : SweetsColors.gray,
-          ),
-        ),
-      ],
-    );
-  }
-}
-
