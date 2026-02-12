@@ -1,121 +1,100 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../theme/sweets_theme.dart';
+import '../constants/spacing.dart';
 import '../widgets/sweets_home_indicator.dart';
-import '../widgets/sweets_button.dart';
+import '../widgets/common/empty_state_container.dart';
 
-class NoConnectionScreen extends StatelessWidget {
+class NoConnectionScreen extends StatefulWidget {
   const NoConnectionScreen({super.key});
+
+  @override
+  State<NoConnectionScreen> createState() => _NoConnectionScreenState();
+}
+
+class _NoConnectionScreenState extends State<NoConnectionScreen> {
+  bool _isRetrying = false;
+
+  void _retryConnection() async {
+    setState(() {
+      _isRetrying = true;
+    });
+
+    // Simulate network retry
+    await Future.delayed(const Duration(seconds: 2));
+
+    if (mounted) {
+      setState(() {
+        _isRetrying = false;
+      });
+
+      // TODO: Implement actual connection retry logic
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(
+          content: Text('Connection retry completed'),
+          duration: Duration(seconds: 2),
+        ),
+      );
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: SweetsColors.white,
-      body: Stack(
+      body: EmptyStateContainer(
+        imagePath: 'images/figma/c951e197-ca5f-442c-a93a-f29dcbed1088.png',
+        fallbackIcon: Icons.wifi_off,
+        title: 'There is a problem.',
+        message: 'Unfortunately, the internet connection could not be established. Please check, thank you.',
+      ),
+      bottomNavigationBar: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
-          // Empty state content
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 270,
-                  height: 270,
-                  child: Image.asset('images/figma/c951e197-ca5f-442c-a93a-f29dcbed1088.png',
-                    fit: BoxFit.contain,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        width: 270,
-                        height: 270,
-                        decoration: BoxDecoration(
-                          color: SweetsColors.grayLighter,
-                          borderRadius: BorderRadius.circular(24),
+          Padding(
+            padding: EdgeInsets.all(Spacing.lg),
+            child: SizedBox(
+              height: Spacing.buttonHeight,
+              width: double.infinity,
+              child: ElevatedButton.icon(
+                onPressed: _isRetrying ? null : _retryConnection,
+                icon: _isRetrying
+                    ? SizedBox(
+                        width: Spacing.iconMd,
+                        height: Spacing.iconMd,
+                        child: const CircularProgressIndicator(
+                          color: SweetsColors.white,
+                          strokeWidth: 2,
                         ),
-                        child: const Icon(
-                          Icons.wifi_off,
-                          size: 80,
-                          color: SweetsColors.gray,
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                const SizedBox(height: 8),
-                const Text(
-                  'There is a problem.',
-                  style: TextStyle(
-                    fontFamily: 'Geist',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 32,
-                    height: 1.0,
-                    letterSpacing: -0.96,
-                    color: SweetsColors.black,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 8),
-                SizedBox(
-                  width: 300,
-                  child: const Text(
-                    'Unfortunately, the internet connection could not be established. Please check, thank you.',
-                    style: TextStyle(
-                      fontFamily: 'Geist',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                      height: 24 / 16,
-                      color: SweetsColors.grayDark,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          // Bottom button and home indicator
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(16),
-                  child: SizedBox(
-                    height: 56,
-                    width: double.infinity,
-                    child: ElevatedButton.icon(
-                      onPressed: () {
-                        // TODO: Retry connection
-                      },
-                      icon: const Icon(
+                      )
+                    : const Icon(
                         Icons.refresh,
-                        size: 24,
+                        size: Spacing.iconMd,
                         color: SweetsColors.white,
                       ),
-                      label: const Text(
-                        'Try again',
-                        style: TextStyle(
-                          fontFamily: 'Geist',
-                          fontWeight: FontWeight.w500,
-                          fontSize: 16,
-                          height: 24 / 16,
-                          color: SweetsColors.white,
-                        ),
-                      ),
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: SweetsColors.primary,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(16),
-                        ),
-                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
-                      ),
-                    ),
+                label: Text(
+                  _isRetrying ? 'Retrying...' : 'Try again',
+                  style: const TextStyle(
+                    fontFamily: 'Geist',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 16,
+                    height: 24 / 16,
+                    color: SweetsColors.white,
                   ),
                 ),
-                const SweetsHomeIndicator(),
-              ],
+                style: ElevatedButton.styleFrom(
+                  backgroundColor: SweetsColors.primary,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(Spacing.borderRadiusLg),
+                  ),
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 20,
+                    vertical: 14,
+                  ),
+                ),
+              ),
             ),
           ),
+          const SweetsHomeIndicator(),
         ],
       ),
     );
