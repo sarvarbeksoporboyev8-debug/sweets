@@ -1,13 +1,16 @@
 ﻿import 'package:flutter/material.dart';
 import '../theme/sweets_theme.dart';
+import '../theme/spacing.dart';
+import '../theme/responsive.dart';
 
+/// Welcome splash screen that displays the app logo and welcome message.
+/// Uses responsive design to adapt to different screen sizes.
 class WelcomeSplashScreen extends StatelessWidget {
   const WelcomeSplashScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final imageHeight = screenHeight * 0.5; // 50% of screen height for hero image
+    final imageHeight = ResponsiveUtils.responsiveHeight(context, 0.5);
 
     return Scaffold(
       backgroundColor: SweetsColors.white,
@@ -22,16 +25,15 @@ class WelcomeSplashScreen extends StatelessWidget {
             Center(
               child: SizedBox(
                 height: imageHeight,
-                width: imageHeight, // Square aspect ratio
+                width: imageHeight,
                 child: Image.asset(
                   'images/figma/82ca0a54-5f0a-4317-9813-533c1340e2d9.png',
                   fit: BoxFit.contain,
                   errorBuilder: (context, error, stackTrace) {
-                    // Fallback: orange squircle with white cupcake icon
                     return Container(
                       decoration: BoxDecoration(
                         color: SweetsColors.primary,
-                        borderRadius: BorderRadius.circular(imageHeight * 0.23), // Squircle shape
+                        borderRadius: BorderRadius.circular(imageHeight * 0.23),
                       ),
                       child: Icon(
                         Icons.cake,
@@ -44,40 +46,40 @@ class WelcomeSplashScreen extends StatelessWidget {
               ),
             ),
 
-            SizedBox(height: screenHeight * 0.04), // Responsive spacing
+            SizedBox(height: Spacing.xxxl),
 
-            // Text - secondary to the image
+            // Welcome text
             Center(
               child: Column(
                 mainAxisSize: MainAxisSize.min,
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
-                Text(
-                  'Welcome to',
-                  style: TextStyle(
-                    fontFamily: 'Geist',
-                    fontWeight: FontWeight.w400,
-                    fontSize: screenHeight * 0.018, // Responsive font size
-                    height: 1.43,
-                    color: const Color(0xFF868E96),
+                  Text(
+                    'Welcome to',
+                    style: TextStyle(
+                      fontFamily: 'Geist',
+                      fontWeight: FontWeight.w400,
+                      fontSize: ResponsiveUtils.responsiveFontSize(context, 0.018),
+                      height: 1.43,
+                      color: SweetsColors.gray,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-                SizedBox(height: screenHeight * 0.008),
-                Text(
-                  'Sweets',
-                  style: TextStyle(
-                    fontFamily: 'Geist',
-                    fontWeight: FontWeight.w500,
-                    fontSize: screenHeight * 0.05, // Responsive font size
-                    height: 1.0,
-                    letterSpacing: -1.44,
-                    color: const Color(0xFFF76707),
+                  SizedBox(height: Spacing.sm),
+                  Text(
+                    'Sweets',
+                    style: TextStyle(
+                      fontFamily: 'Geist',
+                      fontWeight: FontWeight.w500,
+                      fontSize: ResponsiveUtils.responsiveFontSize(context, 0.05),
+                      height: 1.0,
+                      letterSpacing: -1.44,
+                      color: SweetsColors.primaryDark,
+                    ),
+                    textAlign: TextAlign.center,
                   ),
-                  textAlign: TextAlign.center,
-                ),
-              ],
-            ),
+                ],
+              ),
             ),
 
             const Spacer(flex: 3),
