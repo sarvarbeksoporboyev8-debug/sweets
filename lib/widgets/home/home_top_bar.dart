@@ -97,7 +97,7 @@ class HomeTopBar extends StatelessWidget {
                         Positioned(
                           right: 8,
                           top: 8,
-                          child: CircleAvatar(
+                          child: const CircleAvatar(
                             radius: 5,
                             backgroundColor: SweetsColors.primary,
                           ),
