@@ -1,6 +1,8 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../theme/sweets_theme.dart';
+import '../constants/spacing.dart';
 import '../widgets/sweets_home_indicator.dart';
+import '../widgets/common/empty_state_container.dart';
 
 class CartEmptyScreen extends StatelessWidget {
   const CartEmptyScreen({super.key});
@@ -9,89 +11,14 @@ class CartEmptyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: SweetsColors.white,
-      body: Stack(
-        children: [
-          // Gradient background
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            child: Container(
-              height: 168,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFFFFE6D1),
-                    Color(0xFFFFFFFF),
-                  ],
-                ),
-              ),
-            ),
-          ),
-          // Empty state content
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                SizedBox(
-                  width: 270,
-                  height: 270,
-                  child: Image.asset('images/figma/d642c98f-5db5-48aa-9670-f592839e6904.png',
-                    fit: BoxFit.contain,
-                    errorBuilder: (context, error, stackTrace) {
-                      return Container(
-                        width: 270,
-                        height: 270,
-                        decoration: BoxDecoration(
-                          color: SweetsColors.grayLighter,
-                          borderRadius: BorderRadius.circular(24),
-                        ),
-                        child: const Icon(
-                          Icons.shopping_bag_outlined,
-                          size: 80,
-                          color: SweetsColors.gray,
-                        ),
-                      );
-                    },
-                  ),
-                ),
-                const SizedBox(height: 8),
-                const Text(
-                  'Unfortunately!',
-                  style: TextStyle(
-                    fontFamily: 'Geist',
-                    fontWeight: FontWeight.w600,
-                    fontSize: 32,
-                    height: 1.0,
-                    letterSpacing: -0.96,
-                    color: SweetsColors.black,
-                  ),
-                  textAlign: TextAlign.center,
-                ),
-                const SizedBox(height: 8),
-                SizedBox(
-                  width: 270,
-                  child: const Text(
-                    'The cart is empty. Try exploring the products now.',
-                    style: TextStyle(
-                      fontFamily: 'Geist',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 16,
-                      height: 24 / 16,
-                      color: SweetsColors.grayDark,
-                    ),
-                    textAlign: TextAlign.center,
-                  ),
-                ),
-              ],
-            ),
-          ),
-          // Bottom tab bar
-          const _CartEmptyTabBar(),
-        ],
+      body: EmptyStateContainer(
+        imagePath: 'images/figma/d642c98f-5db5-48aa-9670-f592839e6904.png',
+        fallbackIcon: Icons.shopping_bag_outlined,
+        title: 'Unfortunately!',
+        message: 'The cart is empty. Try exploring the products now.',
+        showGradientBackground: true,
       ),
+      bottomNavigationBar: const _CartEmptyTabBar(),
     );
   }
 }
@@ -101,49 +28,44 @@ class _CartEmptyTabBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Positioned(
-      left: 0,
-      right: 0,
-      bottom: 0,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        children: [
-          Container(
-            decoration: BoxDecoration(
-              color: SweetsColors.white,
-              border: Border(
-                top: BorderSide(
-                  color: SweetsColors.border.withOpacity(0.75),
-                ),
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: SweetsColors.white,
+            border: Border(
+              top: BorderSide(
+                color: SweetsColors.border.withOpacity(0.75),
               ),
             ),
-            padding: const EdgeInsets.symmetric(vertical: 8),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                _TabItem(label: 'Home', icon: Icons.home_outlined, active: false),
-                _TabItem(
-                    label: 'Explore',
-                    icon: Icons.search_rounded,
-                    active: false),
-                _TabItem(
-                    label: 'Favorites',
-                    icon: Icons.favorite_border,
-                    active: false),
-                _TabItem(
-                    label: 'Cart',
-                    icon: Icons.shopping_bag,
-                    active: true),
-                _TabItem(
-                    label: 'Account',
-                    icon: Icons.person_outline,
-                    active: false),
-              ],
-            ),
           ),
-          const SweetsHomeIndicator(),
-        ],
-      ),
+          padding: EdgeInsets.symmetric(vertical: Spacing.sm),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: const [
+              _TabItem(label: 'Home', icon: Icons.home_outlined, active: false),
+              _TabItem(
+                  label: 'Explore',
+                  icon: Icons.search_rounded,
+                  active: false),
+              _TabItem(
+                  label: 'Favorites',
+                  icon: Icons.favorite_border,
+                  active: false),
+              _TabItem(
+                  label: 'Cart',
+                  icon: Icons.shopping_bag,
+                  active: true),
+              _TabItem(
+                  label: 'Account',
+                  icon: Icons.person_outline,
+                  active: false),
+            ],
+          ),
+        ),
+        const SweetsHomeIndicator(),
+      ],
     );
   }
 }
@@ -165,10 +87,10 @@ class _TabItem extends StatelessWidget {
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
-          padding: const EdgeInsets.all(8),
+          padding: EdgeInsets.all(Spacing.sm),
           decoration: BoxDecoration(
             color: active ? SweetsColors.primary : Colors.transparent,
-            borderRadius: BorderRadius.circular(8),
+            borderRadius: BorderRadius.circular(Spacing.borderRadius),
             boxShadow: active
                 ? const [
                     BoxShadow(
@@ -181,11 +103,11 @@ class _TabItem extends StatelessWidget {
           ),
           child: Icon(
             icon,
-            size: 24,
+            size: Spacing.iconMd,
             color: active ? SweetsColors.white : SweetsColors.grayDarker,
           ),
         ),
-        const SizedBox(height: 4),
+        SizedBox(height: Spacing.xs),
         Text(
           label,
           style: TextStyle(
