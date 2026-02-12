@@ -1,6 +1,8 @@
 ﻿import 'package:flutter/material.dart';
 import '../theme/sweets_theme.dart';
 import '../widgets/sweets_home_indicator.dart';
+import '../constants/spacing.dart';
+import '../constants/gradients.dart';
 
 class AboutUsScreen extends StatelessWidget {
   const AboutUsScreen({super.key});
@@ -13,9 +15,12 @@ class AboutUsScreen extends StatelessWidget {
         bottom: false,
         child: Column(
           children: [
-            // Navigation – separate flex block (padding: 10px 16px)
+            // Navigation
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              padding: const EdgeInsets.symmetric(
+                horizontal: Spacing.lg,
+                vertical: 10,
+              ),
               child: Row(
                 children: [
                   GestureDetector(
@@ -26,7 +31,7 @@ class AboutUsScreen extends StatelessWidget {
                       color: SweetsColors.grayDarker,
                     ),
                   ),
-                  const SizedBox(width: 8),
+                  const SizedBox(width: Spacing.sm),
                   const Text(
                     'About us',
                     style: TextStyle(
@@ -40,26 +45,18 @@ class AboutUsScreen extends StatelessWidget {
                 ],
               ),
             ),
-            // HERO – flex container: padding 112px 64px 0 64px, justify-content:end, align-items:center
+            // Hero section
             ClipRRect(
               borderRadius: const BorderRadius.only(
-                bottomLeft: Radius.circular(24),
-                bottomRight: Radius.circular(24),
+                bottomLeft: Radius.circular(Spacing.radiusXl),
+                bottomRight: Radius.circular(Spacing.radiusXl),
               ),
               child: Container(
-                width: 428,
+                width: double.infinity,
                 height: 480,
                 padding: const EdgeInsets.fromLTRB(64, 112, 64, 0),
                 decoration: const BoxDecoration(
-                  gradient: RadialGradient(
-                    center: Alignment(0, -0.2182),
-                    radius: 0.7399,
-                    colors: [
-                      Color(0xFFFFE6D1),
-                      Color(0xFFFD7E14),
-                    ],
-                    stops: [0.0, 1.0],
-                  ),
+                  gradient: AppGradients.heroGradient,
                 ),
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -70,7 +67,7 @@ class AboutUsScreen extends StatelessWidget {
                       height: 368,
                       child: Stack(
                         children: [
-                          // SCREEN BEHIND
+                          // Phone screen background
                           Positioned(
                             left: 0,
                             top: 0,
@@ -79,8 +76,7 @@ class AboutUsScreen extends StatelessWidget {
                               width: 300,
                               height: 607,
                               fit: BoxFit.cover,
-                              errorBuilder:
-                                  (context, error, stackTrace) {
+                              errorBuilder: (context, error, stackTrace) {
                                 return Container(
                                   width: 300,
                                   height: 607,
@@ -89,7 +85,7 @@ class AboutUsScreen extends StatelessWidget {
                               },
                             ),
                           ),
-                          // FRAME ON TOP
+                          // Phone frame overlay
                           Positioned(
                             left: 14.88,
                             top: 12.79,
@@ -98,8 +94,7 @@ class AboutUsScreen extends StatelessWidget {
                               width: 268.092,
                               height: 579.179,
                               fit: BoxFit.cover,
-                              errorBuilder:
-                                  (context, error, stackTrace) {
+                              errorBuilder: (context, error, stackTrace) {
                                 return const SizedBox.shrink();
                               },
                             ),
@@ -111,15 +106,19 @@ class AboutUsScreen extends StatelessWidget {
                 ),
               ),
             ),
-            // CONTENT
+            // Content section
             Expanded(
               child: SingleChildScrollView(
-                padding:
-                    const EdgeInsets.fromLTRB(16, 24, 16, 100),
+                padding: const EdgeInsets.fromLTRB(
+                  Spacing.lg,
+                  Spacing.sectionSpacing,
+                  Spacing.lg,
+                  100,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
-                  children: const [
-                    Text(
+                  children: [
+                    const Text(
                       'Who we are ?',
                       style: TextStyle(
                         fontFamily: 'Geist',
@@ -130,8 +129,8 @@ class AboutUsScreen extends StatelessWidget {
                         color: SweetsColors.black,
                       ),
                     ),
-                    SizedBox(height: 12),
-                    Text(
+                    const SizedBox(height: Spacing.md),
+                    const Text(
                       'Sweets is a delivery app for sweets and products from home-based businesses, providing sales outlets for these businesses, allowing merchants to have a complete dashboard of their store.',
                       style: TextStyle(
                         fontFamily: 'Geist',
@@ -141,8 +140,8 @@ class AboutUsScreen extends StatelessWidget {
                         color: SweetsColors.grayDark,
                       ),
                     ),
-                    SizedBox(height: 32),
-                    Text(
+                    const SizedBox(height: Spacing.xxxl),
+                    const Text(
                       'What makes Sweets special?',
                       style: TextStyle(
                         fontFamily: 'Geist',
@@ -153,8 +152,8 @@ class AboutUsScreen extends StatelessWidget {
                         color: SweetsColors.black,
                       ),
                     ),
-                    SizedBox(height: 12),
-                    Text(
+                    const SizedBox(height: Spacing.md),
+                    const Text(
                       'What sets The Sweet apart is its professional project design and the provision of a dashboard for merchants through the app, enabling them to add products and delivery personnel and manage their entire store.',
                       style: TextStyle(
                         fontFamily: 'Geist',

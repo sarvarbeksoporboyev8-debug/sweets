@@ -1,6 +1,9 @@
 ﻿import 'package:flutter/material.dart';
 import '../theme/sweets_theme.dart';
 import '../widgets/sweets_home_indicator.dart';
+import '../widgets/support/empty_state_message.dart';
+import '../constants/spacing.dart';
+import '../constants/gradients.dart';
 
 // From Figma get_design_context (will periodically expire and can be replaced)
 const _notificationsImageUrl =
@@ -13,39 +16,27 @@ class NotificationsEmptyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: SweetsColors.white,
-      body: Stack(
+      body: Column(
         children: [
-          // Gradient background
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            child: Container(
-              height: 168,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFFFFE6D1),
-                    Color(0xFFFFFFFF),
-                  ],
-                ),
-              ),
+          // Gradient background header
+          Container(
+            height: 168,
+            decoration: const BoxDecoration(
+              gradient: AppGradients.headerGradient,
             ),
           ),
-          // Main content
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
+          // Content area
+          Expanded(
             child: SafeArea(
+              top: false,
               child: Column(
                 children: [
                   // Navigation bar
                   Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: Spacing.lg,
+                      vertical: 10,
+                    ),
                     child: Row(
                       children: [
                         GestureDetector(
@@ -56,7 +47,7 @@ class NotificationsEmptyScreen extends StatelessWidget {
                             color: SweetsColors.grayDarker,
                           ),
                         ),
-                        const SizedBox(width: 8),
+                        const SizedBox(width: Spacing.sm),
                         const Text(
                           'Notifications',
                           style: TextStyle(
@@ -70,71 +61,20 @@ class NotificationsEmptyScreen extends StatelessWidget {
                       ],
                     ),
                   ),
-                  Expanded(
-                    child: Center(
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        children: [
-                          SizedBox(
-                            width: 270,
-                            height: 270,
-                            child: Image.asset(
-                              _notificationsImageUrl,
-                              fit: BoxFit.contain,
-                              errorBuilder: (context, error, stackTrace) {
-                                return Container(
-                                  width: 270,
-                                  height: 270,
-                                  decoration: BoxDecoration(
-                                    color: SweetsColors.grayLighter,
-                                    borderRadius: BorderRadius.circular(12),
-                                  ),
-                                  child: const Icon(
-                                    Icons.notifications_none,
-                                    size: 100,
-                                    color: SweetsColors.gray,
-                                  ),
-                                );
-                              },
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          const Text(
-                            'No notifications',
-                            style: TextStyle(
-                              fontFamily: 'Geist',
-                              fontWeight: FontWeight.w600,
-                              fontSize: 32,
-                              height: 32 / 32,
-                              letterSpacing: -0.96,
-                              color: SweetsColors.black,
-                            ),
-                          ),
-                          const SizedBox(height: 8),
-                          SizedBox(
-                            width: 286,
-                            child: Text(
-                              'Unfortunately, there are no alerts at the moment.',
-                              textAlign: TextAlign.center,
-                              style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                                    color: SweetsColors.grayDark,
-                                  ),
-                            ),
-                          ),
-                        ],
-                      ),
+                  // Empty state message
+                  const Expanded(
+                    child: EmptyStateMessage(
+                      title: 'No notifications',
+                      message:
+                          'Unfortunately, there are no alerts at the moment.',
+                      illustrationUrl: _notificationsImageUrl,
+                      illustrationIcon: Icons.notifications_none,
                     ),
                   ),
+                  const SweetsHomeIndicator(),
                 ],
               ),
             ),
-          ),
-          // Home indicator
-          const Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: SweetsHomeIndicator(),
           ),
         ],
       ),
