@@ -8,12 +8,14 @@ class SweetsTextField extends StatelessWidget {
     required this.hint,
     this.controller,
     this.keyboardType,
+    this.onChanged,
   });
 
   final String label;
   final String hint;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
+  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class SweetsTextField extends StatelessWidget {
         TextFormField(
           controller: controller,
           keyboardType: keyboardType,
+          onChanged: onChanged,
           decoration: InputDecoration(
             hintText: hint,
           ),
