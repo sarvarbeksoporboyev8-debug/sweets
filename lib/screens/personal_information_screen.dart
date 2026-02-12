@@ -1,9 +1,10 @@
-﻿import 'package:flutter/material.dart';
+import 'package:flutter/material.dart';
 import '../theme/sweets_theme.dart';
 import '../widgets/sweets_home_indicator.dart';
 import '../widgets/sweets_button.dart';
 import '../widgets/sweets_fields.dart';
 import '../widgets/sweets_alert.dart';
+import '../widgets/account/gender_selector.dart';
 
 class PersonalInformationScreen extends StatefulWidget {
   const PersonalInformationScreen({
@@ -21,232 +22,135 @@ class PersonalInformationScreen extends StatefulWidget {
 class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
   String selectedGender = 'Male';
   bool showSuccessAlert = false;
+  late TextEditingController _firstNameController;
+  late TextEditingController _lastNameController;
+  late TextEditingController _dateOfBirthController;
 
   @override
   void initState() {
     super.initState();
     showSuccessAlert = widget.showSuccessAlert;
+    _firstNameController = TextEditingController(text: 'John');
+    _lastNameController = TextEditingController(text: 'Doe');
+    _dateOfBirthController = TextEditingController(text: '1990 / 02 / 24');
+  }
+
+  @override
+  void dispose() {
+    _firstNameController.dispose();
+    _lastNameController.dispose();
+    _dateOfBirthController.dispose();
+    super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: SweetsColors.white,
-      body: Stack(
-        children: [
-          // Main content
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            child: SafeArea(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
+      body: SafeArea(
+        bottom: false,
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Navigation bar
+            Padding(
+              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+              child: Row(
                 children: [
-                  // Navigation bar
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                    child: Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () => Navigator.of(context).pop(),
-                          child: const Icon(
-                            Icons.arrow_back_ios_new_rounded,
-                            size: 20,
-                            color: SweetsColors.grayDarker,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        const Text(
-                          'Personal Information',
-                          style: TextStyle(
-                            fontFamily: 'Geist',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                            height: 20 / 14,
-                            color: SweetsColors.grayDarker,
-                          ),
-                        ),
-                      ],
+                  GestureDetector(
+                    onTap: () => Navigator.of(context).pop(),
+                    child: const Icon(
+                      Icons.arrow_back_ios_new_rounded,
+                      size: 20,
+                      color: SweetsColors.grayDarker,
                     ),
                   ),
-                  // Success alert
-                  if (showSuccessAlert)
-                    Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 16),
-                      child: SweetsSuccessAlert(
-                        message: 'The information has been successfully updated.',
-                        onClose: () {
-                          setState(() {
-                            showSuccessAlert = false;
-                          });
-                        },
-                      ),
-                    ),
-                  const SizedBox(height: 16),
-                  // Content
-                  Expanded(
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const SizedBox(height: 28),
-                          const Center(
-                            child: Text(
-                              'Personal Information',
-                              style: TextStyle(
-                                fontFamily: 'Geist',
-                                fontWeight: FontWeight.w600,
-                                fontSize: 32,
-                                height: 32 / 32,
-                                letterSpacing: -0.96,
-                                color: SweetsColors.black,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 28),
-                          // Profile avatar
-                          Center(
-                            child: Stack(
-                              children: [
-                                Container(
-                                  width: 104,
-                                  height: 104,
-                                  decoration: BoxDecoration(
-                                    shape: BoxShape.circle,
-                                    border: Border.all(
-                                      color: SweetsColors.white,
-                                      width: 2,
-                                    ),
-                                  ),
-                                  child: ClipOval(
-                                    child: Image.asset('images/figma/f092cc25-617f-46de-89ca-1e83f1b139f5.png',
-                                      fit: BoxFit.cover,
-                                      errorBuilder: (context, error, stackTrace) {
-                                        return Image.asset(
-                                          'assets/images/profile_avatar.png',
-                                          fit: BoxFit.cover,
-                                          errorBuilder: (context, error, stackTrace) {
-                                            return Container(
-                                              color: SweetsColors.grayLighter,
-                                              child: const Icon(
-                                                Icons.person,
-                                                size: 52,
-                                                color: SweetsColors.gray,
-                                              ),
-                                            );
-                                          },
-                                        );
-                                      },
-                                    ),
-                                  ),
-                                ),
-                                Positioned(
-                                  bottom: -10,
-                                  right: -10,
-                                  child: Container(
-                                    width: 40,
-                                    height: 40,
-                                    decoration: BoxDecoration(
-                                      color: SweetsColors.primary,
-                                      shape: BoxShape.circle,
-                                      border: Border.all(
-                                        color: SweetsColors.white,
-                                        width: 2,
-                                      ),
-                                      boxShadow: const [
-                                        BoxShadow(
-                                          color: Color(0x1A343A40),
-                                          offset: Offset(0, 12),
-                                          blurRadius: 20,
-                                        ),
-                                      ],
-                                    ),
-                                    child: const Icon(
-                                      Icons.camera_alt,
-                                      color: SweetsColors.white,
-                                      size: 24,
-                                    ),
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          const SizedBox(height: 28),
-                          // Form
-                          Column(
-                            crossAxisAlignment: CrossAxisAlignment.start,
-                            children: [
-                              // Gender radio buttons
-                              Column(
-                                crossAxisAlignment: CrossAxisAlignment.start,
-                                children: [
-                                  Text(
-                                    'Gender',
-                                    style: Theme.of(context).textTheme.labelSmall?.copyWith(
-                                          color: SweetsColors.grayDarker,
-                                        ),
-                                  ),
-                                  const SizedBox(height: 4),
-                                  Row(
-                                    children: [
-                                      _RadioButton(
-                                        label: 'Male',
-                                        isSelected: selectedGender == 'Male',
-                                        onTap: () {
-                                          setState(() {
-                                            selectedGender = 'Male';
-                                          });
-                                        },
-                                      ),
-                                      const SizedBox(width: 16),
-                                      _RadioButton(
-                                        label: 'Female',
-                                        isSelected: selectedGender == 'Female',
-                                        onTap: () {
-                                          setState(() {
-                                            selectedGender = 'Female';
-                                          });
-                                        },
-                                      ),
-                                    ],
-                                  ),
-                                ],
-                              ),
-                              const SizedBox(height: 16),
-                              SweetsTextField(
-                                label: 'Full Name',
-                                hint: 'John',
-                              ),
-                              const SizedBox(height: 16),
-                              SweetsTextField(
-                                label: 'Last Name',
-                                hint: 'Doe',
-                              ),
-                              const SizedBox(height: 16),
-                              _DatePickerField(
-                                label: 'Date of Birth',
-                                placeholder: '1990 / 02 / 24',
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 100),
-                        ],
-                      ),
+                  const SizedBox(width: 8),
+                  const Text(
+                    'Personal Information',
+                    style: TextStyle(
+                      fontFamily: 'Geist',
+                      fontWeight: FontWeight.w400,
+                      fontSize: 14,
+                      height: 20 / 14,
+                      color: SweetsColors.grayDarker,
                     ),
                   ),
                 ],
               ),
             ),
-          ),
-          // Bottom button
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Container(
+            // Success alert
+            if (showSuccessAlert)
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: SweetsSuccessAlert(
+                  message: 'The information has been successfully updated.',
+                  onClose: () {
+                    setState(() {
+                      showSuccessAlert = false;
+                    });
+                  },
+                ),
+              ),
+            const SizedBox(height: 16),
+            // Content
+            Expanded(
+              child: SingleChildScrollView(
+                padding: const EdgeInsets.symmetric(horizontal: 16),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    const SizedBox(height: 28),
+                    const Center(
+                      child: Text(
+                        'Personal Information',
+                        style: TextStyle(
+                          fontFamily: 'Geist',
+                          fontWeight: FontWeight.w600,
+                          fontSize: 32,
+                          height: 32 / 32,
+                          letterSpacing: -0.96,
+                          color: SweetsColors.black,
+                        ),
+                      ),
+                    ),
+                    const SizedBox(height: 28),
+                    // Profile avatar
+                    _buildProfileAvatar(),
+                    const SizedBox(height: 28),
+                    // Form
+                    GenderSelector(
+                      selectedGender: selectedGender,
+                      onGenderChanged: (gender) {
+                        setState(() {
+                          selectedGender = gender;
+                        });
+                      },
+                    ),
+                    const SizedBox(height: 16),
+                    SweetsTextField(
+                      label: 'Full Name',
+                      hint: 'John',
+                      controller: _firstNameController,
+                    ),
+                    const SizedBox(height: 16),
+                    SweetsTextField(
+                      label: 'Last Name',
+                      hint: 'Doe',
+                      controller: _lastNameController,
+                    ),
+                    const SizedBox(height: 16),
+                    _DatePickerField(
+                      label: 'Date of Birth',
+                      controller: _dateOfBirthController,
+                    ),
+                    const SizedBox(height: 100),
+                  ],
+                ),
+              ),
+            ),
+            // Bottom button
+            Container(
               decoration: BoxDecoration(
                 color: SweetsColors.white,
                 border: Border(
@@ -271,62 +175,75 @@ class _PersonalInformationScreenState extends State<PersonalInformationScreen> {
                 ],
               ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
-}
 
-class _RadioButton extends StatelessWidget {
-  const _RadioButton({
-    required this.label,
-    required this.isSelected,
-    required this.onTap,
-  });
-
-  final String label;
-  final bool isSelected;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Row(
+  Widget _buildProfileAvatar() {
+    return Center(
+      child: Stack(
         children: [
           Container(
-            width: 16,
-            height: 16,
+            width: 104,
+            height: 104,
             decoration: BoxDecoration(
-              color: isSelected ? SweetsColors.primary : SweetsColors.white,
               shape: BoxShape.circle,
               border: Border.all(
-                color: isSelected ? SweetsColors.primary : SweetsColors.border,
+                color: SweetsColors.white,
+                width: 2,
               ),
             ),
-            child: isSelected
-                ? Center(
-                    child: Container(
-                      width: 8,
-                      height: 8,
-                      decoration: const BoxDecoration(
-                        color: SweetsColors.white,
-                        shape: BoxShape.circle,
-                      ),
-                    ),
-                  )
-                : null,
+            child: ClipOval(
+              child: Image.asset(
+                'images/figma/f092cc25-617f-46de-89ca-1e83f1b139f5.png',
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Image.asset(
+                    'assets/images/profile_avatar.png',
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        color: SweetsColors.grayLighter,
+                        child: const Icon(
+                          Icons.person,
+                          size: 52,
+                          color: SweetsColors.gray,
+                        ),
+                      );
+                    },
+                  );
+                },
+              ),
+            ),
           ),
-          const SizedBox(width: 4),
-          Text(
-            label,
-            style: const TextStyle(
-              fontFamily: 'Geist',
-              fontWeight: FontWeight.w400,
-              fontSize: 14,
-              height: 20 / 14,
-              color: SweetsColors.grayDarker,
+          Positioned(
+            bottom: -10,
+            right: -10,
+            child: Container(
+              width: 40,
+              height: 40,
+              decoration: BoxDecoration(
+                color: SweetsColors.primary,
+                shape: BoxShape.circle,
+                border: Border.all(
+                  color: SweetsColors.white,
+                  width: 2,
+                ),
+                boxShadow: const [
+                  BoxShadow(
+                    color: Color(0x1A343A40),
+                    offset: Offset(0, 12),
+                    blurRadius: 20,
+                  ),
+                ],
+              ),
+              child: const Icon(
+                Icons.camera_alt,
+                color: SweetsColors.white,
+                size: 24,
+              ),
             ),
           ),
         ],
@@ -338,11 +255,11 @@ class _RadioButton extends StatelessWidget {
 class _DatePickerField extends StatelessWidget {
   const _DatePickerField({
     required this.label,
-    required this.placeholder,
+    required this.controller,
   });
 
   final String label;
-  final String placeholder;
+  final TextEditingController controller;
 
   @override
   Widget build(BuildContext context) {
@@ -367,8 +284,13 @@ class _DatePickerField extends StatelessWidget {
           child: Row(
             children: [
               Expanded(
-                child: Text(
-                  placeholder,
+                child: TextField(
+                  controller: controller,
+                  decoration: const InputDecoration(
+                    border: InputBorder.none,
+                    isDense: true,
+                    contentPadding: EdgeInsets.zero,
+                  ),
                   style: const TextStyle(
                     fontFamily: 'Geist',
                     fontWeight: FontWeight.w400,
@@ -376,6 +298,10 @@ class _DatePickerField extends StatelessWidget {
                     height: 20 / 14,
                     color: SweetsColors.grayDarker,
                   ),
+                  readOnly: true,
+                  onTap: () {
+                    // TODO: Show date picker
+                  },
                 ),
               ),
               const Icon(
