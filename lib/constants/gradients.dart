@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-/// Gradient constants for consistent visual design throughout the app.
-class SweetsGradients {
-  /// Primary gradient used for headers and top bars
-  static const LinearGradient primaryHeader = LinearGradient(
+/// Gradient definitions used throughout the app
+class AppGradients {
+  /// Header gradient - used in most screen headers
+  static const LinearGradient headerGradient = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [
@@ -11,14 +11,15 @@ class SweetsGradients {
       Color(0xFFFFFFFF),
     ],
   );
-  
-  /// Alternative gradient for backgrounds
-  static const LinearGradient backgroundSubtle = LinearGradient(
-    begin: Alignment.topLeft,
-    end: Alignment.bottomRight,
+
+  /// Radial gradient for about us hero section
+  static const RadialGradient heroGradient = RadialGradient(
+    center: Alignment(0, -0.2182),
+    radius: 0.7399,
     colors: [
-      Color(0xFFFFF8F0),
-      Color(0xFFFFFFFF),
+      Color(0xFFFFE6D1),
+      Color(0xFFFD7E14),
     ],
+    stops: [0.0, 1.0],
   );
 }

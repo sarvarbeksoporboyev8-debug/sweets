@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
-import 'dart:ui';
 import '../theme/sweets_theme.dart';
 import '../widgets/sweets_home_indicator.dart';
+import '../widgets/support/notification_item.dart';
+import '../models/notification_model.dart';
+import '../constants/spacing.dart';
+import '../constants/gradients.dart';
 
 class NotificationsScreen extends StatefulWidget {
   const NotificationsScreen({super.key});
@@ -11,97 +14,114 @@ class NotificationsScreen extends StatefulWidget {
 }
 
 class _NotificationsScreenState extends State<NotificationsScreen> {
-  final Map<String, List<_NotificationItem>> _notifications = {
+  final Map<String, List<NotificationModel>> _notifications = {
     'Today': [
-      _NotificationItem(
+      NotificationModel(
+        id: '1',
         title: 'Product ordered successfully',
-        message: 'Products ordered successfully. The driver will contact you and deliver your order.',
+        message:
+            'Products ordered successfully. The driver will contact you and deliver your order.',
         time: '2 hours',
         isRead: false,
         hasDelete: true,
       ),
-      _NotificationItem(
+      NotificationModel(
+        id: '2',
         title: 'Product added to the cart',
         message: 'Products added to the cart successfully.',
         time: '2 hours',
         isRead: true,
         hasMarkAsRead: true,
       ),
-      _NotificationItem(
+      NotificationModel(
+        id: '3',
         title: 'Product received successfully',
-        message: 'You have successfully received your product. Please add a review for the product. Add your review now.',
+        message:
+            'You have successfully received your product. Please add a review for the product. Add your review now.',
         time: '2 hours',
         isRead: false,
       ),
-      _NotificationItem(
+      NotificationModel(
+        id: '4',
         title: 'Payment successful',
-        message: 'Payment completed successfully. The driver will contact you and deliver your order.',
+        message:
+            'Payment completed successfully. The driver will contact you and deliver your order.',
         time: '2 hours',
         isRead: false,
       ),
     ],
     'Yesterday': [
-      _NotificationItem(
+      NotificationModel(
+        id: '5',
         title: 'Product ordered successfully',
-        message: 'Products ordered successfully. The driver will contact you and deliver your order.',
+        message:
+            'Products ordered successfully. The driver will contact you and deliver your order.',
         time: '2 hours',
         isRead: false,
       ),
-      _NotificationItem(
+      NotificationModel(
+        id: '6',
         title: 'Product added to the cart',
         message: 'Products added to the cart successfully.',
         time: '2 hours',
         isRead: false,
       ),
-      _NotificationItem(
+      NotificationModel(
+        id: '7',
         title: 'Product received successfully',
-        message: 'You have successfully received your product. Please add a review for the product. Add your review now.',
+        message:
+            'You have successfully received your product. Please add a review for the product. Add your review now.',
         time: '2 hours',
         isRead: false,
       ),
-      _NotificationItem(
+      NotificationModel(
+        id: '8',
         title: 'Payment successful',
-        message: 'Payment completed successfully. The driver will contact you and deliver your order.',
+        message:
+            'Payment completed successfully. The driver will contact you and deliver your order.',
         time: '2 hours',
         isRead: false,
       ),
     ],
   };
 
+  int get _totalNotifications {
+    return _notifications.values.fold(0, (sum, list) => sum + list.length);
+  }
+
+  void _markAllAsRead() {
+    setState(() {
+      for (var list in _notifications.values) {
+        for (var notification in list) {
+          notification.isRead = true;
+        }
+      }
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: SweetsColors.white,
-      body: Stack(
+      body: Column(
         children: [
-          // Gradient background
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            child: Container(
-              height: 168,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFFFFE6D1),
-                    Color(0xFFFFFFFF),
-                  ],
-                ),
-              ),
+          // Gradient background header
+          Container(
+            height: 168,
+            decoration: const BoxDecoration(
+              gradient: AppGradients.headerGradient,
             ),
           ),
-          // Main content
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
+          Expanded(
             child: SafeArea(
+              top: false,
               child: SingleChildScrollView(
-                padding: const EdgeInsets.fromLTRB(16, 10, 16, 40),
+                padding: const EdgeInsets.fromLTRB(
+                  Spacing.lg,
+                  10,
+                  Spacing.lg,
+                  40,
+                ),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
@@ -116,7 +136,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                             color: SweetsColors.grayDarker,
                           ),
                         ),
-                        const SizedBox(width: 8),
+                        const SizedBox(width: Spacing.sm),
                         const Text(
                           'Notifications',
                           style: TextStyle(
@@ -129,7 +149,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: Spacing.sm),
                     // Header
                     Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -147,18 +167,18 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                                 color: SweetsColors.black,
                               ),
                             ),
-                            const SizedBox(width: 4),
+                            const SizedBox(width: Spacing.xs),
                             Container(
                               width: 28,
                               height: 28,
-                              decoration: BoxDecoration(
+                              decoration: const BoxDecoration(
                                 color: SweetsColors.primaryLighter,
                                 shape: BoxShape.circle,
                               ),
-                              child: const Center(
+                              child: Center(
                                 child: Text(
-                                  '20',
-                                  style: TextStyle(
+                                  '$_totalNotifications',
+                                  style: const TextStyle(
                                     fontFamily: 'Geist',
                                     fontWeight: FontWeight.w400,
                                     fontSize: 14,
@@ -171,9 +191,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                           ],
                         ),
                         GestureDetector(
-                          onTap: () {
-                            // TODO: Mark all as read
-                          },
+                          onTap: _markAllAsRead,
                           child: const Text(
                             'Mark as read',
                             style: TextStyle(
@@ -187,7 +205,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                         ),
                       ],
                     ),
-                    const SizedBox(height: 8),
+                    const SizedBox(height: Spacing.sm),
                     // Notifications list
                     ..._notifications.entries.map((entry) {
                       return Column(
@@ -198,11 +216,13 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                             count: entry.value.length,
                             fullDate: 'Nov 13, 2021, 10:00 AM',
                           ),
-                          const SizedBox(height: 8),
+                          const SizedBox(height: Spacing.sm),
                           ...entry.value.map((notification) {
                             return Padding(
-                              padding: const EdgeInsets.only(bottom: 12),
-                              child: _NotificationCard(
+                              padding: const EdgeInsets.only(
+                                bottom: Spacing.md,
+                              ),
+                              child: NotificationItem(
                                 notification: notification,
                                 onDelete: () {
                                   setState(() {
@@ -220,7 +240,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                               ),
                             );
                           }),
-                          const SizedBox(height: 16),
+                          const SizedBox(height: Spacing.lg),
                         ],
                       );
                     }).toList(),
@@ -230,34 +250,11 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
             ),
           ),
           // Home indicator
-          const Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: SweetsHomeIndicator(),
-          ),
+          const SweetsHomeIndicator(),
         ],
       ),
     );
   }
-}
-
-class _NotificationItem {
-  _NotificationItem({
-    required this.title,
-    required this.message,
-    required this.time,
-    this.isRead = false,
-    this.hasDelete = false,
-    this.hasMarkAsRead = false,
-  });
-
-  final String title;
-  final String message;
-  final String time;
-  bool isRead;
-  final bool hasDelete;
-  final bool hasMarkAsRead;
 }
 
 class _DateHeader extends StatelessWidget {
@@ -274,7 +271,7 @@ class _DateHeader extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 8),
+      padding: const EdgeInsets.symmetric(vertical: Spacing.sm),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
@@ -290,7 +287,7 @@ class _DateHeader extends StatelessWidget {
                   color: SweetsColors.grayDark,
                 ),
               ),
-              const SizedBox(width: 4),
+              const SizedBox(width: Spacing.xs),
               Text(
                 '$count Notifications',
                 style: const TextStyle(
@@ -314,140 +311,6 @@ class _DateHeader extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _NotificationCard extends StatelessWidget {
-  const _NotificationCard({
-    required this.notification,
-    required this.onDelete,
-    required this.onMarkAsRead,
-  });
-
-  final _NotificationItem notification;
-  final VoidCallback onDelete;
-  final VoidCallback onMarkAsRead;
-
-  @override
-  Widget build(BuildContext context) {
-    return Dismissible(
-      key: Key(notification.title),
-      direction: DismissDirection.horizontal,
-      background: notification.hasDelete
-          ? Container(
-              decoration: BoxDecoration(
-                color: const Color(0xFFFA5252),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              alignment: Alignment.centerRight,
-              padding: const EdgeInsets.only(right: 16),
-              child: const Icon(
-                Icons.delete_outline,
-                color: SweetsColors.white,
-                size: 24,
-              ),
-            )
-          : notification.hasMarkAsRead
-              ? Container(
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF82C91E),
-                    borderRadius: BorderRadius.circular(16),
-                  ),
-                  alignment: Alignment.centerLeft,
-                  padding: const EdgeInsets.only(left: 16),
-                  child: const Icon(
-                    Icons.check_circle_outline,
-                    color: SweetsColors.white,
-                    size: 24,
-                  ),
-                )
-              : null,
-      secondaryBackground: notification.hasMarkAsRead
-          ? Container(
-              decoration: BoxDecoration(
-                color: const Color(0xFF82C91E),
-                borderRadius: BorderRadius.circular(16),
-              ),
-              alignment: Alignment.centerLeft,
-              padding: const EdgeInsets.only(left: 16),
-              child: const Icon(
-                Icons.check_circle_outline,
-                color: SweetsColors.white,
-                size: 24,
-              ),
-            )
-          : null,
-      onDismissed: (direction) {
-        if (direction == DismissDirection.endToStart && notification.hasDelete) {
-          onDelete();
-        } else if (direction == DismissDirection.startToEnd && notification.hasMarkAsRead) {
-          onMarkAsRead();
-        }
-      },
-      child: Container(
-        padding: const EdgeInsets.all(12),
-        decoration: BoxDecoration(
-          color: SweetsColors.grayLighter.withOpacity(0.5),
-          borderRadius: BorderRadius.circular(16),
-        ),
-        child: Row(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Expanded(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    notification.title,
-                    style: const TextStyle(
-                      fontFamily: 'Geist',
-                      fontWeight: FontWeight.w500,
-                      fontSize: 14,
-                      height: 20 / 14,
-                      color: SweetsColors.grayDarker,
-                    ),
-                  ),
-                  const SizedBox(height: 4),
-                  Text(
-                    notification.message,
-                    style: const TextStyle(
-                      fontFamily: 'Geist',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 12,
-                      height: 16 / 12,
-                      color: SweetsColors.gray,
-                    ),
-                    maxLines: 2,
-                    overflow: TextOverflow.ellipsis,
-                  ),
-                  const SizedBox(height: 4),
-                  Row(
-                    children: [
-                      const Icon(
-                        Icons.access_time,
-                        size: 16,
-                        color: SweetsColors.grayDark,
-                      ),
-                      const SizedBox(width: 4),
-                      Text(
-                        notification.time,
-                        style: const TextStyle(
-                          fontFamily: 'Geist',
-                          fontWeight: FontWeight.w400,
-                          fontSize: 12,
-                          height: 16 / 12,
-                          color: SweetsColors.grayDark,
-                        ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }

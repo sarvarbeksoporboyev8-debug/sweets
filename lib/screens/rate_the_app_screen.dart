@@ -3,6 +3,10 @@ import '../theme/sweets_theme.dart';
 import '../widgets/sweets_home_indicator.dart';
 import '../widgets/sweets_button.dart';
 import '../widgets/sweets_fields.dart';
+import '../widgets/support/rating_input_widget.dart';
+import '../models/app_review_model.dart';
+import '../constants/spacing.dart';
+import '../constants/gradients.dart';
 
 class RateTheAppScreen extends StatefulWidget {
   const RateTheAppScreen({super.key});
@@ -12,176 +16,202 @@ class RateTheAppScreen extends StatefulWidget {
 }
 
 class _RateTheAppScreenState extends State<RateTheAppScreen> {
-  int selectedRating = 0;
+  final _formKey = GlobalKey<FormState>();
+  final _nameController = TextEditingController();
+  final _reviewController = TextEditingController();
+  int _selectedRating = 0;
+  bool _isSubmitting = false;
+
+  @override
+  void dispose() {
+    _nameController.dispose();
+    _reviewController.dispose();
+    super.dispose();
+  }
+
+  Future<void> _submitReview() async {
+    if (!_formKey.currentState!.validate()) {
+      return;
+    }
+
+    if (_selectedRating == 0) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Please select a rating')),
+      );
+      return;
+    }
+
+    setState(() => _isSubmitting = true);
+
+    final review = AppReview(
+      rating: _selectedRating,
+      name: _nameController.text,
+      reviewText: _reviewController.text,
+    );
+
+    // Simulate API call
+    await Future.delayed(const Duration(seconds: 1));
+
+    setState(() => _isSubmitting = false);
+
+    if (mounted) {
+      Navigator.of(context).pop();
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: SweetsColors.white,
-      body: Stack(
+      body: Column(
         children: [
-          // Gradient background
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            child: Container(
-              height: 168,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFFFFE6D1),
-                    Color(0xFFFFFFFF),
+          // Gradient background header
+          Container(
+            height: 168,
+            decoration: const BoxDecoration(
+              gradient: AppGradients.headerGradient,
+            ),
+          ),
+          Expanded(
+            child: SafeArea(
+              top: false,
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    // Navigation bar
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: Spacing.lg,
+                        vertical: 10,
+                      ),
+                      child: Row(
+                        children: [
+                          GestureDetector(
+                            onTap: () => Navigator.of(context).pop(),
+                            child: const Icon(
+                              Icons.arrow_back_ios_new_rounded,
+                              size: 20,
+                              color: SweetsColors.grayDarker,
+                            ),
+                          ),
+                          const SizedBox(width: Spacing.sm),
+                          const Text(
+                            'Rate the app',
+                            style: TextStyle(
+                              fontFamily: 'Geist',
+                              fontWeight: FontWeight.w400,
+                              fontSize: 14,
+                              height: 20 / 14,
+                              color: SweetsColors.grayDarker,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    const SizedBox(height: Spacing.headerSpacing),
+                    // Content
+                    Expanded(
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.symmetric(
+                          horizontal: Spacing.md,
+                        ),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            const Center(
+                              child: Text(
+                                'Rate the app',
+                                style: TextStyle(
+                                  fontFamily: 'Geist',
+                                  fontWeight: FontWeight.w600,
+                                  fontSize: 32,
+                                  height: 32 / 32,
+                                  letterSpacing: -0.96,
+                                  color: SweetsColors.black,
+                                ),
+                              ),
+                            ),
+                            const SizedBox(height: Spacing.headerSpacing),
+                            // Rating section
+                            Row(
+                              children: [
+                                const Text(
+                                  'Add your rating:',
+                                  style: TextStyle(
+                                    fontFamily: 'Geist',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                    height: 20 / 14,
+                                    color: SweetsColors.grayDarker,
+                                  ),
+                                ),
+                                const SizedBox(width: Spacing.xs),
+                                RatingInputWidget(
+                                  rating: _selectedRating,
+                                  onRatingChanged: (rating) {
+                                    setState(() {
+                                      _selectedRating = rating;
+                                    });
+                                  },
+                                ),
+                              ],
+                            ),
+                            const SizedBox(height: Spacing.lg),
+                            SweetsTextField(
+                              label: 'Full Name',
+                              hint: 'Full Name',
+                              controller: _nameController,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter your name';
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(height: Spacing.lg),
+                            _ReviewField(
+                              label: 'Add your reviews',
+                              hint: 'Add your reviews',
+                              controller: _reviewController,
+                              validator: (value) {
+                                if (value == null || value.isEmpty) {
+                                  return 'Please enter your review';
+                                }
+                                return null;
+                              },
+                            ),
+                            const SizedBox(height: 100),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
               ),
             ),
           ),
-          // Main content
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            child: SafeArea(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // Navigation bar
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                    child: Row(
-                      children: [
-                        GestureDetector(
-                          onTap: () => Navigator.of(context).pop(),
-                          child: const Icon(
-                            Icons.arrow_back_ios_new_rounded,
-                            size: 20,
-                            color: SweetsColors.grayDarker,
-                          ),
-                        ),
-                        const SizedBox(width: 8),
-                        const Text(
-                          'Rate the app',
-                          style: TextStyle(
-                            fontFamily: 'Geist',
-                            fontWeight: FontWeight.w400,
-                            fontSize: 14,
-                            height: 20 / 14,
-                            color: SweetsColors.grayDarker,
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 28),
-                  // Content
-                  Expanded(
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.symmetric(horizontal: 12),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          const Center(
-                            child: Text(
-                              'Rate the app',
-                              style: TextStyle(
-                                fontFamily: 'Geist',
-                                fontWeight: FontWeight.w600,
-                                fontSize: 32,
-                                height: 32 / 32,
-                                letterSpacing: -0.96,
-                                color: SweetsColors.black,
-                              ),
-                            ),
-                          ),
-                          const SizedBox(height: 28),
-                          // Rating section
-                          Row(
-                            children: [
-                              const Text(
-                                'Add your rating:',
-                                style: TextStyle(
-                                  fontFamily: 'Geist',
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 14,
-                                  height: 20 / 14,
-                                  color: SweetsColors.grayDarker,
-                                ),
-                              ),
-                              const SizedBox(width: 4),
-                              Row(
-                                children: List.generate(5, (index) {
-                                  return GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        selectedRating = index + 1;
-                                      });
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.symmetric(horizontal: 2),
-                                      child: Icon(
-                                        Icons.star,
-                                        size: 28,
-                                        color: index < selectedRating
-                                            ? SweetsColors.primary
-                                            : SweetsColors.primary.withOpacity(0.5),
-                                      ),
-                                    ),
-                                  );
-                                }),
-                              ),
-                            ],
-                          ),
-                          const SizedBox(height: 16),
-                          SweetsTextField(
-                            label: 'Full Name',
-                            hint: 'Full Name',
-                          ),
-                          const SizedBox(height: 16),
-                          _ReviewField(
-                            label: 'Add your reviews',
-                            hint: 'Add your reviews',
-                          ),
-                          const SizedBox(height: 100),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
           // Bottom button
-          Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: Container(
-              decoration: BoxDecoration(
-                color: SweetsColors.white,
-                border: Border(
-                  top: BorderSide(
-                    color: SweetsColors.border.withOpacity(0.75),
-                  ),
+          Container(
+            decoration: BoxDecoration(
+              color: SweetsColors.white,
+              border: Border(
+                top: BorderSide(
+                  color: SweetsColors.border.withOpacity(0.75),
                 ),
               ),
-              padding: const EdgeInsets.all(16),
-              child: Column(
-                mainAxisSize: MainAxisSize.min,
-                children: [
-                  SweetsPrimaryButton(
-                    label: 'Add',
-                    onPressed: () {
-                      // TODO: Submit rating
-                      Navigator.of(context).pop();
-                    },
-                  ),
-                  const SweetsHomeIndicator(),
-                ],
-              ),
+            ),
+            padding: const EdgeInsets.all(Spacing.lg),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                SweetsPrimaryButton(
+                  label: _isSubmitting ? 'Submitting...' : 'Add',
+                  onPressed: _isSubmitting ? null : _submitReview,
+                ),
+                const SweetsHomeIndicator(),
+              ],
             ),
           ),
         ],
@@ -194,10 +224,14 @@ class _ReviewField extends StatelessWidget {
   const _ReviewField({
     required this.label,
     required this.hint,
+    this.controller,
+    this.validator,
   });
 
   final String label;
   final String hint;
+  final TextEditingController? controller;
+  final String? Function(String?)? validator;
 
   @override
   Widget build(BuildContext context) {
@@ -211,16 +245,21 @@ class _ReviewField extends StatelessWidget {
             color: SweetsColors.grayDarker,
           ),
         ),
-        const SizedBox(height: 4),
+        const SizedBox(height: Spacing.xs),
         Container(
           height: 160,
-          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 14),
+          padding: const EdgeInsets.symmetric(
+            horizontal: Spacing.md,
+            vertical: 14,
+          ),
           decoration: BoxDecoration(
             color: SweetsColors.white,
             border: Border.all(color: SweetsColors.border),
-            borderRadius: BorderRadius.circular(12),
+            borderRadius: BorderRadius.circular(Spacing.radiusMd),
           ),
           child: TextFormField(
+            controller: controller,
+            validator: validator,
             maxLines: null,
             expands: true,
             textAlignVertical: TextAlignVertical.top,
