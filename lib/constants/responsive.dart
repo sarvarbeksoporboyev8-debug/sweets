@@ -1,75 +1,56 @@
 import 'package:flutter/material.dart';
 
-/// Responsive utilities for building adaptive UIs across different screen sizes.
-class SweetsResponsive {
-  // Breakpoints (in logical pixels)
-  static const double mobileBreakpoint = 600;
-  static const double tabletBreakpoint = 900;
-  static const double desktopBreakpoint = 1200;
-
-  /// Check if device is mobile size
+/// Responsive utilities for adaptive layouts across different screen sizes.
+class Responsive {
+  /// Mobile breakpoint (phones)
+  static const double mobile = 600;
+  
+  /// Tablet breakpoint
+  static const double tablet = 900;
+  
+  /// Desktop breakpoint
+  static const double desktop = 1200;
+  
+  /// Check if current device is mobile
   static bool isMobile(BuildContext context) {
-    return MediaQuery.of(context).size.width < mobileBreakpoint;
+    return MediaQuery.of(context).size.width < mobile;
   }
-
-  /// Check if device is tablet size
+  
+  /// Check if current device is tablet
   static bool isTablet(BuildContext context) {
     final width = MediaQuery.of(context).size.width;
-    return width >= mobileBreakpoint && width < tabletBreakpoint;
+    return width >= mobile && width < desktop;
   }
-
-  /// Check if device is desktop size
+  
+  /// Check if current device is desktop
   static bool isDesktop(BuildContext context) {
-    return MediaQuery.of(context).size.width >= tabletBreakpoint;
+    return MediaQuery.of(context).size.width >= desktop;
   }
-
+  
   /// Get responsive value based on screen size
-  static T responsive<T>(
-    BuildContext context, {
+  static T valueWhen<T>({
+    required BuildContext context,
     required T mobile,
     T? tablet,
     T? desktop,
   }) {
     if (isDesktop(context) && desktop != null) {
       return desktop;
-    } else if (isTablet(context) && tablet != null) {
+    }
+    if (isTablet(context) && tablet != null) {
       return tablet;
     }
     return mobile;
   }
-
-  /// Get screen width
-  static double screenWidth(BuildContext context) {
-    return MediaQuery.of(context).size.width;
-  }
-
-  /// Get screen height
-  static double screenHeight(BuildContext context) {
-    return MediaQuery.of(context).size.height;
-  }
-
-  /// Get percentage of screen width
-  static double widthPercent(BuildContext context, double percent) {
-    return screenWidth(context) * (percent / 100);
-  }
-
-  /// Get percentage of screen height
-  static double heightPercent(BuildContext context, double percent) {
-    return screenHeight(context) * (percent / 100);
-  }
-
-  /// Get safe area padding
-  static EdgeInsets safeAreaPadding(BuildContext context) {
-    return MediaQuery.of(context).padding;
-  }
-
-  /// Get maximum content width for centering on large screens
-  static double maxContentWidth(BuildContext context) {
-    if (isDesktop(context)) {
-      return 800;
-    } else if (isTablet(context)) {
-      return 600;
-    }
-    return screenWidth(context);
+  
+  /// Get responsive grid column count
+  static int getGridColumns(BuildContext context, {
+    int mobileColumns = 2,
+    int tabletColumns = 3,
+    int desktopColumns = 4,
+  }) {
+    if (isDesktop(context)) return desktopColumns;
+    if (isTablet(context)) return tabletColumns;
+    return mobileColumns;
   }
 }
