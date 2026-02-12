@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'screens/contact_us_screen.dart';
 import 'screens/notifications_empty_screen.dart';
 import 'screens/welcome_splash_screen.dart';
+// Old variant screens - kept for backward compatibility
 import 'screens/walkthrough_screen_01.dart';
 import 'screens/walkthrough_screen_02.dart';
 import 'screens/walkthrough_screen_03.dart';
@@ -10,6 +11,11 @@ import 'screens/login_screen_01.dart';
 import 'screens/login_screen_02.dart';
 import 'screens/login_screen_03.dart';
 import 'screens/login_screen_04.dart';
+// New consolidated screens
+import 'screens/login_screen.dart';
+import 'screens/signup_screen.dart';
+import 'screens/otp_verification_screen.dart';
+import 'screens/walkthrough_screen.dart';
 import 'screens/login_success_screen.dart';
 import 'screens/complete_profile_screen_01.dart';
 import 'screens/complete_profile_screen_06.dart';
@@ -67,6 +73,12 @@ class SweetsApp extends StatelessWidget {
         '/': (_) => const HomeScreen(),
         '/home': (_) => const HomeScreen(),
         '/welcome': (_) => const WelcomeSplashScreen(),
+        // New consolidated screens (preferred)
+        '/walkthrough': (_) => const WalkthroughScreen(),
+        '/login': (_) => const LoginScreen(),
+        '/signup': (_) => const SignupScreen(),
+        '/otp': (_) => const OtpVerificationScreen(),
+        // Old variant screens (backward compatibility)
         '/walkthrough01': (_) => const WalkthroughScreen01(),
         '/walkthrough02': (_) => const WalkthroughScreen02(),
         '/walkthrough03': (_) => const WalkthroughScreen03(),
@@ -78,9 +90,14 @@ class SweetsApp extends StatelessWidget {
         '/signup01': (_) => const SignupScreen01(),
         '/signup02': (_) => const SignupScreen02(),
         '/signup03': (_) => const SignupScreen03(),
+        '/otp01': (_) => const OtpVerificationScreen01(),
+        '/otp02': (_) => const OtpVerificationScreen02(),
+        '/otp03': (_) => const OtpVerificationScreen03(),
+        '/signupSuccess': (_) => const SignupSuccessScreen(),
+        // Profile screens
         '/completeProfile01': (_) => const CompleteProfileScreen01(),
         '/completeProfile06': (_) => const CompleteProfileScreen06(),
-        '/home': (_) => const HomeScreen(),
+        // Main app screens
         '/explore': (_) => const ExploreScreen(),
         '/categories': (_) => const CategoriesScreen(),
         '/cart': (_) => const CartScreen(),
@@ -91,31 +108,31 @@ class SweetsApp extends StatelessWidget {
         '/account': (_) => const AccountScreen(),
         '/productDetail': (_) => const ProductDetailScreen(),
         '/noConnection': (_) => const NoConnectionScreen(),
+        // Checkout flow
         '/checkoutPaymentMethod': (_) => const CheckoutPaymentMethodScreen(),
         '/checkoutPaymentInfo': (_) => const CheckoutPaymentInfoScreen(),
         '/checkoutDeliveryAddress': (_) => const CheckoutDeliveryAddressScreen(),
         '/checkoutDeliveryAddressWithModal': (_) => const CheckoutDeliveryAddressScreen(showAddAddressModal: true),
         '/checkoutOrderSummary': (_) => const CheckoutOrderSummaryScreen(),
         '/checkoutSuccess': (_) => const CheckoutSuccessScreen(),
+        // Order tracking
         '/trackOrder': (_) => const TrackOrderScreen(),
         '/trackOrderDelivered': (_) => const TrackOrderDeliveredScreen(),
+        '/trackOrderWithModal': (_) => const TrackOrderScreen(showDeliveredModal: true),
+        // Account management
         '/personalInformation': (_) => const PersonalInformationScreen(),
         '/personalInformationWithAlert': (_) => const PersonalInformationScreen(showSuccessAlert: true),
         '/addresses': (_) => const AddressesScreen(),
         '/orders': (_) => const OrdersScreen(),
         '/ratingProducts': (_) => const RatingProductsScreen(),
         '/notifications': (_) => const NotificationsScreen(),
-        '/trackOrderWithModal': (_) => const TrackOrderScreen(showDeliveredModal: true),
+        '/notificationsEmpty': (_) => const NotificationsEmptyScreen(),
+        // Other screens
         '/aboutUs': (_) => const AboutUsScreen(),
         '/rateTheApp': (_) => const RateTheAppScreen(),
         '/addNotes': (_) => const AddNotesScreen(),
         '/contactUs': (_) => const ContactUsScreen(),
-        '/otp01': (_) => const OtpVerificationScreen01(),
-        '/otp02': (_) => const OtpVerificationScreen02(),
-        '/otp03': (_) => const OtpVerificationScreen03(),
-        '/signupSuccess': (_) => const SignupSuccessScreen(),
         '/contact': (_) => const ContactUsScreen(),
-        '/notificationsEmpty': (_) => const NotificationsEmptyScreen(),
       },
     );
   }
