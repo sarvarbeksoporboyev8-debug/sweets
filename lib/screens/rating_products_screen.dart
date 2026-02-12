@@ -22,6 +22,9 @@ class _RatingProductsScreenState extends State<RatingProductsScreen> {
     super.initState();
     _nameController = TextEditingController();
     _reviewController = TextEditingController();
+    // Add listeners to rebuild when text changes
+    _nameController.addListener(() => setState(() {}));
+    _reviewController.addListener(() => setState(() {}));
   }
 
   @override
@@ -31,7 +34,12 @@ class _RatingProductsScreenState extends State<RatingProductsScreen> {
     super.dispose();
   }
 
-  bool get _isFormValid => selectedRating > 0 && _nameController.text.isNotEmpty;
+  bool get _isFormValid {
+    if (!mounted) return false;
+    return selectedRating > 0 && 
+           _nameController.text.trim().isNotEmpty &&
+           _reviewController.text.trim().isNotEmpty;
+  }
 
   @override
   Widget build(BuildContext context) {

@@ -52,8 +52,9 @@ class _AddressesScreenState extends State<AddressesScreen> {
 
   void _selectAddress(int index) {
     setState(() {
+      // Use copyWith to maintain immutability
       for (int i = 0; i < addresses.length; i++) {
-        addresses[i].isSelected = (i == index);
+        addresses[i] = addresses[i].copyWith(isSelected: i == index);
       }
     });
   }
