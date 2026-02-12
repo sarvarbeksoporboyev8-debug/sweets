@@ -46,8 +46,6 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final gridColumns = Responsive.getGridColumns(context, mobileColumns: 2, tabletColumns: 3, desktopColumns: 4);
-    
     return Scaffold(
       backgroundColor: SweetsColors.white,
       body: Column(
