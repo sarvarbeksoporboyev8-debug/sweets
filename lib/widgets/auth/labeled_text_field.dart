@@ -46,11 +46,7 @@ class LabeledTextField extends StatelessWidget {
           keyboardType: keyboardType,
           readOnly: readOnly,
           onTap: onTap,
-          style: const TextStyle(
-            fontFamily: 'Geist',
-            fontWeight: FontWeight.w400,
-            fontSize: 14,
-            height: 20 / 14,
+          style: theme.textTheme.bodySmall?.copyWith(
             color: SweetsColors.grayDarker,
           ),
         ),

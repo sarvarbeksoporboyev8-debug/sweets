@@ -15,6 +15,9 @@ class Spacing {
   /// Large spacing: 16px
   static const double lg = 16.0;
 
+  /// 14px spacing for specific button padding
+  static const double buttonPadding = 14.0;
+
   /// Extra large spacing: 20px
   static const double xl = 20.0;
 
@@ -27,8 +30,8 @@ class Spacing {
   /// 4x extra large spacing: 40px
   static const double xxxxl = 40.0;
 
-  /// 5x extra large spacing: 56px
-  static const double xxxxxl = 56.0;
+  /// 5x extra large spacing: 56px (button height)
+  static const double buttonHeight = 56.0;
 
   /// Large gap spacing: 80px
   static const double gapLg = 80.0;

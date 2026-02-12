@@ -33,9 +33,9 @@ class SuccessMessage extends StatelessWidget {
             imagePath,
             fit: BoxFit.contain,
             errorBuilder: (context, error, stackTrace) {
-              return const Icon(
+              return Icon(
                 Icons.check_circle,
-                size: 180,
+                size: imageSize,
                 color: SweetsColors.primary,
               );
             },

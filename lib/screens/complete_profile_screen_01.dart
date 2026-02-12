@@ -29,14 +29,28 @@ class _CompleteProfileScreen01State extends State<CompleteProfileScreen01> {
     _lastNameController = TextEditingController();
     _dateOfBirthController = TextEditingController();
     _selectedGender = 'Male'; // Default selection
+    
+    // Add listeners to trigger rebuilds on text changes
+    _firstNameController.addListener(_updateFormState);
+    _lastNameController.addListener(_updateFormState);
+    _dateOfBirthController.addListener(_updateFormState);
   }
 
   @override
   void dispose() {
+    _firstNameController.removeListener(_updateFormState);
+    _lastNameController.removeListener(_updateFormState);
+    _dateOfBirthController.removeListener(_updateFormState);
     _firstNameController.dispose();
     _lastNameController.dispose();
     _dateOfBirthController.dispose();
     super.dispose();
+  }
+
+  void _updateFormState() {
+    setState(() {
+      // Triggers rebuild to update button state
+    });
   }
 
   void _handleAddPressed() {
@@ -140,7 +154,7 @@ class _CompleteProfileScreen01State extends State<CompleteProfileScreen01> {
             Padding(
               padding: EdgeInsets.all(Spacing.lg),
               child: SizedBox(
-                height: Spacing.xxxxxl,
+                height: Spacing.buttonHeight,
                 width: double.infinity,
                 child: ElevatedButton(
                   onPressed: _isFormValid ? _handleAddPressed : null,
@@ -156,7 +170,7 @@ class _CompleteProfileScreen01State extends State<CompleteProfileScreen01> {
                     ),
                     padding: EdgeInsets.symmetric(
                       horizontal: Spacing.xl,
-                      vertical: Spacing.md + 2,
+                      vertical: Spacing.buttonPadding,
                     ),
                   ),
                   child: const Text(

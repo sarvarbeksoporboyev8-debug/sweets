@@ -58,7 +58,7 @@ class SignupSuccessScreen extends StatelessWidget {
                     SizedBox(height: Spacing.sm),
                     
                     SizedBox(
-                      height: Spacing.xxxxxl,
+                      height: Spacing.buttonHeight,
                       width: double.infinity,
                       child: OutlinedButton(
                         onPressed: () {
@@ -74,7 +74,7 @@ class SignupSuccessScreen extends StatelessWidget {
                           ),
                           padding: EdgeInsets.symmetric(
                             horizontal: Spacing.xl,
-                            vertical: Spacing.md + 2,
+                            vertical: Spacing.buttonPadding,
                           ),
                         ),
                         child: Text(

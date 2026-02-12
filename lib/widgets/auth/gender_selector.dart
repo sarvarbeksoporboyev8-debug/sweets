@@ -91,7 +91,7 @@ class _GenderOption extends StatelessWidget {
           SizedBox(width: Spacing.xs),
           Text(
             label,
-            style: const TextStyle(
+            style: TextStyle(
               fontFamily: 'Geist',
               fontWeight: FontWeight.w400,
               fontSize: 14,
