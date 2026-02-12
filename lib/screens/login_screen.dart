@@ -62,11 +62,12 @@ class _LoginScreenState extends State<LoginScreen> {
     });
 
     // Simulate API call
+    // TODO: Replace with actual authentication API
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
         setState(() {
           _isLoading = false;
-          // Example: Show success or error based on validation
+          // Example: Show success or error based on validation (demo only)
           if (_phoneController.text.contains('invalid')) {
             _currentAlert = LoginAlert.error(
               'The phone number does not exist. Please create\na new account.',

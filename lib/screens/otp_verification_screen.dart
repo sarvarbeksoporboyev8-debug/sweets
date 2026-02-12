@@ -59,11 +59,12 @@ class _OtpVerificationScreenState extends State<OtpVerificationScreen> {
     final otp = _otpValues.join();
     
     // Simulate API call
+    // TODO: Replace with actual API verification
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
         setState(() {
           _isLoading = false;
-          // Example: Show error for invalid OTP
+          // Example: Show error for invalid OTP (demo only)
           if (otp == '0000') {
             _currentError = 'Invalid OTP code. Please try again.';
           } else {

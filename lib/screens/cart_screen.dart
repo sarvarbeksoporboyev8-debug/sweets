@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import '../theme/sweets_theme.dart';
 import '../constants/spacing.dart';
 import '../widgets/sweets_home_indicator.dart';
+import '../widgets/sweets_bottom_nav_bar.dart';
 
 /// Cart screen with dynamic state management and responsive layout.
 /// Demonstrates proper layout without Stack/Positioned abuse.
@@ -196,8 +197,14 @@ class _CartScreenState extends State<CartScreen> {
                   ),
           ),
           
-          // Bottom navigation bar - using Column instead of Positioned
-          const _CartTabBar(),
+          // Bottom navigation bar - using reusable widget
+          SweetsBottomNavBar(
+            currentIndex: 3, // Cart is at index 3
+            onTap: (index) {
+              // TODO: Navigate to corresponding screen
+              // Example: Navigator.pushNamed(context, routes[index]);
+            },
+          ),
         ],
       ),
     );
@@ -413,106 +420,6 @@ class _CartItemWidget extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-/// Bottom tab bar widget
-class _CartTabBar extends StatelessWidget {
-  const _CartTabBar();
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          decoration: BoxDecoration(
-            color: SweetsColors.white,
-            border: Border(
-              top: BorderSide(
-                color: SweetsColors.border.withOpacity(0.75),
-              ),
-            ),
-          ),
-          padding: const EdgeInsets.symmetric(vertical: SweetsSpacing.gapSmall),
-          child: Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: const [
-              _TabItem(label: 'Home', icon: Icons.home_outlined, active: false),
-              _TabItem(
-                  label: 'Explore',
-                  icon: Icons.search_rounded,
-                  active: false),
-              _TabItem(
-                  label: 'Favorites',
-                  icon: Icons.favorite_border,
-                  active: false),
-              _TabItem(
-                  label: 'Cart', icon: Icons.shopping_bag, active: true),
-              _TabItem(
-                  label: 'Account',
-                  icon: Icons.person_outline,
-                  active: false),
-            ],
-          ),
-        ),
-        const SweetsHomeIndicator(),
-      ],
-    );
-  }
-}
-
-/// Tab item widget
-class _TabItem extends StatelessWidget {
-  const _TabItem({
-    required this.label,
-    required this.icon,
-    required this.active,
-  });
-
-  final String label;
-  final IconData icon;
-  final bool active;
-
-  @override
-  Widget build(BuildContext context) {
-    return Column(
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Container(
-          padding: const EdgeInsets.all(SweetsSpacing.gapSmall),
-          decoration: BoxDecoration(
-            color: active ? SweetsColors.primary : Colors.transparent,
-            borderRadius: BorderRadius.circular(SweetsSpacing.radiusSmall),
-            boxShadow: active
-                ? const [
-                    BoxShadow(
-                      color: Color(0x66FD7E14),
-                      blurRadius: 12,
-                      offset: Offset(0, 6),
-                    ),
-                  ]
-                : null,
-          ),
-          child: Icon(
-            icon,
-            size: SweetsSpacing.iconMedium,
-            color: active ? SweetsColors.white : SweetsColors.grayDarker,
-          ),
-        ),
-        const SizedBox(height: SweetsSpacing.xs),
-        Text(
-          label,
-          style: TextStyle(
-            fontFamily: 'Geist',
-            fontWeight: FontWeight.w400,
-            fontSize: 12,
-            height: 16 / 12,
-            color: active ? SweetsColors.primary : const Color(0xFF475467),
-          ),
-        ),
-      ],
     );
   }
 }

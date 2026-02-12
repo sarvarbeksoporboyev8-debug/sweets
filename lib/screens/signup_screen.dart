@@ -62,11 +62,12 @@ class _SignupScreenState extends State<SignupScreen> {
     });
 
     // Simulate API call
+    // TODO: Replace with actual registration API
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
         setState(() {
           _isLoading = false;
-          // Example: Show error if phone exists
+          // Example: Show error if phone exists (demo only)
           if (_phoneController.text.contains('exists')) {
             _currentError = 'The phone number already exists, try to login to your account.';
           } else {

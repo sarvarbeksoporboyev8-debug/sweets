@@ -45,6 +45,7 @@ class SweetsBottomNavBar extends StatelessWidget {
                 _NavItem(
                   label: 'Explore',
                   icon: Icons.search_rounded,
+                  activeIcon: Icons.search,
                   isActive: currentIndex == 1,
                   onTap: () => onTap?.call(1),
                 ),
