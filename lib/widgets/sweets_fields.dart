@@ -8,12 +8,14 @@ class SweetsTextField extends StatelessWidget {
     required this.hint,
     this.controller,
     this.keyboardType,
+    this.onChanged,
   });
 
   final String label;
   final String hint;
   final TextEditingController? controller;
   final TextInputType? keyboardType;
+  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -31,6 +33,7 @@ class SweetsTextField extends StatelessWidget {
         TextFormField(
           controller: controller,
           keyboardType: keyboardType,
+          onChanged: onChanged,
           decoration: InputDecoration(
             hintText: hint,
           ),
@@ -48,6 +51,7 @@ class SweetsMultilineField extends StatelessWidget {
     this.controller,
     this.minLines = 4,
     this.maxLines = 6,
+    this.onChanged,
   });
 
   final String label;
@@ -55,6 +59,7 @@ class SweetsMultilineField extends StatelessWidget {
   final TextEditingController? controller;
   final int minLines;
   final int maxLines;
+  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -74,6 +79,7 @@ class SweetsMultilineField extends StatelessWidget {
           minLines: minLines,
           maxLines: maxLines,
           keyboardType: TextInputType.multiline,
+          onChanged: onChanged,
           decoration: InputDecoration(
             hintText: hint,
             contentPadding: const EdgeInsets.symmetric(
@@ -94,12 +100,14 @@ class SweetsPhoneNumberField extends StatelessWidget {
     required this.hint,
     this.controller,
     this.value,
+    this.onChanged,
   });
 
   final String label;
   final String hint;
   final TextEditingController? controller;
   final String? value;
+  final ValueChanged<String>? onChanged;
 
   @override
   Widget build(BuildContext context) {
@@ -118,6 +126,7 @@ class SweetsPhoneNumberField extends StatelessWidget {
           controller: controller,
           keyboardType: TextInputType.phone,
           initialValue: value,
+          onChanged: onChanged,
           style: TextStyle(
             fontFamily: 'Geist',
             fontWeight: FontWeight.w400,
