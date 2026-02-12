@@ -58,7 +58,6 @@ ThemeData buildSweetsTheme() {
       primary: SweetsColors.primary, // #D1B57C
       secondary: SweetsColors.primary, // #D1B57C
       surface: SweetsColors.background, // #E0D2BA
-      background: SweetsColors.background, // #E0D2BA
       brightness: Brightness.light,
     ),
     textTheme: const TextTheme(
