@@ -34,7 +34,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
     // Mock product data - in real app, this would fetch from API
     _product = const Product(
       id: '1',
-      name: 'Dilicious blueberry pie for your occasion',
+      name: 'Delicious blueberry pie for your occasion',
       category: 'Pies',
       description: 'Blueberry pie is a pie with a blueberry filling. Blueberry pie is readily made because it does not require pitting or peeling of fruit. It usually has a top and bottom crust. The top crust can be circular, but the pie can also have a crumble crust or no top crust.',
       basePrice: 15.55,

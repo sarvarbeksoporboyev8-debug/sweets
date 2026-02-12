@@ -24,6 +24,7 @@ class Spacing {
   static const double borderRadiusMd = 12.0;
   static const double borderRadiusLg = 16.0;
   static const double borderRadiusXl = 24.0;
+  static const double borderRadiusRound = 28.0; // For pill-shaped badges
   
   // Icon sizes
   static const double iconXs = 16.0;

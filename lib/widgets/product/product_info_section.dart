@@ -27,7 +27,7 @@ class ProductInfoSection extends StatelessWidget {
           ),
           decoration: BoxDecoration(
             color: SweetsColors.primaryLighter,
-            borderRadius: BorderRadius.circular(28),
+            borderRadius: BorderRadius.circular(Spacing.borderRadiusRound),
           ),
           child: Text(
             category,
