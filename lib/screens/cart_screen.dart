@@ -308,7 +308,7 @@ class _CartItemWidget extends StatelessWidget {
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     Text(
-                      'Price: \$${item.price.toStringAsFixed(2)}',
+                      'Price : \$${item.price.toStringAsFixed(2)}',
                       style: const TextStyle(
                         fontFamily: 'Geist',
                         fontWeight: FontWeight.w500,
@@ -322,7 +322,7 @@ class _CartItemWidget extends StatelessWidget {
                     Row(
                       children: [
                         const Text(
-                          'Qty: ',
+                          'Qty : ',
                           style: TextStyle(
                             fontFamily: 'Geist',
                             fontWeight: FontWeight.w400,
