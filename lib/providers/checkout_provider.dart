@@ -4,14 +4,14 @@ import '../models/payment_method_model.dart';
 
 /// Checkout state provider
 class CheckoutProvider with ChangeNotifier {
-  AddressModel? _deliveryAddress;
-  PaymentMethodModel? _paymentMethod;
+  Address? _deliveryAddress;
+  PaymentMethod? _paymentMethod;
   String? _paymentInfo;
   String? _orderNotes;
   String? _deliveryTime;
   
-  AddressModel? get deliveryAddress => _deliveryAddress;
-  PaymentMethodModel? get paymentMethod => _paymentMethod;
+  Address? get deliveryAddress => _deliveryAddress;
+  PaymentMethod? get paymentMethod => _paymentMethod;
   String? get paymentInfo => _paymentInfo;
   String? get orderNotes => _orderNotes;
   String? get deliveryTime => _deliveryTime;
@@ -21,13 +21,13 @@ class CheckoutProvider with ChangeNotifier {
   bool get isReadyForCheckout => _deliveryAddress != null;
 
   /// Set delivery address
-  void setDeliveryAddress(AddressModel address) {
+  void setDeliveryAddress(Address address) {
     _deliveryAddress = address;
     notifyListeners();
   }
 
   /// Set payment method
-  void setPaymentMethod(PaymentMethodModel method) {
+  void setPaymentMethod(PaymentMethod method) {
     _paymentMethod = method;
     notifyListeners();
   }

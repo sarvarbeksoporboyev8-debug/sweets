@@ -307,7 +307,6 @@ class FavoritesScreen extends StatelessWidget {
       ),
     );
   }
-  }
 }
 
 class _FavoriteItem extends StatelessWidget {
