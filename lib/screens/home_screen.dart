@@ -1,4 +1,3 @@
-import 'dart:ui';
 import 'package:flutter/material.dart';
 import '../theme/sweets_theme.dart';
 import '../constants/colors.dart';
@@ -19,7 +18,6 @@ class HomeScreen extends StatefulWidget {
 }
 
 class _HomeScreenState extends State<HomeScreen> {
-  bool _showSideMenu = false;
 
   @override
   Widget build(BuildContext context) {
@@ -51,37 +49,7 @@ class _HomeScreenState extends State<HomeScreen> {
                             mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               const ShirinBiscuitHeader(),
-                              Row(
-                                children: [
-                                  GestureDetector(
-                                    onTap: () {
-                                      setState(() {
-                                        _showSideMenu = true;
-                                      });
-                                    },
-                                    child: Container(
-                                      width: 36,
-                                      height: 36,
-                                      decoration: const BoxDecoration(
-                                        color: SweetsColors.white,
-                                        shape: BoxShape.circle,
-                                        boxShadow: [
-                                          BoxShadow(
-                                            color: Color(0x0D000000),
-                                            offset: Offset(0, 1),
-                                            blurRadius: 3,
-                                          ),
-                                        ],
-                                      ),
-                                      child: const Icon(
-                                        Icons.more_horiz,
-                                        size: 24,
-                                        color: SweetsColors.grayDarker,
-                                      ),
-                                    ),
-                                  ),
-                                  const SizedBox(width: Spacing.sm),
-                                  GestureDetector(
+                              GestureDetector(
                                     onTap: () {
                                       Navigator.of(context).pushNamed('/notifications');
                                     },
@@ -170,15 +138,6 @@ class _HomeScreenState extends State<HomeScreen> {
               ),
             ),
           ),
-          // Side menu overlay
-          if (_showSideMenu)
-            _SideMenu(
-              onClose: () {
-                setState(() {
-                  _showSideMenu = false;
-                });
-              },
-            ),
         ],
       ),
       bottomNavigationBar: const SweetsTabBar(activeTab: 'Home'),
@@ -542,146 +501,3 @@ class _BestProductsSection extends StatelessWidget {
   }
 }
 
-class _SideMenu extends StatelessWidget {
-  const _SideMenu({required this.onClose});
-
-  final VoidCallback onClose;
-
-  @override
-  Widget build(BuildContext context) {
-    return Stack(
-      children: [
-        // Backdrop
-        Positioned.fill(
-          child: GestureDetector(
-            onTap: onClose,
-            child: BackdropFilter(
-              filter: ImageFilter.blur(sigmaX: 14, sigmaY: 14),
-              child: Container(
-                color: Colors.black.withOpacity(0.25),
-              ),
-            ),
-          ),
-        ),
-        // Side menu
-        Positioned(
-          left: 0,
-          top: 0,
-          bottom: 0,
-          child: Container(
-            width: 220,
-            padding: const EdgeInsets.all(Spacing.lg),
-            decoration: const BoxDecoration(
-              color: SweetsColors.white,
-              boxShadow: [
-                BoxShadow(
-                  color: Color(0x1A343A40),
-                  offset: Offset(0, 12),
-                  blurRadius: 20,
-                ),
-              ],
-            ),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                // Close button - circular icon
-                GestureDetector(
-                  onTap: onClose,
-                  child: Container(
-                    width: 24,
-                    height: 24,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                    ),
-                    child: const Icon(
-                      Icons.close_rounded,
-                      size: 24,
-                      color: SweetsColors.grayDarker,
-                    ),
-                  ),
-                ),
-                const SizedBox(height: Spacing.lg),
-                // Menu items
-                _SideMenuItem(
-                  icon: Icons.phone_iphone,
-                  label: 'About us',
-                  onTap: () {
-                    onClose();
-                    Navigator.of(context).pushNamed('/aboutUs');
-                  },
-                ),
-                const SizedBox(height: Spacing.lg),
-                _SideMenuItem(
-                  icon: Icons.send,
-                  label: 'Contact us',
-                  onTap: () {
-                    onClose();
-                    Navigator.of(context).pushNamed('/contactUs');
-                  },
-                ),
-                const SizedBox(height: Spacing.lg),
-                _SideMenuItem(
-                  icon: Icons.star,
-                  label: 'Rate the app',
-                  onTap: () {
-                    onClose();
-                    Navigator.of(context).pushNamed('/rateTheApp');
-                  },
-                ),
-                const SizedBox(height: Spacing.lg),
-                _SideMenuItem(
-                  icon: Icons.note_add,
-                  label: 'Add notes',
-                  onTap: () {
-                    onClose();
-                    Navigator.of(context).pushNamed('/addNotes');
-                  },
-                ),
-              ],
-            ),
-          ),
-        ),
-      ],
-    );
-  }
-}
-
-class _SideMenuItem extends StatelessWidget {
-  const _SideMenuItem({
-    required this.icon,
-    required this.label,
-    required this.onTap,
-  });
-
-  final IconData icon;
-  final String label;
-  final VoidCallback onTap;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.end,
-        children: [
-          Text(
-            label,
-            style: const TextStyle(
-              fontFamily: 'Geist',
-              fontWeight: FontWeight.w400,
-              fontSize: 16,
-              height: 24 / 16,
-              color: SweetsColors.grayDarker,
-            ),
-          ),
-          const SizedBox(width: Spacing.spacing12),
-          Icon(
-            icon,
-            size: 24,
-            color: SweetsColors.grayDarker,
-          ),
-        ],
-      ),
-    );
-  }
-}

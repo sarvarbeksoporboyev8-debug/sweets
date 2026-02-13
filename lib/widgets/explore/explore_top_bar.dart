@@ -24,33 +24,7 @@ class ExploreTopBar extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               const ShirinBiscuitHeader(),
-              Row(
-                children: [
-                  GestureDetector(
-                    onTap: () {},
-                    child: Container(
-                      width: 36,
-                      height: 36,
-                      decoration: const BoxDecoration(
-                        color: SweetsColors.white,
-                        shape: BoxShape.circle,
-                        boxShadow: [
-                          BoxShadow(
-                            color: Color(0x0D000000),
-                            offset: Offset(0, 1),
-                            blurRadius: 3,
-                          ),
-                        ],
-                      ),
-                      child: const Icon(
-                        Icons.more_horiz,
-                        size: 24,
-                        color: SweetsColors.grayDarker,
-                      ),
-                    ),
-                  ),
-                  const SizedBox(width: Spacing.sm),
-                  GestureDetector(
+              GestureDetector(
                     onTap: () {
                       Navigator.of(context).pushNamed('/notifications');
                     },
