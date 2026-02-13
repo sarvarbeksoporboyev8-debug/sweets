@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 
 import 'screens/contact_us_screen.dart';
 import 'screens/notifications_empty_screen.dart';
@@ -55,6 +56,16 @@ import 'screens/signup_success_screen.dart';
 import 'theme/sweets_theme.dart';
 
 void main() {
+  // Configure system UI overlay for status bar and navigation bar
+  SystemChrome.setSystemUIOverlayStyle(
+    const SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: Brightness.dark,
+      statusBarBrightness: Brightness.light,
+      systemNavigationBarColor: Color(0xFFF6EFE3),
+      systemNavigationBarIconBrightness: Brightness.dark,
+    ),
+  );
   runApp(const SweetsApp());
 }
 

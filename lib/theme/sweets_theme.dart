@@ -5,7 +5,7 @@ import '../constants/colors.dart';
 /// Colors are now imported from lib/constants/colors.dart
 
 ThemeData buildSweetsTheme() {
-  const baseTextColor = SweetsColors.black;
+  const baseTextColor = SweetsColors.kDarkText;
 
   const headlineH1 = TextStyle(
     fontFamily: 'Geist',
@@ -51,15 +51,47 @@ ThemeData buildSweetsTheme() {
 
   return ThemeData(
     useMaterial3: true,
-    scaffoldBackgroundColor: SweetsColors.background, // #E0D2BA
-    primaryColor: SweetsColors.primary, // #D1B57C
-    colorScheme: ColorScheme.fromSeed(
-      seedColor: SweetsColors.primary,
-      primary: SweetsColors.primary, // #D1B57C
-      secondary: SweetsColors.primary, // #D1B57C
-      surface: SweetsColors.background, // #E0D2BA
-      brightness: Brightness.light,
+    brightness: Brightness.light,
+    
+    // Main colors - creamy background
+    scaffoldBackgroundColor: SweetsColors.kCreamBg, // #F6EFE3
+    primaryColor: SweetsColors.kAccentGold, // #D1B57C
+    
+    // AppBar styling - PURE WHITE
+    appBarTheme: const AppBarTheme(
+      backgroundColor: SweetsColors.kTopBar, // Pure white #FFFFFF
+      surfaceTintColor: Colors.transparent,
+      elevation: 0,
+      scrolledUnderElevation: 0,
+      iconTheme: IconThemeData(color: SweetsColors.kDarkText),
+      titleTextStyle: TextStyle(
+        color: SweetsColors.kDarkText,
+        fontWeight: FontWeight.w700,
+        fontSize: 18,
+        fontFamily: 'Geist',
+      ),
     ),
+    
+    // Color scheme
+    colorScheme: const ColorScheme.light(
+      primary: SweetsColors.kAccentGold, // Gold accent
+      secondary: SweetsColors.kAccentGold,
+      surface: SweetsColors.kCardWhite, // White cards
+      background: SweetsColors.kCreamBg, // Creamy background
+      onBackground: SweetsColors.kDarkText,
+      error: Color(0xFFDC2626),
+    ),
+    
+    // Card theme - white with shadow
+    cardTheme: CardTheme(
+      color: SweetsColors.kCardWhite,
+      elevation: 2,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+      shadowColor: SweetsColors.kCardShadow,
+    ),
+    
     textTheme: const TextTheme(
       headlineLarge: headlineH1,
       bodyMedium: bodyRegular,
@@ -87,7 +119,7 @@ ThemeData buildSweetsTheme() {
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
         borderSide: const BorderSide(
-          color: SweetsColors.primary, // #D1B57C
+          color: SweetsColors.kAccentGold, // #D1B57C
           width: 1.2,
         ),
       ),
@@ -100,23 +132,23 @@ ThemeData buildSweetsTheme() {
     ),
     elevatedButtonTheme: ElevatedButtonThemeData(
       style: ElevatedButton.styleFrom(
-        backgroundColor: SweetsColors.primary, // #D1B57C
+        backgroundColor: SweetsColors.kAccentGold, // #D1B57C
         foregroundColor: SweetsColors.white,
         elevation: 0,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(16),
+          borderRadius: BorderRadius.circular(12),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
         textStyle: buttonLarge,
       ),
     ),
     textButtonTheme: TextButtonThemeData(
       style: TextButton.styleFrom(
-        foregroundColor: SweetsColors.primary, // #D1B57C
+        foregroundColor: SweetsColors.kAccentGold, // #D1B57C
       ),
     ),
     buttonTheme: const ButtonThemeData(
-      buttonColor: SweetsColors.primary, // #D1B57C
+      buttonColor: SweetsColors.kAccentGold, // #D1B57C
     ),
   );
 }

@@ -21,7 +21,7 @@ class SweetsTabBar extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: SweetsColors.white,
+            color: SweetsColors.kCreamBg, // Creamy background
             border: Border(
               top: BorderSide(
                 color: SweetsColors.border.withOpacity(0.75),
@@ -94,12 +94,12 @@ class _TabItem extends StatelessWidget {
           Container(
             padding: const EdgeInsets.all(8),
             decoration: BoxDecoration(
-              color: active ? SweetsColors.primary : Colors.transparent,
+              color: active ? SweetsColors.kAccentGold : Colors.transparent, // Gold when active
               borderRadius: BorderRadius.circular(8),
               boxShadow: active
                   ? const [
                       BoxShadow(
-                        color: Color(0x66FD7E14),
+                        color: Color(0x33D1B57C), // Shadow matching gold
                         blurRadius: 12,
                         offset: Offset(0, 6),
                       ),
@@ -109,7 +109,7 @@ class _TabItem extends StatelessWidget {
             child: Icon(
               icon,
               size: 24,
-              color: active ? SweetsColors.white : SweetsColors.grayDarker,
+              color: active ? SweetsColors.white : Color(0xFFD1D5DB), // Light gray when inactive
             ),
           ),
           const SizedBox(height: 4),
@@ -120,7 +120,7 @@ class _TabItem extends StatelessWidget {
               fontWeight: FontWeight.w400,
               fontSize: 12,
               height: 16 / 12,
-              color: active ? SweetsColors.primary : const Color(0xFF475467),
+              color: active ? SweetsColors.kAccentGold : const Color(0xFF475467),
             ),
           ),
         ],

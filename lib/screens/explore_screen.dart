@@ -14,7 +14,7 @@ class ExploreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.white,
+      backgroundColor: SweetsColors.kCreamBg, // Creamy background
       body: Column(
         children: [
           Expanded(
@@ -23,11 +23,9 @@ class ExploreScreen extends StatelessWidget {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  // Gradient background with top bar
+                  // White background with top bar (no gradient)
                   Container(
-                    decoration: const BoxDecoration(
-                      gradient: SweetsGradients.primaryHeader,
-                    ),
+                    color: SweetsColors.kTopBar, // Pure white
                     child: const ExploreTopBar(),
                   ),
                   const _ExploreHeaderSection(),

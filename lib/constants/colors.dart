@@ -2,12 +2,23 @@ import 'package:flutter/material.dart';
 
 /// Color constants for the Sweets app
 /// 
-/// Custom theme colors:
-/// - Background: #E0D2BA (RGB 224, 210, 186) - Main screen backgrounds
-/// - Primary: #D1B57C (RGB 209, 181, 124) - Primary buttons and key accents
+/// Production theme colors:
+/// - Top Bar: #FFFFFF (Pure white) - AppBar/header backgrounds
+/// - Cream Background: #F6EFE3 (RGB 246, 239, 227) - Main screen backgrounds
+/// - Card White: #FFFFFF (Pure white) - Card surfaces
+/// - Primary Accent: #D1B57C (RGB 209, 181, 124) - Primary buttons and key accents
 class SweetsColors {
-  // Custom theme colors
-  static const Color background = Color(0xFFE0D2BA); // RGB(224, 210, 186)
+  // Production theme colors
+  static const Color kTopBar = Color(0xFFFFFFFF); // Pure white #FFFFFF
+  static const Color kCreamBg = Color(0xFFF6EFE3); // Creamy background #F6EFE3
+  static const Color kCardWhite = Color(0xFFFFFFFF); // Card surfaces
+  static const Color kCardShadow = Color(0x1A000000); // Subtle shadow
+  static const Color kAccentGold = Color(0xFFD1B57C); // Primary accent
+  static const Color kDarkText = Color(0xFF1F2937); // Dark text
+  static const Color kLightText = Color(0xFF6B7280); // Light text
+
+  // Legacy custom theme colors (kept for backward compatibility)
+  static const Color background = Color(0xFFF6EFE3); // Updated to creamy
   static const Color primary = Color(0xFFD1B57C); // RGB(209, 181, 124)
   static const Color primaryAccent = Color(0xFFD1B57C); // Alias for consistency
 

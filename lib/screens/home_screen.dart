@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.white,
+      backgroundColor: SweetsColors.kCreamBg, // Creamy background
       body: Stack(
         children: [
           SafeArea(
@@ -35,11 +35,9 @@ class _HomeScreenState extends State<HomeScreen> {
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        // Gradient background with top bar
+                        // White background with top bar (no gradient)
                         Container(
-                          decoration: const BoxDecoration(
-                            gradient: SweetsGradients.primaryHeader,
-                          ),
+                          color: SweetsColors.kTopBar, // Pure white
                           child: HomeTopBar(
                             onMenuTap: () {
                               setState(() {
