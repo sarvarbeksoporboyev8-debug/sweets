@@ -241,10 +241,10 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 ),
               ),
             ),
-          ],
+          ),
           // Home indicator
           const SweetsHomeIndicator(),
-        ),
+        ],
       ),
     );
   }

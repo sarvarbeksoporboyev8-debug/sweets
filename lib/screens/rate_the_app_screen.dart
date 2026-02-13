@@ -207,7 +207,7 @@ class _RateTheAppScreenState extends State<RateTheAppScreen> {
               ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

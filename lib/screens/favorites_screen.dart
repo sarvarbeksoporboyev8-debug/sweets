@@ -156,7 +156,7 @@ class FavoritesScreen extends StatelessWidget {
                 ],
               ),
             ),
-          ],
+          ),
           // Home indicator
           const SweetsHomeIndicator(),
         ],
