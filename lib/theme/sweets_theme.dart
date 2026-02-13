@@ -59,7 +59,7 @@ ThemeData buildSweetsTheme() {
     primaryColor: coralRed, // Coral/Red #FF7F6B
     
     // ===== APP BAR =====
-    appBarTheme: AppBarTheme(
+    appBarTheme: const AppBarTheme(
       backgroundColor: SweetsColors.kTopBar, // Pure white #FFFFFF
       surfaceTintColor: Colors.transparent,
       elevation: 0,
@@ -74,7 +74,7 @@ ThemeData buildSweetsTheme() {
     ),
     
     // ===== COLOR SCHEME =====
-    colorScheme: ColorScheme.light(
+    colorScheme: const ColorScheme.light(
       primary: coralRed,                    // Coral/Red for all primary elements
       secondary: coralRed,                  // Secondary actions
       tertiary: coralRed,
@@ -86,17 +86,17 @@ ThemeData buildSweetsTheme() {
     ),
     
     // ===== CARD THEME =====
-    cardTheme: CardThemeData(
+    cardTheme: const CardThemeData(
       color: SweetsColors.kCardWhite,
       elevation: 2,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
       shadowColor: SweetsColors.kCardShadow,
     ),
     
     // ===== TEXT THEMES =====
-    textTheme: TextTheme(
+    textTheme: const TextTheme(
       displayLarge: TextStyle(
         color: SweetsColors.textDark,
         fontWeight: FontWeight.w700,
@@ -133,8 +133,8 @@ ThemeData buildSweetsTheme() {
         backgroundColor: coralRed,           // Coral/red buttons
         foregroundColor: SweetsColors.textOnCoral, // White text
         elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(24)),
         ),
         padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
         textStyle: buttonLarge,
@@ -150,47 +150,47 @@ ThemeData buildSweetsTheme() {
     outlinedButtonTheme: OutlinedButtonThemeData(
       style: OutlinedButton.styleFrom(
         foregroundColor: coralRed,
-        side: BorderSide(color: coralRed),
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(24),
+        side: const BorderSide(color: coralRed),
+        shape: const RoundedRectangleBorder(
+          borderRadius: BorderRadius.all(Radius.circular(24)),
         ),
       ),
     ),
     
-    buttonTheme: ButtonThemeData(
+    buttonTheme: const ButtonThemeData(
       buttonColor: coralRed,
     ),
     
     // ===== FLOATING ACTION BUTTON =====
-    floatingActionButtonTheme: FloatingActionButtonThemeData(
+    floatingActionButtonTheme: const FloatingActionButtonThemeData(
       backgroundColor: coralRed,
       foregroundColor: SweetsColors.textOnCoral,
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(16),
+        borderRadius: BorderRadius.all(Radius.circular(16)),
       ),
     ),
     
     // ===== INPUT & FORM FIELDS =====
-    inputDecorationTheme: InputDecorationTheme(
+    inputDecorationTheme: const InputDecorationTheme(
       filled: true,
       fillColor: SweetsColors.white,
       contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       border: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.all(Radius.circular(12)),
         borderSide: BorderSide(
           color: SweetsColors.border,
           width: 1,
         ),
       ),
       enabledBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.all(Radius.circular(12)),
         borderSide: BorderSide(
           color: SweetsColors.border,
           width: 1,
         ),
       ),
       focusedBorder: OutlineInputBorder(
-        borderRadius: BorderRadius.circular(12),
+        borderRadius: BorderRadius.all(Radius.circular(12)),
         borderSide: BorderSide(
           color: coralRed, // Coral border when focused
           width: 2,
@@ -201,7 +201,7 @@ ThemeData buildSweetsTheme() {
     ),
     
     // ===== BOTTOM NAVIGATION =====
-    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+    bottomNavigationBarTheme: const BottomNavigationBarThemeData(
       backgroundColor: SweetsColors.white,
       selectedItemColor: coralRed,
       unselectedItemColor: Color(0xFFBDBDBD),
@@ -210,7 +210,7 @@ ThemeData buildSweetsTheme() {
     
     // ===== DIALOGS & SNACKBARS =====
     dialogBackgroundColor: SweetsColors.white,
-    snackBarTheme: SnackBarThemeData(
+    snackBarTheme: const SnackBarThemeData(
       backgroundColor: Color(0xFF323232),
       contentTextStyle: TextStyle(color: SweetsColors.white),
     ),
