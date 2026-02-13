@@ -71,7 +71,7 @@ class AccountScreen extends StatelessWidget {
                             children: [
                               Icon(
                                 Icons.language,
-                                color: Color(0xFFD1B57C),
+                                color: SweetsColors.cardCyan,
                                 size: 24,
                               ),
                               SizedBox(width: 8),
@@ -80,7 +80,7 @@ class AccountScreen extends StatelessWidget {
                                 style: TextStyle(
                                   fontSize: 16,
                                   fontWeight: FontWeight.w500,
-                                  color: Color(0xFFD1B57C),
+                                  color: SweetsColors.cardCyan,
                                 ),
                               ),
                             ],
@@ -107,7 +107,7 @@ class AccountScreen extends StatelessWidget {
                   
                   // SECTION 2: User Profile Card
                   Container(
-                    color: const Color(0xFFF5F5F5),
+                    color: SweetsColors.white,
                     padding: const EdgeInsets.all(Spacing.lg),
                     child: Row(
                       crossAxisAlignment: CrossAxisAlignment.center,
@@ -117,7 +117,7 @@ class AccountScreen extends StatelessWidget {
                           width: 100,
                           height: 100,
                           decoration: const BoxDecoration(
-                            color: Color(0xFFD1B57C),
+                            color: SweetsColors.cardPurple,
                             shape: BoxShape.circle,
                           ),
                           child: const Center(
@@ -167,7 +167,7 @@ class AccountScreen extends StatelessWidget {
                                 children: [
                                   Icon(
                                     Icons.phone_outlined,
-                                    color: Color(0xFFD1B57C),
+                                    color: SweetsColors.cardPeach,
                                     size: 18,
                                   ),
                                   SizedBox(width: 8),
