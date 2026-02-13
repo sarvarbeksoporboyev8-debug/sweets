@@ -20,17 +20,20 @@ class _WalkthroughScreenState extends State<WalkthroughScreen> {
 
   final List<WalkthroughPage> _pages = const [
     WalkthroughPage(
-      imagePath: 'images/figma/8a0b5533-d79c-455f-8408-d4d8cc2e8a44.png',
+      frameImagePath: 'images/figma/8a0b5533-d79c-455f-8408-d4d8cc2e8a44.png',
+      screenImagePath: 'images/figma/5f69178a-5040-4ee5-b88b-59602e8c56b5.png',
       title: 'Welcome to Sweets 🍰',
       description: 'Discover a new way to order cakes, candies, desserts, and sweets delivered to your door.',
     ),
     WalkthroughPage(
-      imagePath: 'images/figma/b5d6cff7-5424-491b-8b9c-30f375135b73.png',
+      frameImagePath: 'images/figma/b5d6cff7-5424-491b-8b9c-30f375135b73.png',
+      screenImagePath: 'images/figma/fcaf9cd2-e6b3-4313-bc4a-48777a84a633.png',
       title: 'Discover the most delicious sweets',
       description: 'Explore the catalog of delectable sweets, desserts, chocolates, and more. Search for new flavors.',
     ),
     WalkthroughPage(
-      imagePath: 'images/figma/3be11e8f-b3e6-47b9-851a-d83d4c54f0e7.png',
+      frameImagePath: 'images/figma/69fc2101-2993-4adf-887b-b20d9f5447c1.png',
+      screenImagePath: 'images/figma/d7997b8b-c60a-41ef-ba55-45de9dcbecc6.png',
       title: 'Fast delivery to your doorstep',
       description: 'Get desserts and sweets delivered quickly to your location. Track your order in real-time.',
     ),
@@ -67,9 +70,6 @@ class _WalkthroughScreenState extends State<WalkthroughScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final screenHeight = MediaQuery.of(context).size.height;
-    final imageHeight = screenHeight * 0.5; // 50% of screen height
-
     return Scaffold(
       backgroundColor: SweetsColors.white,
       body: SafeArea(
@@ -105,7 +105,6 @@ class _WalkthroughScreenState extends State<WalkthroughScreen> {
                 itemBuilder: (context, index) {
                   return _WalkthroughPageWidget(
                     page: _pages[index],
-                    imageHeight: imageHeight,
                   );
                 },
               ),
@@ -150,62 +149,93 @@ class _WalkthroughScreenState extends State<WalkthroughScreen> {
 /// Individual walkthrough page widget
 class _WalkthroughPageWidget extends StatelessWidget {
   final WalkthroughPage page;
-  final double imageHeight;
 
   const _WalkthroughPageWidget({
     required this.page,
-    required this.imageHeight,
   });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        // Image with gradient background
+        const SizedBox(height: 16),
+        // Image container with gradient background
         Container(
-          height: imageHeight,
-          margin: const EdgeInsets.symmetric(horizontal: SweetsSpacing.padding),
+          width: 396,
+          height: 481,
+          margin: const EdgeInsets.symmetric(horizontal: 16),
           decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(SweetsSpacing.radiusXLarge),
+            borderRadius: BorderRadius.circular(24),
+            // Exact Figma radial gradient:
+            // radial-gradient(73.99% 60.91% at 50% 39.09%, #FFE6D1 0%, #FD7E14 100%)
             gradient: const RadialGradient(
-              center: Alignment(0, -0.2),
-              radius: 0.74,
+              center: Alignment(0, -0.2182), // 39.09% from top in Flutter's -1..1 space
+              radius: 0.7399, // 73.99%
               colors: [
                 SweetsColors.kTopBar,
                 SweetsColors.kCardBeige3,
               ],
+              stops: [0.0, 1.0],
             ),
           ),
-          child: Center(
-            child: Image.asset(
-              page.imagePath,
-              fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) {
-                return const Icon(
-                  Icons.cake,
-                  size: 200,
-                  color: SweetsColors.white,
-                );
-              },
-            ),
+          child: Stack(
+            children: [
+              Positioned(
+                left: 47.96,
+                bottom: 0,
+                child: SizedBox(
+                  width: 300,
+                  height: 368,
+                  child: Stack(
+                    children: [
+                      Positioned(
+                        left: 0,
+                        top: 0,
+                        child: Image.asset(
+                          page.frameImagePath,
+                          width: 300,
+                          height: 607,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return Container(
+                              width: 300,
+                              height: 607,
+                              color: Colors.grey[300],
+                            );
+                          },
+                        ),
+                      ),
+                      Positioned(
+                        left: 14.88,
+                        top: 12.79,
+                        child: Image.asset(
+                          page.screenImagePath,
+                          width: 268.155,
+                          height: 579.315,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const SizedBox.shrink();
+                          },
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+              ),
+            ],
           ),
         ),
-        const SizedBox(height: SweetsSpacing.xxxl),
-        
+        const Spacer(),
         // Title
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: SweetsSpacing.paddingLarge),
-          child: Text(
-            page.title,
-            style: Theme.of(context).textTheme.headlineLarge,
-            textAlign: TextAlign.center,
-          ),
+        Text(
+          page.title,
+          style: Theme.of(context).textTheme.headlineLarge,
+          textAlign: TextAlign.center,
         ),
-        const SizedBox(height: SweetsSpacing.gap),
-        
+        const SizedBox(height: 12),
         // Description
-        Padding(
-          padding: const EdgeInsets.symmetric(horizontal: SweetsSpacing.paddingLarge),
+        SizedBox(
+          width: 388,
           child: Text(
             page.description,
             style: Theme.of(context).textTheme.bodyMedium,
@@ -219,12 +249,14 @@ class _WalkthroughPageWidget extends StatelessWidget {
 
 /// Model for walkthrough page data
 class WalkthroughPage {
-  final String imagePath;
+  final String frameImagePath;
+  final String screenImagePath;
   final String title;
   final String description;
 
   const WalkthroughPage({
-    required this.imagePath,
+    required this.frameImagePath,
+    required this.screenImagePath,
     required this.title,
     required this.description,
   });
