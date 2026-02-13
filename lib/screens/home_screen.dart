@@ -306,7 +306,7 @@ class _HomeBannersSection extends StatelessWidget {
                 child: const _HomePromoCard(
                   title: 'Delicious\ncupcake',
                   imagePath: 'assets/images/promo_cupcake.png',
-                  height: 247,
+                  height: 173,
                 ),
               ),
               SizedBox(
@@ -332,7 +332,7 @@ class _HomeBannersSection extends StatelessWidget {
                   child: const _HomePromoCard(
                     title: 'Delicious\nFruit cake',
                     imagePath: 'assets/images/promo_fruit_cake.png',
-                    height: 247,
+                    height: 173,
                   ),
                 ),
               ),

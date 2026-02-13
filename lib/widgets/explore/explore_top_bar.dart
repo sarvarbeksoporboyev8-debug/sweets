@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import '../../theme/sweets_theme.dart';
 import '../../constants/colors.dart';
 import '../../constants/spacing.dart';
-import '../home/circle_icon_button.dart';
+import '../home/shirin_biscuit_header.dart';
 
 class ExploreTopBar extends StatelessWidget {
   const ExploreTopBar({super.key});
@@ -12,7 +12,7 @@ class ExploreTopBar extends StatelessWidget {
     final theme = Theme.of(context);
     return Padding(
       padding: const EdgeInsets.only(
-        top: Spacing.spacing40 + Spacing.xs,
+        top: Spacing.md,
         left: Spacing.md,
         right: Spacing.md,
         bottom: Spacing.spacing12,
@@ -23,74 +23,69 @@ class ExploreTopBar extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
+              const ShirinBiscuitHeader(),
               Row(
                 children: [
-                  ClipRRect(
-                    borderRadius: BorderRadius.circular(18),
-                    child: Image.asset(
-                      'assets/images/profile_avatar.png',
+                  GestureDetector(
+                    onTap: () {},
+                    child: Container(
                       width: 36,
                       height: 36,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return Container(
-                          width: 36,
-                          height: 36,
-                          decoration: const BoxDecoration(
-                            color: SweetsColors.grayLighter,
-                            shape: BoxShape.circle,
+                      decoration: const BoxDecoration(
+                        color: SweetsColors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color(0x0D000000),
+                            offset: Offset(0, 1),
+                            blurRadius: 3,
                           ),
-                          child: const Icon(
-                            Icons.person,
-                            size: 20,
-                            color: SweetsColors.gray,
-                          ),
-                        );
-                      },
+                        ],
+                      ),
+                      child: const Icon(
+                        Icons.more_horiz,
+                        size: 24,
+                        color: SweetsColors.grayDarker,
+                      ),
                     ),
                   ),
                   const SizedBox(width: Spacing.sm),
-                  Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: [
-                      Text(
-                        'Welcome 👋',
-                        style: theme.textTheme.labelSmall?.copyWith(
-                          color: SweetsColors.gray,
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushNamed('/notifications');
+                    },
+                    child: Stack(
+                      children: [
+                        Container(
+                          width: 36,
+                          height: 36,
+                          decoration: const BoxDecoration(
+                            color: SweetsColors.white,
+                            shape: BoxShape.circle,
+                            boxShadow: [
+                              BoxShadow(
+                                color: Color(0x0D000000),
+                                offset: Offset(0, 1),
+                                blurRadius: 3,
+                              ),
+                            ],
+                          ),
+                          child: const Icon(
+                            Icons.notifications_none_rounded,
+                            size: 24,
+                            color: SweetsColors.grayDarker,
+                          ),
                         ),
-                      ),
-                      const SizedBox(height: 2),
-                      const Text(
-                        'John Smith',
-                        style: TextStyle(
-                          fontFamily: 'Geist',
-                          fontWeight: FontWeight.w600,
-                          fontSize: 16,
-                          height: 1.0,
-                          letterSpacing: -0.32,
-                          color: SweetsColors.grayDarker,
+                        const Positioned(
+                          right: 8,
+                          top: 8,
+                          child: CircleAvatar(
+                            radius: 5,
+                            backgroundColor: SweetsColors.primary,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
-              Row(
-                children: [
-                  const CircleIconButton(icon: Icons.more_horiz),
-                  const SizedBox(width: Spacing.sm),
-                  Stack(
-                    children: [
-                      const CircleIconButton(icon: Icons.notifications_none),
-                      const Positioned(
-                        right: 8,
-                        top: 8,
-                        child: CircleAvatar(
-                          radius: 5,
-                          backgroundColor: SweetsColors.primary,
-                        ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
                 ],
               ),

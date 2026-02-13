@@ -30,8 +30,6 @@ class ExploreScreen extends StatelessWidget {
               const SizedBox(height: Spacing.md),
               const _ExplorePromoGridSection(),
               const SizedBox(height: Spacing.md),
-              const _ExploreBannerCard(),
-              const SizedBox(height: Spacing.md),
               const _BestProductsSection(),
               const SizedBox(height: Spacing.md),
             ],
@@ -96,7 +94,7 @@ class _ExplorePromoGridSection extends StatelessWidget {
                       child: const _PromoCard(
                         title: 'Delicious\ncupcake',
                         imagePath: 'assets/images/promo_cupcake.png',
-                        height: 247,
+                        height: 173,
                       ),
                     ),
                     const SizedBox(height: Spacing.spacing12),
@@ -129,7 +127,7 @@ class _ExplorePromoGridSection extends StatelessWidget {
                       child: const _PromoCard(
                         title: 'Delicious\nFruit cake',
                         imagePath: 'assets/images/promo_fruit_cake.png',
-                        height: 247,
+                        height: 173,
                       ),
                     ),
                   ],
@@ -193,100 +191,6 @@ class _PromoCard extends StatelessWidget {
             ),
           ),
         ],
-      ),
-    );
-  }
-}
-
-class _ExploreBannerCard extends StatelessWidget {
-  const _ExploreBannerCard();
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: Spacing.md),
-      child: Container(
-        width: double.infinity,
-        height: 240,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(Spacing.lg),
-          gradient: SweetsGradients.promoBanner, // Cyan gradient for promo banner
-        ),
-        child: Stack(
-          children: [
-            Positioned(
-              left: 79,
-              top: 32,
-              child: Image.asset(
-                'assets/images/banner_strawberry_cake.png',
-                width: 354,
-                height: 184,
-                fit: BoxFit.contain,
-                errorBuilder: (context, error, stackTrace) {
-                  return const SizedBox.shrink();
-                },
-              ),
-            ),
-            Positioned(
-              left: Spacing.lg,
-              top: Spacing.lg,
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: const [
-                  Text(
-                    'Fruit Cake',
-                    style: TextStyle(
-                      fontFamily: 'Geist',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 14,
-                      height: 20 / 14,
-                      color: SweetsColors.white,
-                    ),
-                  ),
-                  SizedBox(height: Spacing.xs),
-                  SizedBox(
-                    width: 205,
-                    child: Text(
-                      'Strawberry Cake',
-                      style: TextStyle(
-                        fontFamily: 'Geist',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 32,
-                        height: 32 / 32,
-                        letterSpacing: -0.96,
-                        color: SweetsColors.white,
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Positioned(
-              left: Spacing.lg,
-              bottom: Spacing.lg,
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: Spacing.spacing20,
-                  vertical: 14,
-                ),
-                decoration: BoxDecoration(
-                  color: SweetsColors.white,
-                  borderRadius: BorderRadius.circular(Spacing.md),
-                ),
-                child: const Text(
-                  'Add to cart',
-                  style: TextStyle(
-                    fontFamily: 'Geist',
-                    fontWeight: FontWeight.w500,
-                    fontSize: 16,
-                    height: 24 / 16,
-                    color: SweetsColors.black,
-                  ),
-                ),
-              ),
-            ),
-          ],
-        ),
       ),
     );
   }
