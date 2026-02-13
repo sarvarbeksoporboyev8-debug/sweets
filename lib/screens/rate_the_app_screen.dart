@@ -184,7 +184,7 @@ class _RateTheAppScreenState extends State<RateTheAppScreen> {
                 ),
               ),
             ),
-          ),
+          ],
           // Bottom button
           Container(
             decoration: BoxDecoration(

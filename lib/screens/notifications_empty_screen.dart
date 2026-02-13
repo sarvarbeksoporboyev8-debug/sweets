@@ -68,7 +68,7 @@ class NotificationsEmptyScreen extends StatelessWidget {
                 ],
               ),
             ),
-          ),
+          ],
         ),
       ),
     );
