@@ -53,10 +53,10 @@ class CategoryCard extends StatelessWidget {
                   height: 96,
                   fit: BoxFit.contain,
                   errorBuilder: (context, error, stackTrace) {
-                    return Icon(
+                    return const Icon(
                       Icons.local_cafe,
                       size: 40,
-                      color: isSelected ? SweetsColors.buttonCoral : SweetsColors.textDark,
+                      color: SweetsColors.textDark, // Consistent error icon color
                     );
                   },
                 ),

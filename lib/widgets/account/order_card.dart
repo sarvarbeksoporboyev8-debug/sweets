@@ -40,7 +40,7 @@ class OrderCard extends StatelessWidget {
                 color: SweetsColors.cardPurple, // Pastel purple
                 shape: BoxShape.circle,
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.shopping_bag,
                 color: SweetsColors.buttonCoral, // Coral icon
                 size: 24,

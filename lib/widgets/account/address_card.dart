@@ -39,7 +39,7 @@ class AddressCard extends StatelessWidget {
                 color: SweetsColors.cardCyan, // Pastel cyan
                 shape: BoxShape.circle,
               ),
-              child: Icon(
+              child: const Icon(
                 Icons.location_on,
                 color: SweetsColors.buttonCoral, // Coral icon
                 size: 24,
