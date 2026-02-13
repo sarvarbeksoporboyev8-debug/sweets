@@ -9,7 +9,7 @@ class FavoritesEmptyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.white,
+      backgroundColor: SweetsColors.kCreamBg,
       body: Stack(
         children: [
           // Gradient background
@@ -24,7 +24,7 @@ class FavoritesEmptyScreen extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Color(0xFFFFE6D1),
+                    SweetsColors.kTopBar,
                     Color(0xFFFFFFFF),
                   ],
                 ),

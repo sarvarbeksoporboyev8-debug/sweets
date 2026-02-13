@@ -41,7 +41,7 @@ class _NoConnectionScreenState extends State<NoConnectionScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.white,
+      backgroundColor: SweetsColors.kCreamBg,
       body: EmptyStateContainer(
         imagePath: 'images/figma/c951e197-ca5f-442c-a93a-f29dcbed1088.png',
         fallbackIcon: Icons.wifi_off,

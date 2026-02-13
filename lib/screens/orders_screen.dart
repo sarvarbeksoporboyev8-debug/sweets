@@ -148,56 +148,61 @@ class _OrdersScreenState extends State<OrdersScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.white,
+      backgroundColor: SweetsColors.kCreamBg, // Creamy background
       body: SafeArea(
         bottom: false,
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            // Navigation bar
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-              child: Row(
+            // White background header (no gradient)
+            Container(
+              color: SweetsColors.kTopBar, // Pure white
+              child: Column(
                 children: [
-                  GestureDetector(
-                    onTap: () => Navigator.of(context).pop(),
-                    child: const Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                      size: 20,
-                      color: SweetsColors.grayDarker,
+                  // Navigation bar
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                    child: Row(
+                      children: [
+                        GestureDetector(
+                          onTap: () => Navigator.of(context).pop(),
+                          child: const Icon(
+                            Icons.arrow_back_ios_new_rounded,
+                            size: 20,
+                            color: SweetsColors.grayDarker,
+                          ),
+                        ),
+                        const SizedBox(width: 8),
+                        const Text(
+                          'Orders',
+                          style: TextStyle(
+                            fontFamily: 'Geist',
+                            fontWeight: FontWeight.w400,
+                            fontSize: 14,
+                            height: 20 / 14,
+                            color: SweetsColors.grayDarker,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  const SizedBox(width: 8),
-                  const Text(
-                    'Orders',
-                    style: TextStyle(
-                      fontFamily: 'Geist',
-                      fontWeight: FontWeight.w400,
-                      fontSize: 14,
-                      height: 20 / 14,
-                      color: SweetsColors.grayDarker,
+                  const SizedBox(height: 20),
+                  // Title
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 16),
+                    child: Text(
+                      'Orders',
+                      style: TextStyle(
+                        fontFamily: 'Geist',
+                        fontWeight: FontWeight.w600,
+                        fontSize: 32,
+                        height: 32 / 32,
+                        letterSpacing: -0.96,
+                        color: SweetsColors.black,
+                      ),
                     ),
                   ),
-                ],
-              ),
-            ),
-            const SizedBox(height: 20),
-            // Title
-            const Padding(
-              padding: EdgeInsets.symmetric(horizontal: 16),
-              child: Text(
-                'Orders',
-                style: TextStyle(
-                  fontFamily: 'Geist',
-                  fontWeight: FontWeight.w600,
-                  fontSize: 32,
-                  height: 32 / 32,
-                  letterSpacing: -0.96,
-                  color: SweetsColors.black,
-                ),
-              ),
-            ),
-            const SizedBox(height: 20),
+                  const SizedBox(height: 20),
             // Orders list
             Expanded(
               child: orders.isEmpty

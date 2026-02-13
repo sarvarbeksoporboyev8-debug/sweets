@@ -50,14 +50,14 @@ class _CheckoutPaymentInfoScreenState extends State<CheckoutPaymentInfoScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.white,
+      backgroundColor: SweetsColors.kCreamBg,
       body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
             end: Alignment.bottomCenter,
             colors: [
-              Color(0xFFFFE6D1),
+              SweetsColors.kTopBar,
               Color(0xFFFFFFFF),
             ],
             stops: [0.0, 0.3],

@@ -81,22 +81,12 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.white,
+      backgroundColor: SweetsColors.kCreamBg, // Creamy background
       body: Column(
         children: [
-          // Gradient header background - using Container instead of positioned Stack
+          // White header background (no gradient)
           Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-                colors: [
-                  Color(0xFFFFE6D1),
-                  Color(0xFFFFFFFF),
-                ],
-                stops: [0.0, 1.0],
-              ),
-            ),
+            color: SweetsColors.kTopBar, // Pure white
             child: SafeArea(
               bottom: false,
               child: Padding(
@@ -118,8 +108,8 @@ class _CartScreenState extends State<CartScreen> {
                             Container(
                               width: 28,
                               height: 28,
-                              decoration: const BoxDecoration(
-                                color: SweetsColors.primaryLighter,
+                              decoration: BoxDecoration(
+                                color: SweetsColors.kAccentGold, // Gold accent
                                 shape: BoxShape.circle,
                               ),
                               child: Center(

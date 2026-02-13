@@ -15,26 +15,17 @@ class FavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.white,
+      backgroundColor: SweetsColors.kCreamBg, // Creamy background
       body: Stack(
         children: [
-          // Gradient background
+          // White background header (no gradient)
           Positioned(
             left: 0,
             right: 0,
             top: 0,
             child: Container(
               height: 168,
-              decoration: const BoxDecoration(
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Color(0xFFFFE6D1),
-                    Color(0xFFFFFFFF),
-                  ],
-                ),
-              ),
+              color: SweetsColors.kTopBar, // Pure white
             ),
           ),
           // Main content

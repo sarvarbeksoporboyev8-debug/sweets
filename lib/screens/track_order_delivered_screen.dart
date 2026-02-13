@@ -12,7 +12,7 @@ class TrackOrderDeliveredScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.white,
+      backgroundColor: SweetsColors.kCreamBg,
       body: SafeArea(
         child: Column(
           children: [

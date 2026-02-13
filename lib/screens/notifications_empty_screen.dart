@@ -16,14 +16,14 @@ class NotificationsEmptyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.white,
+      backgroundColor: SweetsColors.kCreamBg,
       body: Column(
         children: [
           // Gradient background header
           Container(
             height: 168,
             decoration: const BoxDecoration(
-              gradient: AppGradients.headerGradient,
+              color: SweetsColors.kTopBar,
             ),
           ),
           // Content area

@@ -103,15 +103,13 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.white,
+      backgroundColor: SweetsColors.kCreamBg, // Creamy background
       body: Column(
         children: [
-          // Gradient background header
+          // White background header (no gradient)
           Container(
             height: 168,
-            decoration: const BoxDecoration(
-              gradient: AppGradients.headerGradient,
-            ),
+            color: SweetsColors.kTopBar, // Pure white
           ),
           Expanded(
             child: SafeArea(
@@ -172,8 +170,8 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                             Container(
                               width: 28,
                               height: 28,
-                              decoration: const BoxDecoration(
-                                color: SweetsColors.primaryLighter,
+                              decoration: BoxDecoration(
+                                color: SweetsColors.kAccentGold, // Gold accent
                                 shape: BoxShape.circle,
                               ),
                               child: Center(
