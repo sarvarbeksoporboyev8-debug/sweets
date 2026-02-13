@@ -30,97 +30,97 @@ class PaymentMethodCard extends StatelessWidget {
             width: double.infinity,
             height: cardHeight,
             padding: const EdgeInsets.all(16),
-        decoration: BoxDecoration(
-          color: SweetsColors.white,
-          borderRadius: BorderRadius.circular(16),
-          border: Border.all(
-            color: isSelected
-                ? SweetsColors.primary
-                : SweetsColors.border.withOpacity(0.75),
-            width: 1,
-          ),
-        ),
-        child: Stack(
-          clipBehavior: Clip.none,
-          children: [
-            Center(
-              child: isVisaMastercard
-                  ? Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      mainAxisSize: MainAxisSize.min,
-                      children: [
-                        SizedBox(
-                          width: 60,
-                          height: 29,
-                          child: Image.asset(
-                            'images/figma/1fc72a13-dacf-43fc-a776-65f72d78a544.png',
-                            fit: BoxFit.contain,
-                            errorBuilder: (context, error, stackTrace) {
-                              return const Icon(
-                                Icons.credit_card,
-                                size: 24,
-                                color: SweetsColors.gray,
-                              );
-                            },
-                          ),
-                        ),
-                        const SizedBox(width: 4),
-                        SizedBox(
-                          width: 60,
-                          height: 29,
-                          child: Image.asset(
-                            'images/figma/c28778f1-6902-4f12-982d-e21ae2b46427.png',
-                            fit: BoxFit.contain,
-                            errorBuilder: (context, error, stackTrace) {
-                              return const Icon(
-                                Icons.credit_card,
-                                size: 24,
-                                color: SweetsColors.gray,
-                              );
-                            },
-                          ),
-                        ),
-                      ],
-                    )
-                  : Image.asset(
-                      imageUrl,
-                      width: double.infinity,
-                      height: double.infinity,
-                      fit: BoxFit.cover,
-                      errorBuilder: (context, error, stackTrace) {
-                        return const Icon(
-                          Icons.payment,
-                          size: 40,
-                          color: SweetsColors.gray,
-                        );
-                      },
-                    ),
-            ),
-            if (isSelected)
-              Positioned(
-                right: -9,
-                top: -9,
-                child: Container(
-                  width: 24,
-                  height: 24,
-                  decoration: BoxDecoration(
-                    color: SweetsColors.primary,
-                    shape: BoxShape.circle,
-                    border: Border.all(
-                      color: SweetsColors.white,
-                      width: 2,
-                    ),
-                  ),
-                  child: const Icon(
-                    Icons.check,
-                    size: 16,
-                    color: SweetsColors.white,
-                  ),
-                ),
+            decoration: BoxDecoration(
+              color: SweetsColors.white,
+              borderRadius: BorderRadius.circular(16),
+              border: Border.all(
+                color: isSelected
+                    ? SweetsColors.primary
+                    : SweetsColors.border.withOpacity(0.75),
+                width: 1,
               ),
-          ],
-        ),
-      ),
+            ),
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                Center(
+                  child: isVisaMastercard
+                      ? Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
+                          mainAxisSize: MainAxisSize.min,
+                          children: [
+                            SizedBox(
+                              width: 60,
+                              height: 29,
+                              child: Image.asset(
+                                'images/figma/1fc72a13-dacf-43fc-a776-65f72d78a544.png',
+                                fit: BoxFit.contain,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return const Icon(
+                                    Icons.credit_card,
+                                    size: 24,
+                                    color: SweetsColors.gray,
+                                  );
+                                },
+                              ),
+                            ),
+                            const SizedBox(width: 4),
+                            SizedBox(
+                              width: 60,
+                              height: 29,
+                              child: Image.asset(
+                                'images/figma/c28778f1-6902-4f12-982d-e21ae2b46427.png',
+                                fit: BoxFit.contain,
+                                errorBuilder: (context, error, stackTrace) {
+                                  return const Icon(
+                                    Icons.credit_card,
+                                    size: 24,
+                                    color: SweetsColors.gray,
+                                  );
+                                },
+                              ),
+                            ),
+                          ],
+                        )
+                      : Image.asset(
+                          imageUrl,
+                          width: double.infinity,
+                          height: double.infinity,
+                          fit: BoxFit.cover,
+                          errorBuilder: (context, error, stackTrace) {
+                            return const Icon(
+                              Icons.payment,
+                              size: 40,
+                              color: SweetsColors.gray,
+                            );
+                          },
+                        ),
+                ),
+                if (isSelected)
+                  Positioned(
+                    right: -9,
+                    top: -9,
+                    child: Container(
+                      width: 24,
+                      height: 24,
+                      decoration: BoxDecoration(
+                        color: SweetsColors.primary,
+                        shape: BoxShape.circle,
+                        border: Border.all(
+                          color: SweetsColors.white,
+                          width: 2,
+                        ),
+                      ),
+                      child: const Icon(
+                        Icons.check,
+                        size: 16,
+                        color: SweetsColors.white,
+                      ),
+                    ),
+                  ),
+              ],
+            ),
+          ),
         );
       },
     );
