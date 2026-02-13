@@ -10,9 +10,11 @@ class CheckoutSuccessScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: SweetsColors.white,
-      body: Container(
+    return PopScope(
+      canPop: false,
+      child: Scaffold(
+        backgroundColor: SweetsColors.white,
+        body: Container(
         decoration: const BoxDecoration(
           gradient: LinearGradient(
             begin: Alignment.topCenter,
@@ -54,7 +56,7 @@ class CheckoutSuccessScreen extends StatelessWidget {
                     SweetsPrimaryButton(
                       label: 'Track your order',
                       onPressed: () {
-                        // TODO: Navigate to order tracking
+                        Navigator.pushNamed(context, '/trackOrder');
                       },
                     ),
                     const SizedBox(height: 8),
@@ -63,7 +65,7 @@ class CheckoutSuccessScreen extends StatelessWidget {
                       width: double.infinity,
                       child: OutlinedButton(
                         onPressed: () {
-                          // TODO: Navigate to homepage
+                          Navigator.pushNamed(context, '/home');
                         },
                         style: OutlinedButton.styleFrom(
                           foregroundColor: SweetsColors.primary,
@@ -95,6 +97,7 @@ class CheckoutSuccessScreen extends StatelessWidget {
             ],
           ),
         ),
+      ),
       ),
     );
   }

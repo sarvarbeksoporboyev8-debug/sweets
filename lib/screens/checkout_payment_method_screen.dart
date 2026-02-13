@@ -38,27 +38,30 @@ class _CheckoutPaymentMethodScreenState
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Padding(
-                padding: EdgeInsets.symmetric(horizontal: 16, vertical: 10),
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.arrow_back_ios_new_rounded,
-                      size: 20,
-                      color: SweetsColors.grayDarker,
-                    ),
-                    SizedBox(width: 8),
-                    Text(
-                      'Checkout',
-                      style: TextStyle(
-                        fontFamily: 'Geist',
-                        fontWeight: FontWeight.w400,
-                        fontSize: 14,
-                        height: 20 / 14,
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
+                child: GestureDetector(
+                  onTap: () => Navigator.pushReplacementNamed(context, '/checkoutOrderSummary'),
+                  child: const Row(
+                    children: [
+                      Icon(
+                        Icons.arrow_back_ios_new_rounded,
+                        size: 20,
                         color: SweetsColors.grayDarker,
                       ),
-                    ),
-                  ],
+                      SizedBox(width: 8),
+                      Text(
+                        'Checkout',
+                        style: TextStyle(
+                          fontFamily: 'Geist',
+                          fontWeight: FontWeight.w400,
+                          fontSize: 14,
+                          height: 20 / 14,
+                          color: SweetsColors.grayDarker,
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
               ),
               const SizedBox(height: 24),
@@ -183,7 +186,7 @@ class _CheckoutPaymentMethodScreenState
                       label: 'Next',
                       onPressed: selectedPaymentMethod != null
                           ? () {
-                              // TODO: Navigate to next step
+                              Navigator.pushNamed(context, '/checkoutPaymentInfo');
                             }
                           : null,
                     ),
