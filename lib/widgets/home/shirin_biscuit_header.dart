@@ -12,10 +12,9 @@ class ShirinBiscuitHeader extends StatelessWidget {
     return Text(
       'Shirin Biscuit',
       style: const TextStyle(
-        fontFamily: 'Geist',
+        fontFamily: 'Dancing Script',
         fontSize: 28,
         fontWeight: FontWeight.w600,
-        fontStyle: FontStyle.italic,
         color: SweetsColors.kDarkText,
         letterSpacing: 0.5,
         height: 1.2,
