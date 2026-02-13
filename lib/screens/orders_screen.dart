@@ -203,6 +203,9 @@ class _OrdersScreenState extends State<OrdersScreen> {
                     ),
                   ),
                   const SizedBox(height: 20),
+                ],
+              ),
+            ),
             // Orders list
             Expanded(
               child: orders.isEmpty

@@ -83,7 +83,7 @@ ThemeData buildSweetsTheme() {
     ),
     
     // Card theme - white with shadow
-    cardTheme: CardTheme(
+    cardTheme: CardThemeData(
       color: SweetsColors.kCardWhite,
       elevation: 2,
       shape: RoundedRectangleBorder(
