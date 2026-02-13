@@ -94,11 +94,14 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
                           alignment: WrapAlignment.start,
                           spacing: Spacing.md,
                           runSpacing: Spacing.md,
-                          children: _categories.map((category) {
+                          children: _categories.asMap().entries.map((entry) {
+                            final index = entry.key;
+                            final category = entry.value;
                             return CategoryCard(
                               label: category.label,
                               imageUrl: category.imageUrl,
                               isSelected: _selectedCategory == category.label,
+                              colorIndex: index, // Pastel color rotation based on index
                               onTap: () {
                                 setState(() {
                                   _selectedCategory = 

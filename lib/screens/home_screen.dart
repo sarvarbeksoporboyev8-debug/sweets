@@ -233,41 +233,49 @@ class _HomeCategoriesRow extends StatelessWidget {
                   label: 'Chocolate',
                   imageUrl:
                       'images/figma/ae6f4223-eaee-47bb-8fc1-80b40b311a20.png',
+                  colorIndex: 0, // Purple
                 ),
                 HomeCategoryPill(
                   label: 'Croissant',
                   imageUrl:
                       'images/figma/89103dfd-a882-41ff-af03-722d16ef829e.png',
+                  colorIndex: 1, // Cyan
                 ),
                 HomeCategoryPill(
                   label: 'Donuts',
                   imageUrl:
                       'images/figma/af732309-cc6e-456d-9081-d8a83410e5e9.png',
+                  colorIndex: 2, // Peach
                 ),
                 HomeCategoryPill(
                   label: 'Tarts',
                   imageUrl:
                       'images/figma/12296479-78cd-41e6-8a71-6553130b4c30.png',
+                  colorIndex: 3, // Yellow
                 ),
                 HomeCategoryPill(
                   label: 'Pies',
                   imageUrl:
                       'images/figma/57081f42-5f04-4c43-872d-8d65d47faec7.png',
+                  colorIndex: 0, // Purple (rotation)
                 ),
                 HomeCategoryPill(
                   label: 'Macarons',
                   imageUrl:
                       'images/figma/0725c68f-d1f8-4c1a-bdef-f4af6706b1ad.png',
+                  colorIndex: 1, // Cyan
                 ),
                 HomeCategoryPill(
                   label: 'Cookies',
                   imageUrl:
                       'images/figma/cb8efe13-b792-4611-8999-2e7d51e48379.png',
+                  colorIndex: 2, // Peach
                 ),
                 HomeCategoryPill(
                   label: 'Pancake',
                   imageUrl:
                       'images/figma/7b8893bf-40fb-4640-b9ec-14d99dba4ba1.png',
+                  colorIndex: 3, // Yellow
                 ),
               ],
             ),
@@ -441,6 +449,7 @@ class _BestProductsSection extends StatelessWidget {
                       category: 'Tarts',
                       price: '\$15.55',
                       discountLabel: '-50%',
+                      colorIndex: 0, // Purple
                     ),
                   ),
                   SizedBox(
@@ -450,6 +459,7 @@ class _BestProductsSection extends StatelessWidget {
                       category: 'Tarts',
                       price: '\$15.55',
                       discountLabel: '-60%',
+                      colorIndex: 1, // Cyan
                     ),
                   ),
                   SizedBox(
@@ -459,6 +469,7 @@ class _BestProductsSection extends StatelessWidget {
                       category: 'Tarts',
                       price: '\$15.55',
                       discountLabel: '-50%',
+                      colorIndex: 2, // Peach
                     ),
                   ),
                   SizedBox(
@@ -468,6 +479,7 @@ class _BestProductsSection extends StatelessWidget {
                       category: 'Cupcake',
                       price: '\$15.55',
                       discountLabel: '-50%',
+                      colorIndex: 3, // Yellow
                     ),
                   ),
                   SizedBox(
@@ -477,6 +489,7 @@ class _BestProductsSection extends StatelessWidget {
                       category: 'Donuts',
                       price: '\$15.55',
                       discountLabel: '-50%',
+                      colorIndex: 0, // Purple (rotation)
                     ),
                   ),
                   SizedBox(
@@ -486,6 +499,7 @@ class _BestProductsSection extends StatelessWidget {
                       category: 'Pies',
                       price: '\$15.55',
                       discountLabel: '-50%',
+                      colorIndex: 1, // Cyan
                     ),
                   ),
                   SizedBox(
@@ -495,6 +509,7 @@ class _BestProductsSection extends StatelessWidget {
                       category: 'Macarons',
                       price: '\$15.55',
                       discountLabel: '-50%',
+                      colorIndex: 2, // Peach
                     ),
                   ),
                   SizedBox(
@@ -504,6 +519,7 @@ class _BestProductsSection extends StatelessWidget {
                       category: 'Cake',
                       price: '\$15.55',
                       discountLabel: '-50%',
+                      colorIndex: 3, // Yellow
                     ),
                   ),
                 ],

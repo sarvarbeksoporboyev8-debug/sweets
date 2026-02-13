@@ -342,6 +342,7 @@ class _BestProductsSection extends StatelessWidget {
                       category: 'Tarts',
                       price: '\$15.55',
                       discountLabel: '-50%',
+                      colorIndex: 0, // Purple
                     ),
                   ),
                   SizedBox(
@@ -351,6 +352,7 @@ class _BestProductsSection extends StatelessWidget {
                       category: 'Tarts',
                       price: '\$15.55',
                       discountLabel: '-60%',
+                      colorIndex: 1, // Cyan
                     ),
                   ),
                   SizedBox(
@@ -360,6 +362,7 @@ class _BestProductsSection extends StatelessWidget {
                       category: 'Tarts',
                       price: '\$15.55',
                       discountLabel: '-50%',
+                      colorIndex: 2, // Peach
                     ),
                   ),
                   SizedBox(
@@ -369,6 +372,7 @@ class _BestProductsSection extends StatelessWidget {
                       category: 'Cupcake',
                       price: '\$15.55',
                       discountLabel: '-50%',
+                      colorIndex: 3, // Yellow
                     ),
                   ),
                   SizedBox(
@@ -378,6 +382,7 @@ class _BestProductsSection extends StatelessWidget {
                       category: 'Donuts',
                       price: '\$15.55',
                       discountLabel: '-50%',
+                      colorIndex: 0, // Purple (rotation)
                     ),
                   ),
                   SizedBox(
@@ -387,6 +392,7 @@ class _BestProductsSection extends StatelessWidget {
                       category: 'Pies',
                       price: '\$15.55',
                       discountLabel: '-50%',
+                      colorIndex: 1, // Cyan
                     ),
                   ),
                   SizedBox(
@@ -396,6 +402,7 @@ class _BestProductsSection extends StatelessWidget {
                       category: 'Macarons',
                       price: '\$15.55',
                       discountLabel: '-50%',
+                      colorIndex: 2, // Peach
                     ),
                   ),
                   SizedBox(
@@ -405,6 +412,7 @@ class _BestProductsSection extends StatelessWidget {
                       category: 'Cake',
                       price: '\$15.55',
                       discountLabel: '-50%',
+                      colorIndex: 3, // Yellow
                     ),
                   ),
                 ],
