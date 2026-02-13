@@ -121,24 +121,37 @@ class _FavoritesEmptyTabBar extends StatelessWidget {
             padding: const EdgeInsets.symmetric(vertical: 8),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: const [
-                _TabItem(label: 'Home', icon: Icons.home_outlined, active: false),
+              children: [
                 _TabItem(
-                    label: 'Explore',
-                    icon: Icons.search_rounded,
-                    active: false),
+                  label: 'Home', 
+                  icon: Icons.home_outlined, 
+                  active: false,
+                  onTap: () => Navigator.pushReplacementNamed(context, '/home'),
+                ),
                 _TabItem(
-                    label: 'Favorites',
-                    icon: Icons.favorite,
-                    active: true),
+                  label: 'Explore',
+                  icon: Icons.search_rounded,
+                  active: false,
+                  onTap: () => Navigator.pushReplacementNamed(context, '/explore'),
+                ),
                 _TabItem(
-                    label: 'Cart',
-                    icon: Icons.shopping_bag_outlined,
-                    active: false),
+                  label: 'Favorites',
+                  icon: Icons.favorite,
+                  active: true,
+                  onTap: null,
+                ),
                 _TabItem(
-                    label: 'Account',
-                    icon: Icons.person_outline,
-                    active: false),
+                  label: 'Cart',
+                  icon: Icons.shopping_bag_outlined,
+                  active: false,
+                  onTap: () => Navigator.pushReplacementNamed(context, '/cart'),
+                ),
+                _TabItem(
+                  label: 'Account',
+                  icon: Icons.person_outline,
+                  active: false,
+                  onTap: () => Navigator.pushReplacementNamed(context, '/account'),
+                ),
               ],
             ),
           ),
@@ -154,15 +167,19 @@ class _TabItem extends StatelessWidget {
     required this.label,
     required this.icon,
     required this.active,
+    this.onTap,
   });
 
   final String label;
   final IconData icon;
   final bool active;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return Column(
+    return GestureDetector(
+      onTap: onTap,
+      child: Column(
       mainAxisSize: MainAxisSize.min,
       children: [
         Container(
@@ -198,6 +215,7 @@ class _TabItem extends StatelessWidget {
           ),
         ),
       ],
+      ),
     );
   }
 }
