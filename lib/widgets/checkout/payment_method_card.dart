@@ -81,7 +81,7 @@ class PaymentMethodCard extends StatelessWidget {
                       imageUrl,
                       width: double.infinity,
                       height: double.infinity,
-                      fit: BoxFit.contain,
+                      fit: BoxFit.cover,
                       errorBuilder: (context, error, stackTrace) {
                         return const Icon(
                           Icons.payment,

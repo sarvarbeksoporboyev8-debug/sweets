@@ -98,7 +98,7 @@ class _CheckoutPaymentMethodScreenState
                                   SizedBox(
                                     width: cardWidth,
                                     child: PaymentMethodCard(
-                                      imageUrl: 'images/payment/click_uz.jpg',
+                                      imageUrl: 'images/payment/click_uz.png',
                                       isSelected:
                                           selectedPaymentMethod == 'click',
                                       onTap: () {
@@ -112,7 +112,7 @@ class _CheckoutPaymentMethodScreenState
                                   SizedBox(
                                     width: cardWidth,
                                     child: PaymentMethodCard(
-                                      imageUrl: 'images/payment/payment_cards.jpg',
+                                      imageUrl: 'images/payment/payment_cards.png',
                                       isSelected:
                                           selectedPaymentMethod == 'card',
                                       onTap: () {
