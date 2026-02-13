@@ -81,7 +81,7 @@ class _CartScreenState extends State<CartScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.white, // Creamy background
+      backgroundColor: SweetsColors.white, // White background
       body: Column(
         children: [
           // White header background (no gradient)
