@@ -3,12 +3,44 @@ import '../theme/sweets_theme.dart';
 import '../constants/colors.dart';
 import '../constants/spacing.dart';
 import '../constants/gradients.dart';
-import '../widgets/account/profile_header.dart';
 import '../widgets/account/account_menu_item.dart';
 import '../widgets/sweets_tab_bar.dart';
 
 class AccountScreen extends StatelessWidget {
   const AccountScreen({super.key});
+
+  void _showLanguageSelector(BuildContext context) {
+    final languages = [
+      {'code': 'uz', 'name': 'Uz'},
+      {'code': 'uz_cyrill', 'name': 'Uz-cyrill'},
+      {'code': 'ru', 'name': 'Russian'},
+      {'code': 'en', 'name': 'English'},
+    ];
+
+    showModalBottomSheet(
+      context: context,
+      builder: (context) => Container(
+        padding: const EdgeInsets.symmetric(vertical: Spacing.lg),
+        child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: languages.length,
+          itemBuilder: (context, index) {
+            return ListTile(
+              leading: const Icon(
+                Icons.language,
+                color: Color(0xFFFF7F6B),
+              ),
+              title: Text(languages[index]['name']!),
+              onTap: () {
+                // TODO: Change language
+                Navigator.pop(context);
+              },
+            );
+          },
+        ),
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -16,18 +48,148 @@ class AccountScreen extends StatelessWidget {
       backgroundColor: SweetsColors.white,
       body: Column(
         children: [
-          // White background header
+          // New account header design
           Container(
             color: SweetsColors.white,
             child: SafeArea(
               bottom: false,
-              child: ProfileHeader(
-                name: 'John Doe',
-                email: 'johndoe@gmail.com',
-                avatarUrl: 'images/figma/713a293f-33da-4e36-8fc5-f95d8f3cc12f.png',
-                onEditAvatar: () {
-                  // TODO: Handle avatar edit
-                },
+              child: Column(
+                children: [
+                  // SECTION 1: Language Selector + Profil Title
+                  Padding(
+                    padding: const EdgeInsets.symmetric(
+                      horizontal: Spacing.lg,
+                      vertical: Spacing.md,
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        // Left: Language Selector
+                        GestureDetector(
+                          onTap: () => _showLanguageSelector(context),
+                          child: const Row(
+                            children: [
+                              Icon(
+                                Icons.language,
+                                color: Color(0xFFD1B57C),
+                                size: 24,
+                              ),
+                              SizedBox(width: 8),
+                              Text(
+                                'Uz',
+                                style: TextStyle(
+                                  fontSize: 16,
+                                  fontWeight: FontWeight.w500,
+                                  color: Color(0xFFD1B57C),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                        
+                        // Center: Profil Title
+                        const Text(
+                          'Profil',
+                          style: TextStyle(
+                            fontSize: 24,
+                            fontWeight: FontWeight.w700,
+                            color: Colors.black87,
+                          ),
+                        ),
+                        
+                        // Right: Spacer for balance
+                        const SizedBox(width: 60),
+                      ],
+                    ),
+                  ),
+                  
+                  const SizedBox(height: Spacing.lg),
+                  
+                  // SECTION 2: User Profile Card
+                  Container(
+                    color: const Color(0xFFF5F5F5),
+                    padding: const EdgeInsets.all(Spacing.lg),
+                    child: Row(
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        // Avatar Circle with white dots
+                        Container(
+                          width: 100,
+                          height: 100,
+                          decoration: const BoxDecoration(
+                            color: Color(0xFFD1B57C),
+                            shape: BoxShape.circle,
+                          ),
+                          child: const Center(
+                            child: Column(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                // White dot 1
+                                CircleAvatar(
+                                  radius: 5,
+                                  backgroundColor: Colors.white,
+                                ),
+                                SizedBox(height: 12),
+                                // White dot 2
+                                CircleAvatar(
+                                  radius: 5,
+                                  backgroundColor: Colors.white,
+                                ),
+                              ],
+                            ),
+                          ),
+                        ),
+                        
+                        const SizedBox(width: Spacing.lg),
+                        
+                        // Name + Phone
+                        const Expanded(
+                          child: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              // Name
+                              Text(
+                                'Sarvarbek Soporboyev',
+                                style: TextStyle(
+                                  fontSize: 20,
+                                  fontWeight: FontWeight.w600,
+                                  color: Colors.black87,
+                                ),
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              ),
+                              
+                              SizedBox(height: 12),
+                              
+                              // Phone
+                              Row(
+                                children: [
+                                  Icon(
+                                    Icons.phone_outlined,
+                                    color: Color(0xFFD1B57C),
+                                    size: 18,
+                                  ),
+                                  SizedBox(width: 8),
+                                  Text(
+                                    '95 047 1202',
+                                    style: TextStyle(
+                                      fontSize: 16,
+                                      color: Colors.black87,
+                                      fontWeight: FontWeight.w500,
+                                    ),
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  
+                  const SizedBox(height: Spacing.lg),
+                ],
               ),
             ),
           ),
