@@ -143,9 +143,9 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
                 ),
               ),
             ),
+            // Bottom button
+            Container(
           ],
-          // Bottom button
-          Container(
             decoration: BoxDecoration(
               color: SweetsColors.white,
               border: Border(

@@ -152,9 +152,9 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                 ),
               ),
             ),
+            // Bottom button
+            Container(
           ],
-          // Bottom button
-          Container(
             decoration: BoxDecoration(
               color: SweetsColors.white,
               border: Border(
