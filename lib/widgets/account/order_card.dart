@@ -36,8 +36,12 @@ class OrderCard extends StatelessWidget {
             Container(
               width: 48,
               height: 48,
-              decoration: const BoxDecoration(
-                color: SweetsColors.cardPurple, // Pastel purple
+              decoration: BoxDecoration(
+                color: Colors.white, // White background
+                border: Border.all(
+                  color: SweetsColors.buttonCoral, // Coral border
+                  width: 2,
+                ),
                 shape: BoxShape.circle,
               ),
               child: const Icon(
