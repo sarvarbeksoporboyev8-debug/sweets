@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../theme/sweets_theme.dart';
 import '../constants/colors.dart';
 import '../constants/spacing.dart';
@@ -11,6 +12,8 @@ import '../widgets/product/quantity_selector.dart';
 import '../models/product_model.dart';
 import '../models/product_variant_model.dart';
 import '../models/product_review_model.dart';
+import '../providers/cart_provider.dart';
+import '../providers/favorites_provider.dart';
 
 class ProductDetailScreen extends StatefulWidget {
   const ProductDetailScreen({super.key});
@@ -51,16 +54,40 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   }
 
   void _addToCart() {
-    // TODO: Implement add to cart logic
+    final cart = context.read<CartProvider>();
+    cart.addItem(
+      productId: _product.id,
+      title: _product.name,
+      price: _product.basePrice,
+      quantity: _quantity,
+      imageUrl: _product.images.isNotEmpty ? _product.images.first : null,
+    );
+    
     ScaffoldMessenger.of(context).showSnackBar(
       SnackBar(
         content: Text('Added $_quantity item(s) to cart'),
         duration: const Duration(seconds: 2),
+        action: SnackBarAction(
+          label: 'View Cart',
+          onPressed: () {
+            Navigator.pushNamed(context, '/cart');
+          },
+        ),
       ),
     );
   }
 
   void _toggleFavorite() {
+    final favorites = context.read<FavoritesProvider>();
+    favorites.toggleFavorite(
+      productId: _product.id,
+      title: _product.name,
+      price: _product.basePrice,
+      category: _product.category,
+      rating: _product.rating,
+      imageUrl: _product.images.isNotEmpty ? _product.images.first : null,
+    );
+    
     setState(() {
       _isFavorite = !_isFavorite;
     });

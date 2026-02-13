@@ -11,6 +11,10 @@ class ExploreProductCard extends StatelessWidget {
     required this.price,
     required this.discountLabel,
     this.colorIndex = 0, // Index for pastel color rotation
+    this.onTap,
+    this.onAddToCart,
+    this.onFavorite,
+    this.productId,
   });
 
   final String title;
@@ -18,13 +22,19 @@ class ExploreProductCard extends StatelessWidget {
   final String price;
   final String discountLabel;
   final int colorIndex;
+  final VoidCallback? onTap;
+  final VoidCallback? onAddToCart;
+  final VoidCallback? onFavorite;
+  final String? productId;
 
   @override
   Widget build(BuildContext context) {
     // Get pastel color based on index rotation
     final cardColor = SweetsColors.cardColorsPastel[colorIndex % SweetsColors.cardColorsPastel.length];
     
-    return Container(
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
       width: double.infinity,
       padding: const EdgeInsets.all(Spacing.spacing12),
       decoration: BoxDecoration(
@@ -137,7 +147,9 @@ class ExploreProductCard extends StatelessWidget {
           Row(
             children: [
               Expanded(
-                child: Container(
+                child: GestureDetector(
+                  onTap: onAddToCart,
+                  child: Container(
                   height: Spacing.spacing40,
                   decoration: BoxDecoration(
                     color: SweetsColors.buttonCoral, // Coral for Add to cart button
@@ -164,10 +176,13 @@ class ExploreProductCard extends StatelessWidget {
                       ),
                     ],
                   ),
+                  ),
                 ),
               ),
               const SizedBox(width: Spacing.sm),
-              Container(
+              GestureDetector(
+                onTap: onFavorite,
+                child: Container(
                 width: Spacing.spacing40,
                 height: Spacing.spacing40,
                 decoration: BoxDecoration(
@@ -180,9 +195,11 @@ class ExploreProductCard extends StatelessWidget {
                   color: SweetsColors.buttonCoral, // Coral for heart icon
                 ),
               ),
+              ),
             ],
           ),
         ],
+      ),
       ),
     );
   }

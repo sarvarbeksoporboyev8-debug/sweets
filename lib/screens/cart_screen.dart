@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/cart_provider.dart';
 import '../theme/sweets_theme.dart';
 import '../constants/colors.dart';
 import '../constants/spacing.dart';
@@ -7,79 +9,13 @@ import '../widgets/sweets_bottom_nav_bar.dart';
 
 /// Cart screen with dynamic state management and responsive layout.
 /// Demonstrates proper layout without Stack/Positioned abuse.
-class CartScreen extends StatefulWidget {
+class CartScreen extends StatelessWidget {
   const CartScreen({super.key});
 
   @override
-  State<CartScreen> createState() => _CartScreenState();
-}
-
-class _CartScreenState extends State<CartScreen> {
-  List<CartItem> _cartItems = [
-    CartItem(
-      id: '1',
-      title: 'Macarons',
-      price: 15.55,
-      quantity: 2,
-      imageUrl: 'images/figma/c8744c0d-a1f2-44c6-b8a6-8dc1ecf24004.png',
-    ),
-    CartItem(
-      id: '2',
-      title: 'Donuts',
-      price: 15.55,
-      quantity: 2,
-      imageUrl: 'images/figma/5e02251e-d20f-41c8-823f-c232783292db.png',
-    ),
-    CartItem(
-      id: '3',
-      title: 'Fruit tart',
-      price: 15.55,
-      quantity: 2,
-      imageUrl: 'images/figma/378598d0-bcef-4f78-ac7e-43d695f82610.png',
-    ),
-    CartItem(
-      id: '4',
-      title: 'Chocolate cake',
-      price: 15.55,
-      quantity: 2,
-      imageUrl: 'images/figma/db7b8e08-a056-47f5-8109-9bd5a4d184e2.png',
-    ),
-  ];
-
-  void _updateQuantity(String itemId, int delta) {
-    setState(() {
-      final index = _cartItems.indexWhere((item) => item.id == itemId);
-      if (index != -1) {
-        final newQuantity = _cartItems[index].quantity + delta;
-        if (newQuantity > 0) {
-          _cartItems[index] = _cartItems[index].copyWith(quantity: newQuantity);
-        }
-      }
-    });
-  }
-
-  void _removeItem(String itemId) {
-    setState(() {
-      _cartItems.removeWhere((item) => item.id == itemId);
-    });
-  }
-
-  void _deleteAll() {
-    setState(() {
-      _cartItems.clear();
-    });
-  }
-
-  double get _totalPrice {
-    return _cartItems.fold(0, (sum, item) => sum + (item.price * item.quantity));
-  }
-
-  int get _totalItems {
-    return _cartItems.fold(0, (sum, item) => sum + item.quantity);
-  }
-
-  @override
   Widget build(BuildContext context) {
+    final cart = context.watch<CartProvider>();
+    
     return Scaffold(
       backgroundColor: SweetsColors.white, // White background
       body: Column(
@@ -114,7 +50,7 @@ class _CartScreenState extends State<CartScreen> {
                               ),
                               child: Center(
                                 child: Text(
-                                  _totalItems.toString(),
+                                  cart.itemCount.toString(),
                                   style: const TextStyle(
                                     fontFamily: 'Geist',
                                     fontWeight: FontWeight.w400,
@@ -127,9 +63,9 @@ class _CartScreenState extends State<CartScreen> {
                             ),
                           ],
                         ),
-                        if (_cartItems.isNotEmpty)
+                        if (cart.isNotEmpty)
                           GestureDetector(
-                            onTap: _deleteAll,
+                            onTap: () => cart.clear(),
                             child: const Text(
                               'Delete all',
                               style: TextStyle(
@@ -151,7 +87,7 @@ class _CartScreenState extends State<CartScreen> {
           
           // Cart items list
           Expanded(
-            child: _cartItems.isEmpty
+            child: cart.isEmpty
                 ? Center(
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
@@ -173,16 +109,16 @@ class _CartScreenState extends State<CartScreen> {
                   )
                 : ListView.separated(
                     padding: const EdgeInsets.all(SweetsSpacing.padding),
-                    itemCount: _cartItems.length,
+                    itemCount: cart.items.length,
                     separatorBuilder: (context, index) =>
                         const SizedBox(height: SweetsSpacing.gapSmall),
                     itemBuilder: (context, index) {
-                      final item = _cartItems[index];
+                      final item = cart.items[index];
                       return _CartItemWidget(
                         item: item,
-                        onIncrement: () => _updateQuantity(item.id, 1),
-                        onDecrement: () => _updateQuantity(item.id, -1),
-                        onDelete: () => _removeItem(item.id),
+                        onIncrement: () => cart.incrementQuantity(item.id),
+                        onDecrement: () => cart.decrementQuantity(item.id),
+                        onDelete: () => cart.removeItem(item.id),
                       );
                     },
                   ),
@@ -255,27 +191,41 @@ class _CartItemWidget extends StatelessWidget {
           // Product image
           ClipRRect(
             borderRadius: BorderRadius.circular(SweetsSpacing.radiusMedium),
-            child: Image.asset(
-              item.imageUrl,
-              width: 102,
-              height: 102,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  width: 102,
-                  height: 102,
-                  decoration: BoxDecoration(
-                    color: SweetsColors.grayLighter,
-                    borderRadius: BorderRadius.circular(SweetsSpacing.radiusMedium),
+            child: item.imageUrl != null
+                ? Image.asset(
+                    item.imageUrl!,
+                    width: 102,
+                    height: 102,
+                    fit: BoxFit.cover,
+                    errorBuilder: (context, error, stackTrace) {
+                      return Container(
+                        width: 102,
+                        height: 102,
+                        decoration: BoxDecoration(
+                          color: SweetsColors.grayLighter,
+                          borderRadius: BorderRadius.circular(SweetsSpacing.radiusMedium),
+                        ),
+                        child: const Icon(
+                          Icons.image,
+                          size: 40,
+                          color: SweetsColors.gray,
+                        ),
+                      );
+                    },
+                  )
+                : Container(
+                    width: 102,
+                    height: 102,
+                    decoration: BoxDecoration(
+                      color: SweetsColors.grayLighter,
+                      borderRadius: BorderRadius.circular(SweetsSpacing.radiusMedium),
+                    ),
+                    child: const Icon(
+                      Icons.image,
+                      size: 40,
+                      color: SweetsColors.gray,
+                    ),
                   ),
-                  child: const Icon(
-                    Icons.image,
-                    size: 40,
-                    color: SweetsColors.gray,
-                  ),
-                );
-              },
-            ),
           ),
           const SizedBox(width: SweetsSpacing.gap),
           
@@ -427,39 +377,6 @@ class _CartItemWidget extends StatelessWidget {
           ),
         ],
       ),
-    );
-  }
-}
-
-/// Cart item model
-class CartItem {
-  final String id;
-  final String title;
-  final double price;
-  final int quantity;
-  final String imageUrl;
-
-  CartItem({
-    required this.id,
-    required this.title,
-    required this.price,
-    required this.quantity,
-    required this.imageUrl,
-  });
-
-  CartItem copyWith({
-    String? id,
-    String? title,
-    double? price,
-    int? quantity,
-    String? imageUrl,
-  }) {
-    return CartItem(
-      id: id ?? this.id,
-      title: title ?? this.title,
-      price: price ?? this.price,
-      quantity: quantity ?? this.quantity,
-      imageUrl: imageUrl ?? this.imageUrl,
     );
   }
 }

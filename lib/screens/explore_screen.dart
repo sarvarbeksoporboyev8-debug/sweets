@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
+import '../providers/cart_provider.dart';
+import '../providers/favorites_provider.dart';
 import '../theme/sweets_theme.dart';
 import '../constants/colors.dart';
 import '../constants/spacing.dart';
@@ -242,11 +245,17 @@ class _BestProductsSection extends StatelessWidget {
                   color: SweetsColors.black,
                 ),
               ),
-              Text(
-                'View more',
-                style: theme.textTheme.bodySmall?.copyWith(
-                  fontWeight: FontWeight.w500,
-                  color: SweetsColors.primary,
+              GestureDetector(
+                onTap: () {
+                  // Navigate to explore screen or update filters
+                  Navigator.pushNamed(context, '/explore');
+                },
+                child: Text(
+                  'View more',
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: SweetsColors.primary,
+                  ),
                 ),
               ),
             ],
@@ -262,82 +271,250 @@ class _BestProductsSection extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: cardWidth,
-                    child: const ExploreProductCard(
+                    child: ExploreProductCard(
+                      productId: 'explore_1',
                       title: 'Fruits tart',
                       category: 'Tarts',
                       price: '\$15.55',
                       discountLabel: '-50%',
                       colorIndex: 0, // Purple
+                      onTap: () {
+                        Navigator.pushNamed(context, '/productDetail');
+                      },
+                      onAddToCart: () {
+                        context.read<CartProvider>().addItem(
+                          'explore_1',
+                          'Fruits tart',
+                          15.55,
+                          'assets/images/product_tart.png',
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Added to cart'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      },
+                      onFavorite: () {
+                        context.read<FavoritesProvider>().toggleFavorite('explore_1');
+                      },
                     ),
                   ),
                   SizedBox(
                     width: cardWidth,
-                    child: const ExploreProductCard(
+                    child: ExploreProductCard(
+                      productId: 'explore_2',
                       title: 'Fruit tart',
                       category: 'Tarts',
                       price: '\$15.55',
                       discountLabel: '-60%',
                       colorIndex: 1, // Cyan
+                      onTap: () {
+                        Navigator.pushNamed(context, '/productDetail');
+                      },
+                      onAddToCart: () {
+                        context.read<CartProvider>().addItem(
+                          'explore_2',
+                          'Fruit tart',
+                          15.55,
+                          'assets/images/product_tart.png',
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Added to cart'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      },
+                      onFavorite: () {
+                        context.read<FavoritesProvider>().toggleFavorite('explore_2');
+                      },
                     ),
                   ),
                   SizedBox(
                     width: cardWidth,
-                    child: const ExploreProductCard(
+                    child: ExploreProductCard(
+                      productId: 'explore_3',
                       title: 'Apple tart',
                       category: 'Tarts',
                       price: '\$15.55',
                       discountLabel: '-50%',
                       colorIndex: 2, // Peach
+                      onTap: () {
+                        Navigator.pushNamed(context, '/productDetail');
+                      },
+                      onAddToCart: () {
+                        context.read<CartProvider>().addItem(
+                          'explore_3',
+                          'Apple tart',
+                          15.55,
+                          'assets/images/product_tart.png',
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Added to cart'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      },
+                      onFavorite: () {
+                        context.read<FavoritesProvider>().toggleFavorite('explore_3');
+                      },
                     ),
                   ),
                   SizedBox(
                     width: cardWidth,
-                    child: const ExploreProductCard(
+                    child: ExploreProductCard(
+                      productId: 'explore_4',
                       title: 'Cupcakes',
                       category: 'Cupcake',
                       price: '\$15.55',
                       discountLabel: '-50%',
                       colorIndex: 3, // Yellow
+                      onTap: () {
+                        Navigator.pushNamed(context, '/productDetail');
+                      },
+                      onAddToCart: () {
+                        context.read<CartProvider>().addItem(
+                          'explore_4',
+                          'Cupcakes',
+                          15.55,
+                          'assets/images/product_tart.png',
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Added to cart'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      },
+                      onFavorite: () {
+                        context.read<FavoritesProvider>().toggleFavorite('explore_4');
+                      },
                     ),
                   ),
                   SizedBox(
                     width: cardWidth,
-                    child: const ExploreProductCard(
+                    child: ExploreProductCard(
+                      productId: 'explore_5',
                       title: 'Donuts',
                       category: 'Donuts',
                       price: '\$15.55',
                       discountLabel: '-50%',
                       colorIndex: 0, // Purple (rotation)
+                      onTap: () {
+                        Navigator.pushNamed(context, '/productDetail');
+                      },
+                      onAddToCart: () {
+                        context.read<CartProvider>().addItem(
+                          'explore_5',
+                          'Donuts',
+                          15.55,
+                          'assets/images/product_tart.png',
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Added to cart'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      },
+                      onFavorite: () {
+                        context.read<FavoritesProvider>().toggleFavorite('explore_5');
+                      },
                     ),
                   ),
                   SizedBox(
                     width: cardWidth,
-                    child: const ExploreProductCard(
+                    child: ExploreProductCard(
+                      productId: 'explore_6',
                       title: 'Berry pie',
                       category: 'Pies',
                       price: '\$15.55',
                       discountLabel: '-50%',
                       colorIndex: 1, // Cyan
+                      onTap: () {
+                        Navigator.pushNamed(context, '/productDetail');
+                      },
+                      onAddToCart: () {
+                        context.read<CartProvider>().addItem(
+                          'explore_6',
+                          'Berry pie',
+                          15.55,
+                          'assets/images/product_tart.png',
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Added to cart'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      },
+                      onFavorite: () {
+                        context.read<FavoritesProvider>().toggleFavorite('explore_6');
+                      },
                     ),
                   ),
                   SizedBox(
                     width: cardWidth,
-                    child: const ExploreProductCard(
+                    child: ExploreProductCard(
+                      productId: 'explore_7',
                       title: 'Macarons',
                       category: 'Macarons',
                       price: '\$15.55',
                       discountLabel: '-50%',
                       colorIndex: 2, // Peach
+                      onTap: () {
+                        Navigator.pushNamed(context, '/productDetail');
+                      },
+                      onAddToCart: () {
+                        context.read<CartProvider>().addItem(
+                          'explore_7',
+                          'Macarons',
+                          15.55,
+                          'assets/images/product_tart.png',
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Added to cart'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      },
+                      onFavorite: () {
+                        context.read<FavoritesProvider>().toggleFavorite('explore_7');
+                      },
                     ),
                   ),
                   SizedBox(
                     width: cardWidth,
-                    child: const ExploreProductCard(
+                    child: ExploreProductCard(
+                      productId: 'explore_8',
                       title: 'Fruits cake',
                       category: 'Cake',
                       price: '\$15.55',
                       discountLabel: '-50%',
                       colorIndex: 3, // Yellow
+                      onTap: () {
+                        Navigator.pushNamed(context, '/productDetail');
+                      },
+                      onAddToCart: () {
+                        context.read<CartProvider>().addItem(
+                          'explore_8',
+                          'Fruits cake',
+                          15.55,
+                          'assets/images/product_tart.png',
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(
+                            content: Text('Added to cart'),
+                            duration: Duration(seconds: 2),
+                          ),
+                        );
+                      },
+                      onFavorite: () {
+                        context.read<FavoritesProvider>().toggleFavorite('explore_8');
+                      },
                     ),
                   ),
                 ],
