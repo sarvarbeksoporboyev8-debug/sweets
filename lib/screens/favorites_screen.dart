@@ -1,8 +1,10 @@
 ﻿import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../theme/sweets_theme.dart';
 import '../constants/colors.dart';
 import '../widgets/sweets_home_indicator.dart';
 import '../widgets/sweets_alert.dart';
+import '../providers/favorites_provider.dart';
 
 class FavoritesScreen extends StatelessWidget {
   const FavoritesScreen({
@@ -14,6 +16,8 @@ class FavoritesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final favorites = context.watch<FavoritesProvider>();
+
     return Scaffold(
       backgroundColor: SweetsColors.white, // White background
       body: SafeArea(
@@ -75,10 +79,10 @@ class FavoritesScreen extends StatelessWidget {
                                 color: SweetsColors.kCardBeige2,
                                 shape: BoxShape.circle,
                               ),
-                              child: const Center(
+                              child: Center(
                                 child: Text(
-                                  '20',
-                                  style: TextStyle(
+                                  favorites.count.toString(),
+                                  style: const TextStyle(
                                     fontFamily: 'Geist',
                                     fontWeight: FontWeight.w400,
                                     fontSize: 14,
@@ -90,73 +94,126 @@ class FavoritesScreen extends StatelessWidget {
                             ),
                           ],
                         ),
-                        GestureDetector(
-                          onTap: () {
-                            // TODO: Delete all favorites
-                          },
-                          child: const Text(
-                            'Delete all',
-                            style: TextStyle(
-                              fontFamily: 'Geist',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              height: 20 / 14,
-                              color: Color(0xFFFA5252),
+                        if (favorites.isNotEmpty)
+                          GestureDetector(
+                            onTap: () {
+                              favorites.clearAll();
+                            },
+                            child: const Text(
+                              'Delete all',
+                              style: TextStyle(
+                                fontFamily: 'Geist',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14,
+                                height: 20 / 14,
+                                color: Color(0xFFFA5252),
+                              ),
                             ),
                           ),
-                        ),
                       ],
                     ),
                   ),
                   const SizedBox(height: 20),
                   Expanded(
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.only(
-                        left: 16,
-                        right: 16,
-                        bottom: 100,
-                      ),
-                      child: Column(
-                        children: const [
-                          _FavoriteItem(
-                            title: 'Macarons',
-                            price: '\$15.55',
-                            quantity: 2,
-                            imageUrl:
-                                'images/figma/49512945-95e0-4fa4-b16d-d674369991d2.png',
+                    child: favorites.isEmpty
+                        ? _buildEmptyState(context)
+                        : SingleChildScrollView(
+                            padding: const EdgeInsets.only(
+                              left: 16,
+                              right: 16,
+                              bottom: 100,
+                            ),
+                            child: Column(
+                              children: favorites.favorites.map((product) {
+                                return Padding(
+                                  padding: const EdgeInsets.only(bottom: 8),
+                                  child: _FavoriteItem(
+                                    productId: product.productId,
+                                    title: product.title,
+                                    price: '\$${product.price.toStringAsFixed(2)}',
+                                    quantity: 1,
+                                    imageUrl: product.imageUrl ?? 'images/figma/49512945-95e0-4fa4-b16d-d674369991d2.png',
+                                    onTap: () {
+                                      Navigator.pushNamed(
+                                        context,
+                                        '/productDetail',
+                                        arguments: {'productId': product.productId},
+                                      );
+                                    },
+                                    onRemove: () {
+                                      favorites.removeFavorite(product.productId);
+                                    },
+                                  ),
+                                );
+                              }).toList(),
+                            ),
                           ),
-                          SizedBox(height: 8),
-                          _FavoriteItem(
-                            title: 'Donuts',
-                            price: '\$15.55',
-                            quantity: 2,
-                            imageUrl:
-                                'images/figma/ecc936de-7166-4807-b7f5-198802e43197.png',
-                          ),
-                          SizedBox(height: 8),
-                          _FavoriteItem(
-                            title: 'Fruit tart',
-                            price: '\$15.55',
-                            quantity: 2,
-                            imageUrl:
-                                'images/figma/6b72a0e3-3c48-4bcb-be7b-5a13f42df332.png',
-                          ),
-                          SizedBox(height: 8),
-                          _FavoriteItem(
-                            title: 'Fruit tart',
-                            price: '\$15.55',
-                            quantity: 2,
-                            imageUrl:
-                                'images/figma/d9a89519-661a-4f29-a41a-403983efc844.png',
-                          ),
-                        ],
-                      ),
-                    ),
                   ),
         ],
       ),
     ),
       bottomNavigationBar: _buildBottomNavBar(context),
+    );
+  }
+
+  Widget _buildEmptyState(BuildContext context) {
+    return Center(
+      child: Padding(
+        padding: const EdgeInsets.all(32.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Icon(
+              Icons.favorite_border,
+              size: 80,
+              color: SweetsColors.gray.withOpacity(0.5),
+            ),
+            const SizedBox(height: 24),
+            const Text(
+              'No favorites yet',
+              style: TextStyle(
+                fontFamily: 'Geist',
+                fontWeight: FontWeight.w600,
+                fontSize: 24,
+                color: SweetsColors.grayDarker,
+              ),
+            ),
+            const SizedBox(height: 12),
+            const Text(
+              'Start adding your favorite sweets!',
+              style: TextStyle(
+                fontFamily: 'Geist',
+                fontWeight: FontWeight.w400,
+                fontSize: 16,
+                color: SweetsColors.gray,
+              ),
+              textAlign: TextAlign.center,
+            ),
+            const SizedBox(height: 32),
+            ElevatedButton(
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/explore');
+              },
+              style: ElevatedButton.styleFrom(
+                backgroundColor: SweetsColors.kAccentGold,
+                padding: const EdgeInsets.symmetric(horizontal: 32, vertical: 16),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(12),
+                ),
+              ),
+              child: const Text(
+                'Continue Shopping',
+                style: TextStyle(
+                  fontFamily: 'Geist',
+                  fontWeight: FontWeight.w500,
+                  fontSize: 16,
+                  color: SweetsColors.white,
+                ),
+              ),
+            ),
+          ],
+        ),
+      ),
     );
   }
 
@@ -255,195 +312,202 @@ class FavoritesScreen extends StatelessWidget {
 
 class _FavoriteItem extends StatelessWidget {
   const _FavoriteItem({
+    required this.productId,
     required this.title,
     required this.price,
     required this.quantity,
     required this.imageUrl,
+    required this.onTap,
+    required this.onRemove,
   });
 
+  final String productId;
   final String title;
   final String price;
   final int quantity;
   final String imageUrl;
+  final VoidCallback onTap;
+  final VoidCallback onRemove;
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      padding: const EdgeInsets.all(16),
-      decoration: BoxDecoration(
-        color: SweetsColors.white,
-        borderRadius: BorderRadius.circular(20),
-        border: Border.all(
-          color: SweetsColors.border.withOpacity(0.75),
-        ),
-        boxShadow: const [
-          BoxShadow(
-            color: Color(0x1A343A40),
-            offset: Offset(0, 6),
-            blurRadius: 12,
+    return GestureDetector(
+      onTap: onTap,
+      child: Container(
+        padding: const EdgeInsets.all(16),
+        decoration: BoxDecoration(
+          color: SweetsColors.white,
+          borderRadius: BorderRadius.circular(20),
+          border: Border.all(
+            color: SweetsColors.border.withOpacity(0.75),
           ),
-        ],
-      ),
-      child: Row(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          // Product image
-          ClipRRect(
-            borderRadius: BorderRadius.circular(12),
-            child: Image.asset(
-              imageUrl,
-              width: 98,
-              height: 98,
-              fit: BoxFit.cover,
-              errorBuilder: (context, error, stackTrace) {
-                return Container(
-                  width: 98,
-                  height: 98,
-                  decoration: BoxDecoration(
-                    color: SweetsColors.grayLighter,
-                    borderRadius: BorderRadius.circular(12),
-                  ),
-                  child: const Icon(
-                    Icons.image,
-                    size: 40,
-                    color: SweetsColors.gray,
-                  ),
-                );
-              },
+          boxShadow: const [
+            BoxShadow(
+              color: Color(0x1A343A40),
+              offset: Offset(0, 6),
+              blurRadius: 12,
             ),
-          ),
-          const SizedBox(width: 12),
-          // Product details
-          Expanded(
-            child: Stack(
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: const TextStyle(
-                        fontFamily: 'Geist',
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
-                        height: 18 / 18,
-                        letterSpacing: -0.36,
-                        color: SweetsColors.black,
-                      ),
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
+          ],
+        ),
+        child: Row(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            // Product image
+            ClipRRect(
+              borderRadius: BorderRadius.circular(12),
+              child: Image.asset(
+                imageUrl,
+                width: 98,
+                height: 98,
+                fit: BoxFit.cover,
+                errorBuilder: (context, error, stackTrace) {
+                  return Container(
+                    width: 98,
+                    height: 98,
+                    decoration: BoxDecoration(
+                      color: SweetsColors.grayLighter,
+                      borderRadius: BorderRadius.circular(12),
                     ),
-                    const SizedBox(height: 12),
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                      children: [
-                        Row(
-                          children: [
-                            const Text(
-                              'Price : ',
-                              style: TextStyle(
-                                fontFamily: 'Geist',
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14,
-                                height: 20 / 14,
-                                color: SweetsColors.grayDark,
-                              ),
-                            ),
-                            Text(
-                              price,
-                              style: const TextStyle(
-                                fontFamily: 'Geist',
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14,
-                                height: 20 / 14,
-                                color: SweetsColors.grayDarker,
-                              ),
-                            ),
-                          ],
-                        ),
-                        Row(
-                          children: [
-                            const Text(
-                              'Qty : ',
-                              style: TextStyle(
-                                fontFamily: 'Geist',
-                                fontWeight: FontWeight.w400,
-                                fontSize: 14,
-                                height: 20 / 14,
-                                color: SweetsColors.grayDark,
-                              ),
-                            ),
-                            Text(
-                              quantity.toString().padLeft(2, '0'),
-                              style: const TextStyle(
-                                fontFamily: 'Geist',
-                                fontWeight: FontWeight.w500,
-                                fontSize: 14,
-                                height: 20 / 14,
-                                color: SweetsColors.grayDarker,
-                              ),
-                            ),
-                          ],
-                        ),
-                      ],
+                    child: const Icon(
+                      Icons.image,
+                      size: 40,
+                      color: SweetsColors.gray,
                     ),
-                    const SizedBox(height: 12),
-                    Container(
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      decoration: BoxDecoration(
-                        color: SweetsColors.grayLighter,
-                        borderRadius: BorderRadius.circular(12),
+                  );
+                },
+              ),
+            ),
+            const SizedBox(width: 12),
+            // Product details
+            Expanded(
+              child: Stack(
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: const TextStyle(
+                          fontFamily: 'Geist',
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                          height: 18 / 18,
+                          letterSpacing: -0.36,
+                          color: SweetsColors.black,
+                        ),
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
                       ),
-                      child: Row(
-                        mainAxisSize: MainAxisSize.min,
-                        children: const [
-                          Icon(
-                            Icons.shopping_bag_outlined,
-                            size: 20,
-                            color: SweetsColors.gray,
+                      const SizedBox(height: 12),
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Row(
+                            children: [
+                              const Text(
+                                'Price : ',
+                                style: TextStyle(
+                                  fontFamily: 'Geist',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                  height: 20 / 14,
+                                  color: SweetsColors.grayDark,
+                                ),
+                              ),
+                              Text(
+                                price,
+                                style: const TextStyle(
+                                  fontFamily: 'Geist',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  height: 20 / 14,
+                                  color: SweetsColors.grayDarker,
+                                ),
+                              ),
+                            ],
                           ),
-                          SizedBox(width: 4),
-                          Text(
-                            'Add to cart',
-                            style: TextStyle(
-                              fontFamily: 'Geist',
-                              fontWeight: FontWeight.w500,
-                              fontSize: 14,
-                              height: 20 / 14,
-                              color: SweetsColors.gray,
-                            ),
+                          Row(
+                            children: [
+                              const Text(
+                                'Qty : ',
+                                style: TextStyle(
+                                  fontFamily: 'Geist',
+                                  fontWeight: FontWeight.w400,
+                                  fontSize: 14,
+                                  height: 20 / 14,
+                                  color: SweetsColors.grayDark,
+                                ),
+                              ),
+                              Text(
+                                quantity.toString().padLeft(2, '0'),
+                                style: const TextStyle(
+                                  fontFamily: 'Geist',
+                                  fontWeight: FontWeight.w500,
+                                  fontSize: 14,
+                                  height: 20 / 14,
+                                  color: SweetsColors.grayDarker,
+                                ),
+                              ),
+                            ],
                           ),
                         ],
                       ),
-                    ),
-                  ],
-                ),
-                // Delete button
-                Positioned(
-                  right: 0,
-                  top: 0,
-                  child: GestureDetector(
-                    onTap: () {
-                      // TODO: Delete favorite item
-                    },
-                    child: Container(
-                      width: 20,
-                      height: 20,
-                      decoration: const BoxDecoration(
-                        color: Colors.transparent,
+                      const SizedBox(height: 12),
+                      Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                        decoration: BoxDecoration(
+                          color: SweetsColors.grayLighter,
+                          borderRadius: BorderRadius.circular(12),
+                        ),
+                        child: Row(
+                          mainAxisSize: MainAxisSize.min,
+                          children: const [
+                            Icon(
+                              Icons.shopping_bag_outlined,
+                              size: 20,
+                              color: SweetsColors.gray,
+                            ),
+                            SizedBox(width: 4),
+                            Text(
+                              'Add to cart',
+                              style: TextStyle(
+                                fontFamily: 'Geist',
+                                fontWeight: FontWeight.w500,
+                                fontSize: 14,
+                                height: 20 / 14,
+                                color: SweetsColors.gray,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                      child: const Icon(
-                        Icons.delete_outline,
-                        size: 20,
-                        color: SweetsColors.grayDarker,
+                    ],
+                  ),
+                  // Delete button
+                  Positioned(
+                    right: 0,
+                    top: 0,
+                    child: GestureDetector(
+                      onTap: onRemove,
+                      child: Container(
+                        width: 20,
+                        height: 20,
+                        decoration: const BoxDecoration(
+                          color: Colors.transparent,
+                        ),
+                        child: const Icon(
+                          Icons.delete_outline,
+                          size: 20,
+                          color: SweetsColors.grayDarker,
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
