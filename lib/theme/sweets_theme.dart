@@ -5,7 +5,8 @@ import '../constants/colors.dart';
 /// Colors are now imported from lib/constants/colors.dart
 
 ThemeData buildSweetsTheme() {
-  const baseTextColor = SweetsColors.kDarkText;
+  const baseTextColor = SweetsColors.textDark; // Updated to new text color
+  const coralRed = SweetsColors.buttonCoral; // #FF7F6B
 
   const headlineH1 = TextStyle(
     fontFamily: 'Geist',
@@ -46,43 +47,45 @@ ThemeData buildSweetsTheme() {
     fontSize: 16,
     height: 24 / 16,
     letterSpacing: 0,
-    color: SweetsColors.white,
+    color: SweetsColors.textOnCoral, // White text on coral buttons
   );
 
   return ThemeData(
     useMaterial3: true,
     brightness: Brightness.light,
     
-    // Main colors - pure white background
-    scaffoldBackgroundColor: SweetsColors.white, // #FFFFFF
-    primaryColor: SweetsColors.kAccentGold, // #D1B57C
+    // ===== SCAFFOLD & BACKGROUND =====
+    scaffoldBackgroundColor: SweetsColors.pageBackground, // White #FFFFFF
+    primaryColor: coralRed, // Coral/Red #FF7F6B
     
-    // AppBar styling - PURE WHITE
-    appBarTheme: const AppBarTheme(
+    // ===== APP BAR =====
+    appBarTheme: AppBarTheme(
       backgroundColor: SweetsColors.kTopBar, // Pure white #FFFFFF
       surfaceTintColor: Colors.transparent,
       elevation: 0,
       scrolledUnderElevation: 0,
-      iconTheme: IconThemeData(color: SweetsColors.kDarkText),
+      iconTheme: IconThemeData(color: SweetsColors.textDark),
       titleTextStyle: TextStyle(
-        color: SweetsColors.kDarkText,
+        color: SweetsColors.textDark,
         fontWeight: FontWeight.w700,
         fontSize: 18,
         fontFamily: 'Geist',
       ),
     ),
     
-    // Color scheme
-    colorScheme: const ColorScheme.light(
-      primary: SweetsColors.kAccentGold, // Gold accent
-      secondary: SweetsColors.kAccentGold,
-      surface: SweetsColors.white, // White surface
-      background: SweetsColors.white, // White background
-      onBackground: SweetsColors.kDarkText,
-      error: Color(0xFFDC2626),
+    // ===== COLOR SCHEME =====
+    colorScheme: ColorScheme.light(
+      primary: coralRed,                    // Coral/Red for all primary elements
+      secondary: coralRed,                  // Secondary actions
+      tertiary: coralRed,
+      surface: SweetsColors.white,          // Card surfaces
+      background: SweetsColors.pageBackground, // Page background
+      surfaceTint: Colors.transparent,
+      onBackground: SweetsColors.textDark,
+      error: Color(0xFFB3261E),
     ),
     
-    // Card theme - white with shadow
+    // ===== CARD THEME =====
     cardTheme: CardThemeData(
       color: SweetsColors.kCardWhite,
       elevation: 2,
@@ -92,63 +95,124 @@ ThemeData buildSweetsTheme() {
       shadowColor: SweetsColors.kCardShadow,
     ),
     
-    textTheme: const TextTheme(
+    // ===== TEXT THEMES =====
+    textTheme: TextTheme(
+      displayLarge: TextStyle(
+        color: SweetsColors.textDark,
+        fontWeight: FontWeight.w700,
+        fontSize: 32,
+        fontFamily: 'Geist',
+      ),
+      displayMedium: TextStyle(
+        color: SweetsColors.textDark,
+        fontWeight: FontWeight.w700,
+        fontSize: 28,
+        fontFamily: 'Geist',
+      ),
       headlineLarge: headlineH1,
+      headlineSmall: TextStyle(
+        color: SweetsColors.textDark,
+        fontWeight: FontWeight.w600,
+        fontSize: 20,
+        fontFamily: 'Geist',
+      ),
+      bodyLarge: TextStyle(
+        color: SweetsColors.textDark,
+        fontSize: 16,
+        fontFamily: 'Geist',
+      ),
       bodyMedium: bodyRegular,
       bodySmall: bodySmall,
       labelLarge: buttonLarge,
       labelSmall: labelExtraSmall,
     ),
+    
+    // ===== BUTTONS =====
+    elevatedButtonTheme: ElevatedButtonThemeData(
+      style: ElevatedButton.styleFrom(
+        backgroundColor: coralRed,           // Coral/red buttons
+        foregroundColor: SweetsColors.textOnCoral, // White text
+        elevation: 0,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
+        ),
+        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+        textStyle: buttonLarge,
+      ),
+    ),
+    
+    textButtonTheme: TextButtonThemeData(
+      style: TextButton.styleFrom(
+        foregroundColor: coralRed,
+      ),
+    ),
+    
+    outlinedButtonTheme: OutlinedButtonThemeData(
+      style: OutlinedButton.styleFrom(
+        foregroundColor: coralRed,
+        side: BorderSide(color: coralRed),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(24),
+        ),
+      ),
+    ),
+    
+    buttonTheme: ButtonThemeData(
+      buttonColor: coralRed,
+    ),
+    
+    // ===== FLOATING ACTION BUTTON =====
+    floatingActionButtonTheme: FloatingActionButtonThemeData(
+      backgroundColor: coralRed,
+      foregroundColor: SweetsColors.textOnCoral,
+      shape: RoundedRectangleBorder(
+        borderRadius: BorderRadius.circular(16),
+      ),
+    ),
+    
+    // ===== INPUT & FORM FIELDS =====
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
-      fillColor: SweetsColors.white, // Keep inputs white for better contrast
+      fillColor: SweetsColors.white,
+      contentPadding: EdgeInsets.symmetric(horizontal: 16, vertical: 12),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
+        borderSide: BorderSide(
           color: SweetsColors.border,
           width: 1,
         ),
       ),
       enabledBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
+        borderSide: BorderSide(
           color: SweetsColors.border,
           width: 1,
         ),
       ),
       focusedBorder: OutlineInputBorder(
         borderRadius: BorderRadius.circular(12),
-        borderSide: const BorderSide(
-          color: SweetsColors.kAccentGold, // #D1B57C
-          width: 1.2,
+        borderSide: BorderSide(
+          color: coralRed, // Coral border when focused
+          width: 2,
         ),
       ),
       labelStyle: labelExtraSmall,
       hintStyle: bodySmall,
-      contentPadding: const EdgeInsets.symmetric(
-        horizontal: 12,
-        vertical: 14,
-      ),
     ),
-    elevatedButtonTheme: ElevatedButtonThemeData(
-      style: ElevatedButton.styleFrom(
-        backgroundColor: SweetsColors.kAccentGold, // #D1B57C
-        foregroundColor: SweetsColors.white,
-        elevation: 0,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(12),
-        ),
-        padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 12),
-        textStyle: buttonLarge,
-      ),
+    
+    // ===== BOTTOM NAVIGATION =====
+    bottomNavigationBarTheme: BottomNavigationBarThemeData(
+      backgroundColor: SweetsColors.white,
+      selectedItemColor: coralRed,
+      unselectedItemColor: Color(0xFFBDBDBD),
+      elevation: 8,
     ),
-    textButtonTheme: TextButtonThemeData(
-      style: TextButton.styleFrom(
-        foregroundColor: SweetsColors.kAccentGold, // #D1B57C
-      ),
-    ),
-    buttonTheme: const ButtonThemeData(
-      buttonColor: SweetsColors.kAccentGold, // #D1B57C
+    
+    // ===== DIALOGS & SNACKBARS =====
+    dialogBackgroundColor: SweetsColors.white,
+    snackBarTheme: SnackBarThemeData(
+      backgroundColor: Color(0xFF323232),
+      contentTextStyle: TextStyle(color: SweetsColors.white),
     ),
   );
 }

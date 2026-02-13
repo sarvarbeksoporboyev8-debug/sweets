@@ -21,7 +21,8 @@ class SweetsPrimaryButton extends StatelessWidget {
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          backgroundColor: SweetsColors.primary,
+          backgroundColor: SweetsColors.buttonCoral, // Coral/Red #FF7F6B
+          foregroundColor: SweetsColors.textOnCoral, // White text
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(16),
           ),

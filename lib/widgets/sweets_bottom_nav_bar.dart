@@ -112,12 +112,12 @@ class _NavItem extends StatelessWidget {
             Container(
               padding: const EdgeInsets.all(SweetsSpacing.gapSmall),
               decoration: BoxDecoration(
-                color: isActive ? SweetsColors.primary : Colors.transparent,
+                color: isActive ? SweetsColors.buttonCoral : Colors.transparent, // Coral for active
                 borderRadius: BorderRadius.circular(SweetsSpacing.radiusSmall),
                 boxShadow: isActive
                     ? [
                         BoxShadow(
-                          color: SweetsColors.primary.withOpacity(0.4), // Updated to use new primary
+                          color: SweetsColors.buttonCoral.withOpacity(0.4), // Coral shadow
                           blurRadius: 12,
                           offset: Offset(0, 6),
                         ),
@@ -138,7 +138,7 @@ class _NavItem extends StatelessWidget {
                 fontWeight: FontWeight.w400,
                 fontSize: 12,
                 height: 16 / 12,
-                color: isActive ? SweetsColors.primary : const Color(0xFF475467),
+                color: isActive ? SweetsColors.buttonCoral : const Color(0xFF475467), // Coral for active
               ),
             ),
           ],
