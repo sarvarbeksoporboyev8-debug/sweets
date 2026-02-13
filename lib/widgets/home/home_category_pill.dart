@@ -42,7 +42,7 @@ class HomeCategoryPill extends StatelessWidget {
                     Icons.local_cafe,
                     size: 32,
                     color: SweetsColors.textDark,
-                  ),
+                  );
                 },
               ),
             ),
