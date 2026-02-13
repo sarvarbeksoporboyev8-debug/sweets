@@ -48,7 +48,7 @@ class _CategoriesScreenState extends State<CategoriesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.kCreamBg, // Creamy background
+      backgroundColor: SweetsColors.white, // Creamy background
       body: Column(
         children: [
           // White background with navigation (no gradient)

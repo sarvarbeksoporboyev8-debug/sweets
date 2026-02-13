@@ -14,7 +14,7 @@ class WelcomeSplashScreen extends StatelessWidget {
     final imageHeight = ResponsiveUtils.responsiveHeight(context, 0.5);
 
     return Scaffold(
-      backgroundColor: SweetsColors.kCreamBg,
+      backgroundColor: SweetsColors.white,
       body: SafeArea(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,

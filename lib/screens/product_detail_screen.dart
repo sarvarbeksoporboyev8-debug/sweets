@@ -83,7 +83,7 @@ class _ProductDetailScreenState extends State<ProductDetailScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.kCreamBg,
+      backgroundColor: SweetsColors.white,
       body: SafeArea(
         bottom: false,
         child: Column(

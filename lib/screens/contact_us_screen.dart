@@ -56,7 +56,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.kCreamBg,
+      backgroundColor: SweetsColors.white,
       body: Column(
         children: [
           // Gradient background header

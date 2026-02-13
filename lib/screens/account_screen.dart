@@ -13,7 +13,7 @@ class AccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.kCreamBg, // Creamy background
+      backgroundColor: SweetsColors.white, // Creamy background
       body: Column(
         children: [
           // White background header (no gradient)

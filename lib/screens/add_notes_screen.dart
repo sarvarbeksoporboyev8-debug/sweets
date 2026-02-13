@@ -47,7 +47,7 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.kCreamBg,
+      backgroundColor: SweetsColors.white,
       body: Column(
         children: [
           // Gradient background header

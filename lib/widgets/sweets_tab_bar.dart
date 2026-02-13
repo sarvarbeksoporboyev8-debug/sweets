@@ -21,7 +21,7 @@ class SweetsTabBar extends StatelessWidget {
       children: [
         Container(
           decoration: BoxDecoration(
-            color: SweetsColors.kCreamBg, // Creamy background
+            color: SweetsColors.white, // White background
             border: Border(
               top: BorderSide(
                 color: SweetsColors.border.withOpacity(0.75),

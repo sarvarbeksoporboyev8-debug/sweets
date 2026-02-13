@@ -63,7 +63,7 @@ class _RateTheAppScreenState extends State<RateTheAppScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.kCreamBg,
+      backgroundColor: SweetsColors.white,
       body: Column(
         children: [
           // Gradient background header

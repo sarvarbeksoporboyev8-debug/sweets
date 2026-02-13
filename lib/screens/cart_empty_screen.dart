@@ -11,7 +11,7 @@ class CartEmptyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.kCreamBg,
+      backgroundColor: SweetsColors.white,
       body: EmptyStateContainer(
         imagePath: 'images/figma/d642c98f-5db5-48aa-9670-f592839e6904.png',
         fallbackIcon: Icons.shopping_bag_outlined,

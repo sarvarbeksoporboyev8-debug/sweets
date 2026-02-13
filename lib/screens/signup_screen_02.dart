@@ -12,7 +12,7 @@ class SignupScreen02 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.kCreamBg,
+      backgroundColor: SweetsColors.white,
       // Let the real keyboard push content up instead of faking it
       resizeToAvoidBottomInset: true,
       body: SafeArea(

@@ -15,7 +15,7 @@ class FavoritesScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.kCreamBg, // Creamy background
+      backgroundColor: SweetsColors.white, // Creamy background
       body: Stack(
         children: [
           // White background header (no gradient)

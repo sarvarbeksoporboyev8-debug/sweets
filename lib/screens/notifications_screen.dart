@@ -103,7 +103,7 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.kCreamBg, // Creamy background
+      backgroundColor: SweetsColors.white, // Creamy background
       body: Column(
         children: [
           // White background header (no gradient)

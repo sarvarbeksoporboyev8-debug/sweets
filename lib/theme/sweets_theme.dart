@@ -53,8 +53,8 @@ ThemeData buildSweetsTheme() {
     useMaterial3: true,
     brightness: Brightness.light,
     
-    // Main colors - creamy background
-    scaffoldBackgroundColor: SweetsColors.kCreamBg, // #F6EFE3
+    // Main colors - pure white background
+    scaffoldBackgroundColor: SweetsColors.white, // #FFFFFF
     primaryColor: SweetsColors.kAccentGold, // #D1B57C
     
     // AppBar styling - PURE WHITE
@@ -76,8 +76,8 @@ ThemeData buildSweetsTheme() {
     colorScheme: const ColorScheme.light(
       primary: SweetsColors.kAccentGold, // Gold accent
       secondary: SweetsColors.kAccentGold,
-      surface: SweetsColors.kCardWhite, // White cards
-      background: SweetsColors.kCreamBg, // Creamy background
+      surface: SweetsColors.white, // White surface
+      background: SweetsColors.white, // White background
       onBackground: SweetsColors.kDarkText,
       error: Color(0xFFDC2626),
     ),

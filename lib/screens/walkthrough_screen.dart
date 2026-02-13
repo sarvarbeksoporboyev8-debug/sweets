@@ -71,7 +71,7 @@ class _WalkthroughScreenState extends State<WalkthroughScreen> {
     final imageHeight = screenHeight * 0.5; // 50% of screen height
 
     return Scaffold(
-      backgroundColor: SweetsColors.kCreamBg,
+      backgroundColor: SweetsColors.white,
       body: SafeArea(
         child: Column(
           children: [

@@ -16,7 +16,7 @@ class NotificationsEmptyScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.kCreamBg,
+      backgroundColor: SweetsColors.white,
       body: Column(
         children: [
           // Gradient background header

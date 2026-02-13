@@ -11,7 +11,7 @@ class OtpVerificationScreen01 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.kCreamBg,
+      backgroundColor: SweetsColors.white,
       body: SafeArea(
         bottom: false,
         child: Column(

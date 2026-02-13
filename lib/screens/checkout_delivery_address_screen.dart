@@ -35,7 +35,7 @@ class _CheckoutDeliveryAddressScreenState
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.kCreamBg,
+      backgroundColor: SweetsColors.white,
       body: Stack(
         children: [
           Container(

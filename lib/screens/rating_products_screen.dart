@@ -45,7 +45,7 @@ class _RatingProductsScreenState extends State<RatingProductsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.kCreamBg,
+      backgroundColor: SweetsColors.white,
       body: Stack(
         children: [
           // Gradient background

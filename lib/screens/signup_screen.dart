@@ -88,7 +88,7 @@ class _SignupScreenState extends State<SignupScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.kCreamBg,
+      backgroundColor: SweetsColors.white,
       resizeToAvoidBottomInset: true,
       body: SafeArea(
         bottom: false,
