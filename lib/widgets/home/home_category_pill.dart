@@ -23,7 +23,7 @@ class HomeCategoryPill extends StatelessWidget {
             width: 72,
             height: 72,
             decoration: BoxDecoration(
-              color: const Color(0xFFFFDEBB),
+              color: SweetsColors.kCardBeige2,
               borderRadius: BorderRadius.circular(Spacing.spacing12),
             ),
             child: Center(

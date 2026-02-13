@@ -32,7 +32,7 @@ class CategoryCard extends StatelessWidget {
               decoration: BoxDecoration(
                 color: isSelected 
                     ? SweetsColors.primary.withOpacity(0.1)
-                    : const Color(0xFFFFDEBB),
+                    : SweetsColors.kCardBeige2,
                 borderRadius: BorderRadius.circular(16),
                 border: isSelected
                     ? Border.all(

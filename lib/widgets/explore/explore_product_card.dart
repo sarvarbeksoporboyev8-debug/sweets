@@ -101,7 +101,7 @@ class ExploreProductCard extends StatelessWidget {
                   vertical: Spacing.xs,
                 ),
                 decoration: BoxDecoration(
-                  color: SweetsColors.primaryLighter,
+                  color: SweetsColors.kCardBeige2,
                   borderRadius: BorderRadius.circular(28),
                 ),
                 child: Text(
@@ -111,7 +111,7 @@ class ExploreProductCard extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                     fontSize: 12,
                     height: 16 / 12,
-                    color: SweetsColors.black,
+                    color: SweetsColors.kCardTextDark,
                   ),
                 ),
               ),

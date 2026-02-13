@@ -27,6 +27,16 @@ class SweetsColors {
   static const Color primaryLighter = Color(0xFFFFA94D); // Legacy primary lighter
   static const Color primaryDark = Color(0xFFF76707); // Legacy primary dark
 
+  // Beige card gradient colors
+  static const Color kCardBeige1 = Color(0xFFF3E6CF); // Light cream
+  static const Color kCardBeige2 = Color(0xFFE6D1AD); // Warm beige
+  static const Color kCardBeige3 = Color(0xFFD9BE8E); // Deeper beige (for depth variation)
+
+  // Text colors for beige cards - ensure high contrast
+  static const Color kCardTextDark = Color(0xFF2B1E16); // Dark brown
+  static const Color kCardTextMedium = Color(0xFF5C4033); // Medium brown
+  static const Color kCardTextLight = Color(0xFF8B7355); // Light brown
+
   // Neutral colors
   static const Color white = Color(0xFFFFFFFF);
   static const Color black = Color(0xFF000000);

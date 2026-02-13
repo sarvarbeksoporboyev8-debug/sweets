@@ -46,4 +46,18 @@ class SweetsGradients {
   /// Success screen background gradient
   /// Alias for primaryHeader for semantic clarity
   static const LinearGradient successBackground = primaryHeader;
+
+  /// Primary beige card gradient
+  static const LinearGradient kBeigeCardGradient = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [SweetsColors.kCardBeige1, SweetsColors.kCardBeige2],
+  );
+
+  /// Alternative gradient with more depth/gold (use when needed)
+  static const LinearGradient kBeigeCardGradientDeep = LinearGradient(
+    begin: Alignment.topLeft,
+    end: Alignment.bottomRight,
+    colors: [SweetsColors.kCardBeige1, SweetsColors.kCardBeige3],
+  );
 }

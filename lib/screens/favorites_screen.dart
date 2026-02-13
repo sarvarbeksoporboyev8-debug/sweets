@@ -90,7 +90,7 @@ class FavoritesScreen extends StatelessWidget {
                               width: 28,
                               height: 28,
                               decoration: BoxDecoration(
-                                color: SweetsColors.primaryLighter,
+                                color: SweetsColors.kCardBeige2,
                                 shape: BoxShape.circle,
                               ),
                               child: const Center(
@@ -101,7 +101,7 @@ class FavoritesScreen extends StatelessWidget {
                                     fontWeight: FontWeight.w400,
                                     fontSize: 14,
                                     height: 20 / 14,
-                                    color: SweetsColors.black,
+                                    color: SweetsColors.kCardTextDark,
                                   ),
                                 ),
                               ),
