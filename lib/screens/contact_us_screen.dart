@@ -152,7 +152,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
                 ),
               ),
             ),
-          ),
+          ],
           // Bottom button
           Container(
             decoration: BoxDecoration(
@@ -175,7 +175,7 @@ class _ContactUsScreenState extends State<ContactUsScreen> {
               ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }

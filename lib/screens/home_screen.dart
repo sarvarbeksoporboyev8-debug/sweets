@@ -297,43 +297,43 @@ class _HomeBannersSection extends StatelessWidget {
         builder: (context, constraints) {
           final cardWidth = (constraints.maxWidth - Spacing.spacing12) / 2;
 
-          return Wrap(
-            spacing: Spacing.spacing12,
-            runSpacing: Spacing.spacing12,
+          // 2-column masonry layout without Transform.translate
+          return Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
-                width: cardWidth,
-                child: const _HomePromoCard(
-                  title: 'Delicious\ncupcake',
-                  imagePath: 'assets/images/promo_cupcake.png',
-                  height: 173,
+              Expanded(
+                child: Column(
+                  children: [
+                    const _HomePromoCard(
+                      title: 'Delicious\ncupcake',
+                      imagePath: 'assets/images/promo_cupcake.png',
+                      height: 173,
+                    ),
+                    const SizedBox(height: Spacing.spacing12),
+                    const _HomePromoCard(
+                      title: 'Delicious\ndonuts for you',
+                      imagePath: 'assets/images/promo_donuts.png',
+                      height: 173,
+                    ),
+                  ],
                 ),
               ),
-              SizedBox(
-                width: cardWidth,
-                child: const _HomePromoCard(
-                  title: 'The most\ndelicious and\ntasty desserts.',
-                  imagePath: 'assets/images/promo_desserts.png',
-                  height: 173,
-                ),
-              ),
-              SizedBox(
-                width: cardWidth,
-                child: const _HomePromoCard(
-                  title: 'Delicious\ndonuts for you',
-                  imagePath: 'assets/images/promo_donuts.png',
-                  height: 173,
-                ),
-              ),
-              Transform.translate(
-                offset: const Offset(0, -74),
-                child: SizedBox(
-                  width: cardWidth,
-                  child: const _HomePromoCard(
-                    title: 'Delicious\nFruit cake',
-                    imagePath: 'assets/images/promo_fruit_cake.png',
-                    height: 173,
-                  ),
+              const SizedBox(width: Spacing.spacing12),
+              Expanded(
+                child: Column(
+                  children: [
+                    const _HomePromoCard(
+                      title: 'The most\ndelicious and\ntasty desserts.',
+                      imagePath: 'assets/images/promo_desserts.png',
+                      height: 173,
+                    ),
+                    const SizedBox(height: Spacing.spacing12),
+                    const _HomePromoCard(
+                      title: 'Delicious\nFruit cake',
+                      imagePath: 'assets/images/promo_fruit_cake.png',
+                      height: 173,
+                    ),
+                  ],
                 ),
               ),
             ],

@@ -67,8 +67,8 @@ class NotificationsEmptyScreen extends StatelessWidget {
                   const SweetsHomeIndicator(),
                 ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
       ),
     );

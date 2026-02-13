@@ -143,7 +143,7 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
                 ),
               ),
             ),
-          ),
+          ],
           // Bottom button
           Container(
             decoration: BoxDecoration(
@@ -166,7 +166,7 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
               ],
             ),
           ),
-        ],
+        ),
       ),
     );
   }
