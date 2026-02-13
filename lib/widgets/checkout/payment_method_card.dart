@@ -40,12 +40,12 @@ class PaymentMethodCard extends StatelessWidget {
                 width: 1,
               ),
             ),
-            child: ClipRRect(
-              borderRadius: BorderRadius.circular(16),
-              child: Stack(
-                clipBehavior: Clip.none,
-                children: [
-                  isVisaMastercard
+            child: Stack(
+              clipBehavior: Clip.none,
+              children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.circular(16),
+                  child: isVisaMastercard
                       ? Center(
                           child: Row(
                             mainAxisAlignment: MainAxisAlignment.center,
@@ -98,30 +98,30 @@ class PaymentMethodCard extends StatelessWidget {
                             );
                           },
                         ),
-                  if (isSelected)
-                    Positioned(
-                      right: -9,
-                      top: -9,
-                      child: Container(
-                        width: 24,
-                        height: 24,
-                        decoration: BoxDecoration(
-                          color: SweetsColors.primary,
-                          shape: BoxShape.circle,
-                          border: Border.all(
-                            color: SweetsColors.white,
-                            width: 2,
-                          ),
-                        ),
-                        child: const Icon(
-                          Icons.check,
-                          size: 16,
+                ),
+                if (isSelected)
+                  Positioned(
+                    right: 8,
+                    top: 8,
+                    child: Container(
+                      width: 24,
+                      height: 24,
+                      decoration: BoxDecoration(
+                        color: SweetsColors.primary,
+                        shape: BoxShape.circle,
+                        border: Border.all(
                           color: SweetsColors.white,
+                          width: 2,
                         ),
                       ),
+                      child: const Icon(
+                        Icons.check,
+                        size: 16,
+                        color: SweetsColors.white,
+                      ),
                     ),
-                ],
-              ),
+                  ),
+              ],
             ),
           ),
         );
