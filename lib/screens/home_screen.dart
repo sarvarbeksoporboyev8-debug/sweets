@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import '../theme/sweets_theme.dart';
 import '../constants/colors.dart';
 import '../constants/spacing.dart';
@@ -8,6 +9,8 @@ import '../widgets/home/home_category_pill.dart';
 import '../widgets/home/home_product_card.dart';
 import '../widgets/home/shirin_biscuit_header.dart';
 import '../widgets/sweets_tab_bar.dart';
+import '../providers/cart_provider.dart';
+import '../providers/favorites_provider.dart';
 
 /// Home / 01 – full "Explore sweets" home screen.
 class HomeScreen extends StatefulWidget {
@@ -188,14 +191,19 @@ class _HomeCategoriesRow extends StatelessWidget {
                   color: SweetsColors.black,
                 ),
               ),
-              Text(
-                'View more',
-                style: const TextStyle(
-                  fontFamily: 'Geist',
-                  fontWeight: FontWeight.w500,
-                  fontSize: 14,
-                  height: 20 / 14,
-                  color: SweetsColors.primary,
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/explore');
+                },
+                child: const Text(
+                  'View more',
+                  style: TextStyle(
+                    fontFamily: 'Geist',
+                    fontWeight: FontWeight.w500,
+                    fontSize: 14,
+                    height: 20 / 14,
+                    color: SweetsColors.primary,
+                  ),
                 ),
               ),
             ],
@@ -204,54 +212,78 @@ class _HomeCategoriesRow extends StatelessWidget {
           SingleChildScrollView(
             scrollDirection: Axis.horizontal,
             child: Row(
-              children: const [
+              children: [
                 HomeCategoryPill(
                   label: 'Chocolate',
                   imageUrl:
                       'images/figma/ae6f4223-eaee-47bb-8fc1-80b40b311a20.png',
                   colorIndex: 0, // Purple
+                  onTap: () {
+                    Navigator.pushNamed(context, '/categories', arguments: {'category': 'Chocolate'});
+                  },
                 ),
                 HomeCategoryPill(
                   label: 'Croissant',
                   imageUrl:
                       'images/figma/89103dfd-a882-41ff-af03-722d16ef829e.png',
                   colorIndex: 1, // Cyan
+                  onTap: () {
+                    Navigator.pushNamed(context, '/categories', arguments: {'category': 'Croissant'});
+                  },
                 ),
                 HomeCategoryPill(
                   label: 'Donuts',
                   imageUrl:
                       'images/figma/af732309-cc6e-456d-9081-d8a83410e5e9.png',
                   colorIndex: 2, // Peach
+                  onTap: () {
+                    Navigator.pushNamed(context, '/categories', arguments: {'category': 'Donuts'});
+                  },
                 ),
                 HomeCategoryPill(
                   label: 'Tarts',
                   imageUrl:
                       'images/figma/12296479-78cd-41e6-8a71-6553130b4c30.png',
                   colorIndex: 3, // Yellow
+                  onTap: () {
+                    Navigator.pushNamed(context, '/categories', arguments: {'category': 'Tarts'});
+                  },
                 ),
                 HomeCategoryPill(
                   label: 'Pies',
                   imageUrl:
                       'images/figma/57081f42-5f04-4c43-872d-8d65d47faec7.png',
                   colorIndex: 0, // Purple (rotation)
+                  onTap: () {
+                    Navigator.pushNamed(context, '/categories', arguments: {'category': 'Pies'});
+                  },
                 ),
                 HomeCategoryPill(
                   label: 'Macarons',
                   imageUrl:
                       'images/figma/0725c68f-d1f8-4c1a-bdef-f4af6706b1ad.png',
                   colorIndex: 1, // Cyan
+                  onTap: () {
+                    Navigator.pushNamed(context, '/categories', arguments: {'category': 'Macarons'});
+                  },
                 ),
                 HomeCategoryPill(
                   label: 'Cookies',
                   imageUrl:
                       'images/figma/cb8efe13-b792-4611-8999-2e7d51e48379.png',
                   colorIndex: 2, // Peach
+                  onTap: () {
+                    Navigator.pushNamed(context, '/categories', arguments: {'category': 'Cookies'});
+                  },
                 ),
                 HomeCategoryPill(
                   label: 'Pancake',
                   imageUrl:
                       'images/figma/7b8893bf-40fb-4640-b9ec-14d99dba4ba1.png',
                   colorIndex: 3, // Yellow
+                  onTap: () {
+                    Navigator.pushNamed(context, '/categories', arguments: {'category': 'Pancake'});
+                  },
                 ),
               ],
             ),
@@ -412,11 +444,16 @@ class _BestProductsSection extends StatelessWidget {
                   color: SweetsColors.black,
                 ),
               ),
-              Text(
-                'View more',
-                style: theme.textTheme.bodySmall?.copyWith(
-                  fontWeight: FontWeight.w500,
-                  color: SweetsColors.primary,
+              GestureDetector(
+                onTap: () {
+                  Navigator.pushNamed(context, '/explore');
+                },
+                child: Text(
+                  'View more',
+                  style: theme.textTheme.bodySmall?.copyWith(
+                    fontWeight: FontWeight.w500,
+                    color: SweetsColors.primary,
+                  ),
                 ),
               ),
             ],
@@ -432,82 +469,282 @@ class _BestProductsSection extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: cardWidth,
-                    child: const HomeProductCard(
+                    child: HomeProductCard(
+                      productId: 'prod_1',
                       title: 'Fruits tart',
                       category: 'Tarts',
                       price: '\$15.55',
                       discountLabel: '-50%',
                       colorIndex: 0, // Purple
+                      onTap: () {
+                        Navigator.pushNamed(context, '/productDetail', arguments: {'productId': 'prod_1'});
+                      },
+                      onAddToCart: () {
+                        final cart = context.read<CartProvider>();
+                        cart.addItem(
+                          productId: 'prod_1',
+                          title: 'Fruits tart',
+                          price: 15.55,
+                          imageUrl: 'images/figma/f67fe315-bd20-4125-86f6-d47df0749327.png',
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Added to cart'), duration: Duration(seconds: 1)),
+                        );
+                      },
+                      onFavorite: () {
+                        final favorites = context.read<FavoritesProvider>();
+                        favorites.toggleFavorite(
+                          productId: 'prod_1',
+                          title: 'Fruits tart',
+                          price: 15.55,
+                          category: 'Tarts',
+                        );
+                      },
                     ),
                   ),
                   SizedBox(
                     width: cardWidth,
-                    child: const HomeProductCard(
+                    child: HomeProductCard(
+                      productId: 'prod_2',
                       title: 'Fruit tart',
                       category: 'Tarts',
                       price: '\$15.55',
                       discountLabel: '-60%',
                       colorIndex: 1, // Cyan
+                      onTap: () {
+                        Navigator.pushNamed(context, '/productDetail', arguments: {'productId': 'prod_2'});
+                      },
+                      onAddToCart: () {
+                        final cart = context.read<CartProvider>();
+                        cart.addItem(
+                          productId: 'prod_2',
+                          title: 'Fruit tart',
+                          price: 15.55,
+                          imageUrl: 'images/figma/f67fe315-bd20-4125-86f6-d47df0749327.png',
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Added to cart'), duration: Duration(seconds: 1)),
+                        );
+                      },
+                      onFavorite: () {
+                        final favorites = context.read<FavoritesProvider>();
+                        favorites.toggleFavorite(
+                          productId: 'prod_2',
+                          title: 'Fruit tart',
+                          price: 15.55,
+                          category: 'Tarts',
+                        );
+                      },
                     ),
                   ),
                   SizedBox(
                     width: cardWidth,
-                    child: const HomeProductCard(
+                    child: HomeProductCard(
+                      productId: 'prod_3',
                       title: 'Apple tart',
                       category: 'Tarts',
                       price: '\$15.55',
                       discountLabel: '-50%',
                       colorIndex: 2, // Peach
+                      onTap: () {
+                        Navigator.pushNamed(context, '/productDetail', arguments: {'productId': 'prod_3'});
+                      },
+                      onAddToCart: () {
+                        final cart = context.read<CartProvider>();
+                        cart.addItem(
+                          productId: 'prod_3',
+                          title: 'Apple tart',
+                          price: 15.55,
+                          imageUrl: 'images/figma/f67fe315-bd20-4125-86f6-d47df0749327.png',
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Added to cart'), duration: Duration(seconds: 1)),
+                        );
+                      },
+                      onFavorite: () {
+                        final favorites = context.read<FavoritesProvider>();
+                        favorites.toggleFavorite(
+                          productId: 'prod_3',
+                          title: 'Apple tart',
+                          price: 15.55,
+                          category: 'Tarts',
+                        );
+                      },
                     ),
                   ),
                   SizedBox(
                     width: cardWidth,
-                    child: const HomeProductCard(
+                    child: HomeProductCard(
+                      productId: 'prod_4',
                       title: 'Cupcakes',
                       category: 'Cupcake',
                       price: '\$15.55',
                       discountLabel: '-50%',
                       colorIndex: 3, // Yellow
+                      onTap: () {
+                        Navigator.pushNamed(context, '/productDetail', arguments: {'productId': 'prod_4'});
+                      },
+                      onAddToCart: () {
+                        final cart = context.read<CartProvider>();
+                        cart.addItem(
+                          productId: 'prod_4',
+                          title: 'Cupcakes',
+                          price: 15.55,
+                          imageUrl: 'images/figma/f67fe315-bd20-4125-86f6-d47df0749327.png',
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Added to cart'), duration: Duration(seconds: 1)),
+                        );
+                      },
+                      onFavorite: () {
+                        final favorites = context.read<FavoritesProvider>();
+                        favorites.toggleFavorite(
+                          productId: 'prod_4',
+                          title: 'Cupcakes',
+                          price: 15.55,
+                          category: 'Cupcake',
+                        );
+                      },
                     ),
                   ),
                   SizedBox(
                     width: cardWidth,
-                    child: const HomeProductCard(
+                    child: HomeProductCard(
+                      productId: 'prod_5',
                       title: 'Donuts',
                       category: 'Donuts',
                       price: '\$15.55',
                       discountLabel: '-50%',
                       colorIndex: 0, // Purple (rotation)
+                      onTap: () {
+                        Navigator.pushNamed(context, '/productDetail', arguments: {'productId': 'prod_5'});
+                      },
+                      onAddToCart: () {
+                        final cart = context.read<CartProvider>();
+                        cart.addItem(
+                          productId: 'prod_5',
+                          title: 'Donuts',
+                          price: 15.55,
+                          imageUrl: 'images/figma/f67fe315-bd20-4125-86f6-d47df0749327.png',
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Added to cart'), duration: Duration(seconds: 1)),
+                        );
+                      },
+                      onFavorite: () {
+                        final favorites = context.read<FavoritesProvider>();
+                        favorites.toggleFavorite(
+                          productId: 'prod_5',
+                          title: 'Donuts',
+                          price: 15.55,
+                          category: 'Donuts',
+                        );
+                      },
                     ),
                   ),
                   SizedBox(
                     width: cardWidth,
-                    child: const HomeProductCard(
+                    child: HomeProductCard(
+                      productId: 'prod_6',
                       title: 'Berry pie',
                       category: 'Pies',
                       price: '\$15.55',
                       discountLabel: '-50%',
                       colorIndex: 1, // Cyan
+                      onTap: () {
+                        Navigator.pushNamed(context, '/productDetail', arguments: {'productId': 'prod_6'});
+                      },
+                      onAddToCart: () {
+                        final cart = context.read<CartProvider>();
+                        cart.addItem(
+                          productId: 'prod_6',
+                          title: 'Berry pie',
+                          price: 15.55,
+                          imageUrl: 'images/figma/f67fe315-bd20-4125-86f6-d47df0749327.png',
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Added to cart'), duration: Duration(seconds: 1)),
+                        );
+                      },
+                      onFavorite: () {
+                        final favorites = context.read<FavoritesProvider>();
+                        favorites.toggleFavorite(
+                          productId: 'prod_6',
+                          title: 'Berry pie',
+                          price: 15.55,
+                          category: 'Pies',
+                        );
+                      },
                     ),
                   ),
                   SizedBox(
                     width: cardWidth,
-                    child: const HomeProductCard(
+                    child: HomeProductCard(
+                      productId: 'prod_7',
                       title: 'Macarons',
                       category: 'Macarons',
                       price: '\$15.55',
                       discountLabel: '-50%',
                       colorIndex: 2, // Peach
+                      onTap: () {
+                        Navigator.pushNamed(context, '/productDetail', arguments: {'productId': 'prod_7'});
+                      },
+                      onAddToCart: () {
+                        final cart = context.read<CartProvider>();
+                        cart.addItem(
+                          productId: 'prod_7',
+                          title: 'Macarons',
+                          price: 15.55,
+                          imageUrl: 'images/figma/f67fe315-bd20-4125-86f6-d47df0749327.png',
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Added to cart'), duration: Duration(seconds: 1)),
+                        );
+                      },
+                      onFavorite: () {
+                        final favorites = context.read<FavoritesProvider>();
+                        favorites.toggleFavorite(
+                          productId: 'prod_7',
+                          title: 'Macarons',
+                          price: 15.55,
+                          category: 'Macarons',
+                        );
+                      },
                     ),
                   ),
                   SizedBox(
                     width: cardWidth,
-                    child: const HomeProductCard(
+                    child: HomeProductCard(
+                      productId: 'prod_8',
                       title: 'Fruits cake',
                       category: 'Cake',
                       price: '\$15.55',
                       discountLabel: '-50%',
                       colorIndex: 3, // Yellow
+                      onTap: () {
+                        Navigator.pushNamed(context, '/productDetail', arguments: {'productId': 'prod_8'});
+                      },
+                      onAddToCart: () {
+                        final cart = context.read<CartProvider>();
+                        cart.addItem(
+                          productId: 'prod_8',
+                          title: 'Fruits cake',
+                          price: 15.55,
+                          imageUrl: 'images/figma/f67fe315-bd20-4125-86f6-d47df0749327.png',
+                        );
+                        ScaffoldMessenger.of(context).showSnackBar(
+                          const SnackBar(content: Text('Added to cart'), duration: Duration(seconds: 1)),
+                        );
+                      },
+                      onFavorite: () {
+                        final favorites = context.read<FavoritesProvider>();
+                        favorites.toggleFavorite(
+                          productId: 'prod_8',
+                          title: 'Fruits cake',
+                          price: 15.55,
+                          category: 'Cake',
+                        );
+                      },
                     ),
                   ),
                 ],

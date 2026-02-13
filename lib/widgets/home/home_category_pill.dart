@@ -9,11 +9,13 @@ class HomeCategoryPill extends StatelessWidget {
     required this.label,
     required this.imageUrl,
     this.colorIndex = 0, // Index for pastel color rotation
+    this.onTap,
   });
 
   final String label;
   final String imageUrl;
   final int colorIndex;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,9 @@ class HomeCategoryPill extends StatelessWidget {
     
     return Padding(
       padding: const EdgeInsets.only(right: Spacing.sm),
-      child: Column(
+      child: GestureDetector(
+        onTap: onTap,
+        child: Column(
         children: [
           Container(
             width: 72,
@@ -59,6 +63,7 @@ class HomeCategoryPill extends StatelessWidget {
             ),
           ),
         ],
+      ),
       ),
     );
   }
