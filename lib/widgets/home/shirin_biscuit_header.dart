@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 import '../../constants/colors.dart';
 import '../../constants/spacing.dart';
 
@@ -11,8 +12,7 @@ class ShirinBiscuitHeader extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       'Shirin Biscuit',
-      style: const TextStyle(
-        fontFamily: 'Dancing Script',
+      style: GoogleFonts.dancingScript(
         fontSize: 28,
         fontWeight: FontWeight.w600,
         color: SweetsColors.kDarkText,

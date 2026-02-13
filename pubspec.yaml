@@ -40,6 +40,9 @@ dependencies:
   
   # Local storage for cart and favorites persistence
   shared_preferences: ^2.3.3
+  
+  # Google Fonts for custom fonts
+  google_fonts: ^6.2.1
 
 dev_dependencies:
   flutter_test:
