@@ -10,15 +10,20 @@ class ExploreProductCard extends StatelessWidget {
     required this.category,
     required this.price,
     required this.discountLabel,
+    this.colorIndex = 0, // Index for pastel color rotation
   });
 
   final String title;
   final String category;
   final String price;
   final String discountLabel;
+  final int colorIndex;
 
   @override
   Widget build(BuildContext context) {
+    // Get pastel color based on index rotation
+    final cardColor = SweetsColors.cardColorsPastel[colorIndex % SweetsColors.cardColorsPastel.length];
+    
     return Container(
       width: double.infinity,
       padding: const EdgeInsets.all(Spacing.spacing12),
@@ -62,7 +67,7 @@ class ExploreProductCard extends StatelessWidget {
                     vertical: 2,
                   ),
                   decoration: BoxDecoration(
-                    color: SweetsColors.primary,
+                    color: SweetsColors.buttonCoral, // Coral for discount badge
                     borderRadius: BorderRadius.circular(6),
                   ),
                   child: Text(
@@ -101,7 +106,7 @@ class ExploreProductCard extends StatelessWidget {
                   vertical: Spacing.xs,
                 ),
                 decoration: BoxDecoration(
-                  color: SweetsColors.kCardBeige2,
+                  color: cardColor, // Use pastel color for category badge
                   borderRadius: BorderRadius.circular(28),
                 ),
                 child: Text(
@@ -111,7 +116,7 @@ class ExploreProductCard extends StatelessWidget {
                     fontWeight: FontWeight.w400,
                     fontSize: 12,
                     height: 16 / 12,
-                    color: SweetsColors.kCardTextDark,
+                    color: SweetsColors.textDark, // Dark text on pastel
                   ),
                 ),
               ),
@@ -135,7 +140,7 @@ class ExploreProductCard extends StatelessWidget {
                 child: Container(
                   height: Spacing.spacing40,
                   decoration: BoxDecoration(
-                    color: SweetsColors.grayLighter,
+                    color: SweetsColors.buttonCoral, // Coral for Add to cart button
                     borderRadius: BorderRadius.circular(Spacing.sm),
                   ),
                   child: Row(
@@ -144,7 +149,7 @@ class ExploreProductCard extends StatelessWidget {
                       const Icon(
                         Icons.shopping_bag_outlined,
                         size: 20,
-                        color: SweetsColors.grayDarker,
+                        color: SweetsColors.white,
                       ),
                       const SizedBox(width: Spacing.xs),
                       const Text(
@@ -154,7 +159,7 @@ class ExploreProductCard extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                           fontSize: 14,
                           height: 20 / 14,
-                          color: SweetsColors.black,
+                          color: SweetsColors.white,
                         ),
                       ),
                     ],
@@ -172,7 +177,7 @@ class ExploreProductCard extends StatelessWidget {
                 child: const Icon(
                   Icons.favorite_border,
                   size: 20,
-                  color: SweetsColors.grayDarker,
+                  color: SweetsColors.buttonCoral, // Coral for heart icon
                 ),
               ),
             ],

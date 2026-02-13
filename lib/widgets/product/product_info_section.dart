@@ -27,7 +27,7 @@ class ProductInfoSection extends StatelessWidget {
             vertical: Spacing.xs,
           ),
           decoration: BoxDecoration(
-            color: SweetsColors.kCardBeige2,
+            color: SweetsColors.cardYellow, // Pastel yellow for category badge
             borderRadius: BorderRadius.circular(Spacing.borderRadiusRound),
           ),
           child: Text(
@@ -37,7 +37,7 @@ class ProductInfoSection extends StatelessWidget {
               fontWeight: FontWeight.w400,
               fontSize: 12,
               height: 16 / 12,
-              color: SweetsColors.kCardTextDark,
+              color: SweetsColors.textDark, // Dark text on pastel
             ),
           ),
         ),

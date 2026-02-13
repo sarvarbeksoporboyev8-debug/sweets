@@ -27,7 +27,7 @@ class AddressSelectionCard extends StatelessWidget {
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: isDefault
-              ? SweetsColors.kCardBeige2
+              ? SweetsColors.cardPeach // Pastel peach for default
               : SweetsColors.grayLighter.withOpacity(0.5),
           borderRadius: BorderRadius.circular(16),
         ),
@@ -38,7 +38,7 @@ class AddressSelectionCard extends StatelessWidget {
               height: 48,
               decoration: BoxDecoration(
                 color: isDefault
-                    ? SweetsColors.primary
+                    ? SweetsColors.buttonCoral // Coral for default/selected
                     : SweetsColors.grayLighter,
                 shape: BoxShape.circle,
               ),

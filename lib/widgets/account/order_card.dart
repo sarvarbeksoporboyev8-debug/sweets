@@ -37,12 +37,12 @@ class OrderCard extends StatelessWidget {
               width: 48,
               height: 48,
               decoration: const BoxDecoration(
-                color: SweetsColors.kCardBeige2,
+                color: SweetsColors.cardPurple, // Pastel purple
                 shape: BoxShape.circle,
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.shopping_bag,
-                color: SweetsColors.primary,
+                color: SweetsColors.buttonCoral, // Coral icon
                 size: 24,
               ),
             ),

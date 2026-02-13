@@ -11,15 +11,20 @@ class CategoryCard extends StatelessWidget {
     required this.imageUrl,
     this.onTap,
     this.isSelected = false,
+    this.colorIndex = 0, // Index for pastel color rotation
   });
 
   final String label;
   final String imageUrl;
   final VoidCallback? onTap;
   final bool isSelected;
+  final int colorIndex;
 
   @override
   Widget build(BuildContext context) {
+    // Get pastel color based on index rotation
+    final cardColor = SweetsColors.cardColorsPastel[colorIndex % SweetsColors.cardColorsPastel.length];
+    
     return GestureDetector(
       onTap: onTap,
       child: SizedBox(
@@ -31,12 +36,12 @@ class CategoryCard extends StatelessWidget {
               height: 121,
               decoration: BoxDecoration(
                 color: isSelected 
-                    ? SweetsColors.primary.withOpacity(0.1)
-                    : SweetsColors.kCardBeige2,
+                    ? SweetsColors.buttonCoral.withOpacity(0.2) // Coral tint when selected
+                    : cardColor, // Pastel color rotation
                 borderRadius: BorderRadius.circular(16),
                 border: isSelected
                     ? Border.all(
-                        color: SweetsColors.primary,
+                        color: SweetsColors.buttonCoral, // Coral border when selected
                         width: 2,
                       )
                     : null,
@@ -48,10 +53,10 @@ class CategoryCard extends StatelessWidget {
                   height: 96,
                   fit: BoxFit.contain,
                   errorBuilder: (context, error, stackTrace) {
-                    return const Icon(
+                    return Icon(
                       Icons.local_cafe,
                       size: 40,
-                      color: SweetsColors.primary,
+                      color: isSelected ? SweetsColors.buttonCoral : SweetsColors.textDark,
                     );
                   },
                 ),
@@ -65,7 +70,7 @@ class CategoryCard extends StatelessWidget {
                 fontWeight: isSelected ? FontWeight.w600 : FontWeight.w400,
                 fontSize: 16,
                 height: 24 / 16,
-                color: isSelected ? SweetsColors.primary : SweetsColors.grayDarker,
+                color: isSelected ? SweetsColors.buttonCoral : SweetsColors.grayDarker,
               ),
               textAlign: TextAlign.center,
             ),

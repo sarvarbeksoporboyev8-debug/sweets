@@ -36,12 +36,12 @@ class AddressCard extends StatelessWidget {
               width: 48,
               height: 48,
               decoration: const BoxDecoration(
-                color: SweetsColors.kCardBeige2,
+                color: SweetsColors.cardCyan, // Pastel cyan
                 shape: BoxShape.circle,
               ),
-              child: const Icon(
+              child: Icon(
                 Icons.location_on,
-                color: SweetsColors.primary,
+                color: SweetsColors.buttonCoral, // Coral icon
                 size: 24,
               ),
             ),

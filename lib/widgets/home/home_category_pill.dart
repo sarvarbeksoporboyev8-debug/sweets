@@ -8,13 +8,18 @@ class HomeCategoryPill extends StatelessWidget {
     super.key,
     required this.label,
     required this.imageUrl,
+    this.colorIndex = 0, // Index for pastel color rotation
   });
 
   final String label;
   final String imageUrl;
+  final int colorIndex;
 
   @override
   Widget build(BuildContext context) {
+    // Get pastel color based on index rotation
+    final cardColor = SweetsColors.cardColorsPastel[colorIndex % SweetsColors.cardColorsPastel.length];
+    
     return Padding(
       padding: const EdgeInsets.only(right: Spacing.sm),
       child: Column(
@@ -23,7 +28,7 @@ class HomeCategoryPill extends StatelessWidget {
             width: 72,
             height: 72,
             decoration: BoxDecoration(
-              color: SweetsColors.kCardBeige2,
+              color: cardColor, // Use pastel color rotation
               borderRadius: BorderRadius.circular(Spacing.spacing12),
             ),
             child: Center(
@@ -36,8 +41,8 @@ class HomeCategoryPill extends StatelessWidget {
                   return const Icon(
                     Icons.local_cafe,
                     size: 32,
-                    color: SweetsColors.primary,
-                  );
+                    color: SweetsColors.textDark,
+                  ),
                 },
               ),
             ),
