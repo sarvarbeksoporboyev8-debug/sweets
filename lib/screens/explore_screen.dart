@@ -164,14 +164,7 @@ class _PromoCard extends StatelessWidget {
       clipBehavior: Clip.hardEdge,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(Spacing.spacing20),
-        gradient: const LinearGradient(
-          begin: Alignment.topCenter,
-          end: Alignment.bottomCenter,
-          colors: [
-            Color(0xFFFFA94D),
-            Color(0xFFFF7808),
-          ],
-        ),
+        gradient: SweetsGradients.kBeigeCardGradient,
       ),
       child: Stack(
         children: [
@@ -185,7 +178,7 @@ class _PromoCard extends StatelessWidget {
                 fontSize: 24,
                 height: 24 / 24,
                 letterSpacing: -0.72,
-                color: SweetsColors.white,
+                color: SweetsColors.kCardTextDark,
               ),
             ),
           ),
@@ -220,14 +213,7 @@ class _ExploreBannerCard extends StatelessWidget {
         height: 240,
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(Spacing.lg),
-          gradient: const LinearGradient(
-            begin: Alignment.topCenter,
-            end: Alignment.bottomCenter,
-            colors: [
-              Color(0xFFFFA94D),
-              Color(0xFFFF7808),
-            ],
-          ),
+          gradient: SweetsGradients.kBeigeCardGradient,
         ),
         child: Stack(
           children: [

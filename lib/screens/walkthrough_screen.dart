@@ -172,7 +172,7 @@ class _WalkthroughPageWidget extends StatelessWidget {
               radius: 0.74,
               colors: [
                 SweetsColors.kTopBar,
-                Color(0xFFFD7E14),
+                SweetsColors.kCardBeige3,
               ],
             ),
           ),

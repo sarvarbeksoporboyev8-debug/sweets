@@ -38,7 +38,7 @@ class EmptyStateContainer extends StatelessWidget {
                   begin: Alignment.topCenter,
                   end: Alignment.bottomCenter,
                   colors: [
-                    Color(0xFFFFE6D1),
+                    SweetsColors.kCardBeige1,
                     Color(0xFFFFFFFF),
                   ],
                 ),

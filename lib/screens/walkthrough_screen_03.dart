@@ -30,7 +30,7 @@ class WalkthroughScreen03 extends StatelessWidget {
                   radius: 0.7399, // 73.99%
                   colors: [
                     SweetsColors.kTopBar,
-                    Color(0xFFFD7E14),
+                    SweetsColors.kCardBeige3,
                   ],
                   stops: [0.0, 1.0],
                 ),

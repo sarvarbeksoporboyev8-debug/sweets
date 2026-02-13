@@ -6,12 +6,12 @@ class SweetsGradients {
   SweetsGradients._(); // Private constructor to prevent instantiation
 
   /// Primary header gradient - used for success screens and headers
-  /// Gradient from light peach (#FFE6D1) to white at 55%
+  /// Gradient from light beige cream to white at 55%
   static const LinearGradient primaryHeader = LinearGradient(
     begin: Alignment.topCenter,
     end: Alignment.bottomCenter,
     colors: [
-      Color(0xFFFFE6D1), // Light peach
+      SweetsColors.kCardBeige1, // Light cream
       Color(0xFFFFFFFF), // White
     ],
     stops: [0.0, 0.55],
