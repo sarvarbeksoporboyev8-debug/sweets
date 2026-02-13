@@ -29,7 +29,7 @@ class WalkthroughScreen03 extends StatelessWidget {
                   center: Alignment(0, -0.2182), // 39.09% from top in Flutter's -1..1 space
                   radius: 0.7399, // 73.99%
                   colors: [
-                    Color(0xFFFFE6D1),
+                    SweetsColors.kTopBar,
                     Color(0xFFFD7E14),
                   ],
                   stops: [0.0, 1.0],

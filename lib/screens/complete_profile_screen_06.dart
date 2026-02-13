@@ -60,7 +60,7 @@ class _CompleteProfileScreen06State extends State<CompleteProfileScreen06> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: SweetsColors.white,
+      backgroundColor: SweetsColors.kCreamBg,
       body: SafeArea(
         bottom: false,
         child: Column(

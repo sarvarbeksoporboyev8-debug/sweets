@@ -11,7 +11,7 @@ class OtpVerificationScreen01 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.white,
+      backgroundColor: SweetsColors.kCreamBg,
       body: SafeArea(
         bottom: false,
         child: Column(
@@ -102,7 +102,7 @@ class OtpVerificationScreen01 extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: null,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: SweetsColors.primaryLighter,
+                        backgroundColor: SweetsColors.kAccentGold,
                         foregroundColor: SweetsColors.white75,
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),

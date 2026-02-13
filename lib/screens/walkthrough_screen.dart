@@ -71,7 +71,7 @@ class _WalkthroughScreenState extends State<WalkthroughScreen> {
     final imageHeight = screenHeight * 0.5; // 50% of screen height
 
     return Scaffold(
-      backgroundColor: SweetsColors.white,
+      backgroundColor: SweetsColors.kCreamBg,
       body: SafeArea(
         child: Column(
           children: [
@@ -171,7 +171,7 @@ class _WalkthroughPageWidget extends StatelessWidget {
               center: Alignment(0, -0.2),
               radius: 0.74,
               colors: [
-                Color(0xFFFFE6D1),
+                SweetsColors.kTopBar,
                 Color(0xFFFD7E14),
               ],
             ),

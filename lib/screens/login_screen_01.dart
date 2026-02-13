@@ -11,7 +11,7 @@ class LoginScreen01 extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.white,
+      backgroundColor: SweetsColors.kCreamBg,
       body: SafeArea(
         bottom: false,
         child: Column(
@@ -82,7 +82,7 @@ class LoginScreen01 extends StatelessWidget {
                     child: ElevatedButton(
                       onPressed: null,
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: SweetsColors.primaryLighter,
+                        backgroundColor: SweetsColors.kAccentGold,
                         foregroundColor: const Color(0xBFFFFFFF), // rgba(255,255,255,0.75)
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(16),

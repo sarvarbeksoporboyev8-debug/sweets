@@ -78,7 +78,7 @@ class _CompleteProfileScreen01State extends State<CompleteProfileScreen01> {
     final theme = Theme.of(context);
 
     return Scaffold(
-      backgroundColor: SweetsColors.white,
+      backgroundColor: SweetsColors.kCreamBg,
       body: SafeArea(
         bottom: false,
         child: Column(
@@ -162,7 +162,7 @@ class _CompleteProfileScreen01State extends State<CompleteProfileScreen01> {
                   style: ElevatedButton.styleFrom(
                     backgroundColor: _isFormValid
                         ? SweetsColors.primary
-                        : SweetsColors.primaryLighter,
+                        : SweetsColors.kAccentGold,
                     foregroundColor: _isFormValid
                         ? SweetsColors.white
                         : SweetsColors.white75,
