@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import '../constants/colors.dart';
 
 /// Gradient constants for the Sweets app.
 /// Provides consistent gradient styles throughout the application.
