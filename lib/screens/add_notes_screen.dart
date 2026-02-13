@@ -145,27 +145,27 @@ class _AddNotesScreenState extends State<AddNotesScreen> {
             ),
             // Bottom button
             Container(
-          ],
-            decoration: BoxDecoration(
-              color: SweetsColors.white,
-              border: Border(
-                top: BorderSide(
-                  color: SweetsColors.border.withOpacity(0.75),
+              decoration: BoxDecoration(
+                color: SweetsColors.white,
+                border: Border(
+                  top: BorderSide(
+                    color: SweetsColors.border.withOpacity(0.75),
+                  ),
                 ),
               ),
+              padding: const EdgeInsets.all(Spacing.lg),
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  SweetsPrimaryButton(
+                    label: _isSubmitting ? 'Adding...' : 'Add',
+                    onPressed: _isSubmitting ? null : _submitNotes,
+                  ),
+                  const SweetsHomeIndicator(),
+                ],
+              ),
             ),
-            padding: const EdgeInsets.all(Spacing.lg),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                SweetsPrimaryButton(
-                  label: _isSubmitting ? 'Adding...' : 'Add',
-                  onPressed: _isSubmitting ? null : _submitNotes,
-                ),
-                const SweetsHomeIndicator(),
-              ],
-            ),
-          ),
+          ],
         ),
       ),
     );
