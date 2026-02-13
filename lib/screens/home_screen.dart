@@ -138,7 +138,28 @@ class _HomeScreenState extends State<HomeScreen> {
           ),
         ],
       ),
-      bottomNavigationBar: const SweetsTabBar(activeTab: 'Home'),
+      bottomNavigationBar: SweetsTabBar(
+        activeTab: 'Home',
+        onTabTap: (tab) {
+          switch (tab) {
+            case 'Home':
+              // Already on home, do nothing
+              break;
+            case 'Explore':
+              Navigator.pushReplacementNamed(context, '/explore');
+              break;
+            case 'Favorites':
+              Navigator.pushReplacementNamed(context, '/favorites');
+              break;
+            case 'Cart':
+              Navigator.pushReplacementNamed(context, '/cart');
+              break;
+            case 'Account':
+              Navigator.pushReplacementNamed(context, '/account');
+              break;
+          }
+        },
+      ),
     );
   }
 }

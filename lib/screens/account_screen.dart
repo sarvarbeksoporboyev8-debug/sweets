@@ -245,7 +245,28 @@ class AccountScreen extends StatelessWidget {
           ),
         ],
       ),
-      bottomNavigationBar: const SweetsTabBar(activeTab: 'Account'),
+      bottomNavigationBar: SweetsTabBar(
+        activeTab: 'Account',
+        onTabTap: (tab) {
+          switch (tab) {
+            case 'Home':
+              Navigator.pushReplacementNamed(context, '/home');
+              break;
+            case 'Explore':
+              Navigator.pushReplacementNamed(context, '/explore');
+              break;
+            case 'Favorites':
+              Navigator.pushReplacementNamed(context, '/favorites');
+              break;
+            case 'Cart':
+              Navigator.pushReplacementNamed(context, '/cart');
+              break;
+            case 'Account':
+              // Already on account, do nothing
+              break;
+          }
+        },
+      ),
     );
   }
 }

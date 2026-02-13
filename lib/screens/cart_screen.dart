@@ -192,8 +192,23 @@ class _CartScreenState extends State<CartScreen> {
           SweetsBottomNavBar(
             currentIndex: 3, // Cart is at index 3
             onTap: (index) {
-              // TODO: Navigate to corresponding screen
-              // Example: Navigator.pushNamed(context, routes[index]);
+              switch (index) {
+                case 0:
+                  Navigator.pushReplacementNamed(context, '/home');
+                  break;
+                case 1:
+                  Navigator.pushReplacementNamed(context, '/explore');
+                  break;
+                case 2:
+                  Navigator.pushReplacementNamed(context, '/favorites');
+                  break;
+                case 3:
+                  // Already on cart, do nothing
+                  break;
+                case 4:
+                  Navigator.pushReplacementNamed(context, '/account');
+                  break;
+              }
             },
           ),
         ],
@@ -384,6 +399,7 @@ class _CartItemWidget extends StatelessWidget {
                 InkWell(
                   onTap: () {
                     // Navigate to checkout
+                    Navigator.pushNamed(context, '/checkoutDeliveryAddress');
                   },
                   child: Container(
                     padding: const EdgeInsets.symmetric(

@@ -36,7 +36,28 @@ class ExploreScreen extends StatelessWidget {
           ),
         ),
       ),
-      bottomNavigationBar: const SweetsTabBar(activeTab: 'Explore'),
+      bottomNavigationBar: SweetsTabBar(
+        activeTab: 'Explore',
+        onTabTap: (tab) {
+          switch (tab) {
+            case 'Home':
+              Navigator.pushReplacementNamed(context, '/home');
+              break;
+            case 'Explore':
+              // Already on explore, do nothing
+              break;
+            case 'Favorites':
+              Navigator.pushReplacementNamed(context, '/favorites');
+              break;
+            case 'Cart':
+              Navigator.pushReplacementNamed(context, '/cart');
+              break;
+            case 'Account':
+              Navigator.pushReplacementNamed(context, '/account');
+              break;
+          }
+        },
+      ),
     );
   }
 }

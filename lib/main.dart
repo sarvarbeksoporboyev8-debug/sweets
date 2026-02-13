@@ -1,6 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:provider/provider.dart';
 
+import 'providers/cart_provider.dart';
+import 'providers/favorites_provider.dart';
+import 'providers/app_provider.dart';
+import 'providers/checkout_provider.dart';
 import 'screens/contact_us_screen.dart';
 import 'screens/notifications_empty_screen.dart';
 import 'screens/welcome_splash_screen.dart';
@@ -55,7 +60,10 @@ import 'screens/otp_verification_screen_03.dart';
 import 'screens/signup_success_screen.dart';
 import 'theme/sweets_theme.dart';
 
-void main() {
+void main() async {
+  // Ensure Flutter bindings are initialized
+  WidgetsFlutterBinding.ensureInitialized();
+  
   // Configure system UI overlay for status bar and navigation bar
   SystemChrome.setSystemUIOverlayStyle(
     const SystemUiOverlayStyle(
@@ -66,6 +74,7 @@ void main() {
       systemNavigationBarIconBrightness: Brightness.dark,
     ),
   );
+  
   runApp(const SweetsApp());
 }
 
@@ -74,7 +83,14 @@ class SweetsApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => CartProvider()..initialize()),
+        ChangeNotifierProvider(create: (_) => FavoritesProvider()..initialize()),
+        ChangeNotifierProvider(create: (_) => AppProvider()..initialize()),
+        ChangeNotifierProvider(create: (_) => CheckoutProvider()),
+      ],
+      child: MaterialApp(
       title: 'Sweets',
       debugShowCheckedModeBanner: false,
       theme: buildSweetsTheme(),
@@ -145,6 +161,7 @@ class SweetsApp extends StatelessWidget {
         '/contactUs': (_) => const ContactUsScreen(),
         '/contact': (_) => const ContactUsScreen(),
       },
+      ),
     );
   }
 }

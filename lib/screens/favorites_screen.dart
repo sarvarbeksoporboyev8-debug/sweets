@@ -153,12 +153,103 @@ class FavoritesScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-          // Home indicator
-          const SweetsHomeIndicator(),
         ],
       ),
     ),
+      bottomNavigationBar: _buildBottomNavBar(context),
     );
+  }
+
+  Widget _buildBottomNavBar(BuildContext context) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          decoration: BoxDecoration(
+            color: SweetsColors.white,
+            border: Border(
+              top: BorderSide(
+                color: SweetsColors.border.withOpacity(0.75),
+              ),
+            ),
+          ),
+          padding: const EdgeInsets.symmetric(vertical: 8),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            children: [
+              _buildTabItem(context, 'Home', Icons.home_filled, false),
+              _buildTabItem(context, 'Explore', Icons.search_rounded, false),
+              _buildTabItem(context, 'Favorites', Icons.favorite_border, true),
+              _buildTabItem(context, 'Cart', Icons.shopping_bag_outlined, false),
+              _buildTabItem(context, 'Account', Icons.person_outline, false),
+            ],
+          ),
+        ),
+        const SweetsHomeIndicator(),
+      ],
+    );
+  }
+
+  Widget _buildTabItem(BuildContext context, String label, IconData icon, bool active) {
+    return GestureDetector(
+      onTap: () {
+        switch (label) {
+          case 'Home':
+            Navigator.pushReplacementNamed(context, '/home');
+            break;
+          case 'Explore':
+            Navigator.pushReplacementNamed(context, '/explore');
+            break;
+          case 'Favorites':
+            // Already on favorites
+            break;
+          case 'Cart':
+            Navigator.pushReplacementNamed(context, '/cart');
+            break;
+          case 'Account':
+            Navigator.pushReplacementNamed(context, '/account');
+            break;
+        }
+      },
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Container(
+            padding: const EdgeInsets.all(8),
+            decoration: BoxDecoration(
+              color: active ? SweetsColors.kAccentGold : Colors.transparent,
+              borderRadius: BorderRadius.circular(8),
+              boxShadow: active
+                  ? const [
+                      BoxShadow(
+                        color: Color(0x33D1B57C),
+                        blurRadius: 12,
+                        offset: Offset(0, 6),
+                      ),
+                    ]
+                  : null,
+            ),
+            child: Icon(
+              icon,
+              size: 24,
+              color: active ? SweetsColors.white : const Color(0xFFD1D5DB),
+            ),
+          ),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            style: TextStyle(
+              fontFamily: 'Geist',
+              fontWeight: FontWeight.w400,
+              fontSize: 12,
+              height: 16 / 12,
+              color: active ? SweetsColors.kAccentGold : const Color(0xFF475467),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
   }
 }
 
