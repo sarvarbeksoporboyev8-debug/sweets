@@ -25,43 +25,41 @@ class ExploreTopBar extends StatelessWidget {
             children: [
               const ShirinBiscuitHeader(),
               GestureDetector(
-                    onTap: () {
-                      Navigator.of(context).pushNamed('/notifications');
-                    },
-                    child: Stack(
-                      children: [
-                        Container(
-                          width: 36,
-                          height: 36,
-                          decoration: const BoxDecoration(
-                            color: SweetsColors.white,
-                            shape: BoxShape.circle,
-                            boxShadow: [
-                              BoxShadow(
-                                color: Color(0x0D000000),
-                                offset: Offset(0, 1),
-                                blurRadius: 3,
-                              ),
-                            ],
+                onTap: () {
+                  Navigator.of(context).pushNamed('/notifications');
+                },
+                child: Stack(
+                  children: [
+                    Container(
+                      width: 36,
+                      height: 36,
+                      decoration: const BoxDecoration(
+                        color: SweetsColors.white,
+                        shape: BoxShape.circle,
+                        boxShadow: [
+                          BoxShadow(
+                            color: Color(0x0D000000),
+                            offset: Offset(0, 1),
+                            blurRadius: 3,
                           ),
-                          child: const Icon(
-                            Icons.notifications_none_rounded,
-                            size: 24,
-                            color: SweetsColors.grayDarker,
-                          ),
-                        ),
-                        const Positioned(
-                          right: 8,
-                          top: 8,
-                          child: CircleAvatar(
-                            radius: 5,
-                            backgroundColor: SweetsColors.primary,
-                          ),
-                        ),
-                      ],
+                        ],
+                      ),
+                      child: const Icon(
+                        Icons.notifications_none_rounded,
+                        size: 24,
+                        color: SweetsColors.grayDarker,
+                      ),
                     ),
-                  ),
-                ],
+                    const Positioned(
+                      right: 8,
+                      top: 8,
+                      child: CircleAvatar(
+                        radius: 5,
+                        backgroundColor: SweetsColors.primary,
+                      ),
+                    ),
+                  ],
+                ),
               ),
             ],
           ),
