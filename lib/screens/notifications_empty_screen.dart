@@ -17,19 +17,11 @@ class NotificationsEmptyScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: SweetsColors.white,
-      body: Column(
-        children: [
-          // Gradient background header
-          Container(
-            height: 168,
-            decoration: const BoxDecoration(
-              color: SweetsColors.kTopBar,
-            ),
-          ),
-          // Content area
-          Expanded(
-            child: SafeArea(
-              top: false,
+      body: SafeArea(
+        child: Column(
+          children: [
+            // Content area
+            Expanded(
               child: Column(
                 children: [
                   // Navigation bar
@@ -75,9 +67,9 @@ class NotificationsEmptyScreen extends StatelessWidget {
                   const SweetsHomeIndicator(),
                 ],
               ),
-            ),
+            ],
           ),
-        ],
+        ),
       ),
     );
   }

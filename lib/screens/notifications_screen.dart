@@ -104,16 +104,10 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: SweetsColors.white, // White background
-      body: Column(
-        children: [
-          // White background header (no gradient)
-          Container(
-            height: 168,
-            color: SweetsColors.kTopBar, // Pure white
-          ),
-          Expanded(
-            child: SafeArea(
-              top: false,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
               child: SingleChildScrollView(
                 padding: const EdgeInsets.fromLTRB(
                   Spacing.lg,
@@ -247,10 +241,10 @@ class _NotificationsScreenState extends State<NotificationsScreen> {
                 ),
               ),
             ),
-          ),
+          ],
           // Home indicator
           const SweetsHomeIndicator(),
-        ],
+        ),
       ),
     );
   }

@@ -16,28 +16,10 @@ class FavoritesScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: SweetsColors.white, // White background
-      body: Stack(
-        children: [
-          // White background header (no gradient)
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            child: Container(
-              height: 168,
-              color: SweetsColors.kTopBar, // Pure white
-            ),
-          ),
-          // Main content
-          Positioned(
-            left: 0,
-            right: 0,
-            top: 0,
-            bottom: 0,
-            child: SafeArea(
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
+      body: SafeArea(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
                   // Navigation bar
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 10),
@@ -174,14 +156,9 @@ class FavoritesScreen extends StatelessWidget {
                 ],
               ),
             ),
-          ),
+          ],
           // Home indicator
-          const Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: SweetsHomeIndicator(),
-          ),
+          const SweetsHomeIndicator(),
         ],
       ),
     );

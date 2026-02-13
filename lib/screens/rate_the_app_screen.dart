@@ -64,18 +64,10 @@ class _RateTheAppScreenState extends State<RateTheAppScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: SweetsColors.white,
-      body: Column(
-        children: [
-          // Gradient background header
-          Container(
-            height: 168,
-            decoration: const BoxDecoration(
-              color: SweetsColors.kTopBar,
-            ),
-          ),
-          Expanded(
-            child: SafeArea(
-              top: false,
+      body: SafeArea(
+        child: Column(
+          children: [
+            Expanded(
               child: Form(
                 key: _formKey,
                 child: Column(
