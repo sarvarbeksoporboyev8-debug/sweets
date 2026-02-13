@@ -24,165 +24,153 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.white, // White background
+      backgroundColor: SweetsColors.white,
       body: Stack(
         children: [
           SafeArea(
-            child: Column(
-              children: [
-                Expanded(
-                  child: SingleChildScrollView(
-                    padding: const EdgeInsets.only(bottom: 100),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        // White background with header
-                        Container(
-                          color: SweetsColors.white, // Pure white
-                          child: Padding(
-                            padding: const EdgeInsets.only(
-                              top: Spacing.md,
-                              left: Spacing.md,
-                              right: Spacing.md,
-                              bottom: Spacing.spacing12,
-                            ),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: [
-                                // Top row with header and action buttons
-                                Row(
-                                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                                  children: [
-                                    const ShirinBiscuitHeader(),
-                                    Row(
-                                      children: [
-                                        GestureDetector(
-                                          onTap: () {
-                                            setState(() {
-                                              _showSideMenu = true;
-                                            });
-                                          },
-                                          child: Container(
-                                            width: 36,
-                                            height: 36,
-                                            decoration: const BoxDecoration(
-                                              color: SweetsColors.white,
-                                              shape: BoxShape.circle,
-                                              boxShadow: [
-                                                BoxShadow(
-                                                  color: Color(0x0D000000),
-                                                  offset: Offset(0, 1),
-                                                  blurRadius: 3,
-                                                ),
-                                              ],
-                                            ),
-                                            child: const Icon(
-                                              Icons.more_horiz,
-                                              size: 24,
-                                              color: SweetsColors.grayDarker,
-                                            ),
+            bottom: false,
+            child: SingleChildScrollView(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  // White background with header
+                  Container(
+                    color: SweetsColors.white,
+                    child: Padding(
+                      padding: const EdgeInsets.only(
+                        top: Spacing.md,
+                        left: Spacing.md,
+                        right: Spacing.md,
+                        bottom: Spacing.spacing12,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          // Top row with header and action buttons
+                          Row(
+                            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                            children: [
+                              const ShirinBiscuitHeader(),
+                              Row(
+                                children: [
+                                  GestureDetector(
+                                    onTap: () {
+                                      setState(() {
+                                        _showSideMenu = true;
+                                      });
+                                    },
+                                    child: Container(
+                                      width: 36,
+                                      height: 36,
+                                      decoration: const BoxDecoration(
+                                        color: SweetsColors.white,
+                                        shape: BoxShape.circle,
+                                        boxShadow: [
+                                          BoxShadow(
+                                            color: Color(0x0D000000),
+                                            offset: Offset(0, 1),
+                                            blurRadius: 3,
                                           ),
-                                        ),
-                                        const SizedBox(width: Spacing.sm),
-                                        GestureDetector(
-                                          onTap: () {
-                                            Navigator.of(context).pushNamed('/notifications');
-                                          },
-                                          child: Stack(
-                                            children: [
-                                              Container(
-                                                width: 36,
-                                                height: 36,
-                                                decoration: const BoxDecoration(
-                                                  color: SweetsColors.white,
-                                                  shape: BoxShape.circle,
-                                                  boxShadow: [
-                                                    BoxShadow(
-                                                      color: Color(0x0D000000),
-                                                      offset: Offset(0, 1),
-                                                      blurRadius: 3,
-                                                    ),
-                                                  ],
-                                                ),
-                                                child: const Icon(
-                                                  Icons.notifications_none_rounded,
-                                                  size: 24,
-                                                  color: SweetsColors.grayDarker,
-                                                ),
-                                              ),
-                                              const Positioned(
-                                                right: 8,
-                                                top: 8,
-                                                child: CircleAvatar(
-                                                  radius: 5,
-                                                  backgroundColor: SweetsColors.primary,
-                                                ),
+                                        ],
+                                      ),
+                                      child: const Icon(
+                                        Icons.more_horiz,
+                                        size: 24,
+                                        color: SweetsColors.grayDarker,
+                                      ),
+                                    ),
+                                  ),
+                                  const SizedBox(width: Spacing.sm),
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.of(context).pushNamed('/notifications');
+                                    },
+                                    child: Stack(
+                                      children: [
+                                        Container(
+                                          width: 36,
+                                          height: 36,
+                                          decoration: const BoxDecoration(
+                                            color: SweetsColors.white,
+                                            shape: BoxShape.circle,
+                                            boxShadow: [
+                                              BoxShadow(
+                                                color: Color(0x0D000000),
+                                                offset: Offset(0, 1),
+                                                blurRadius: 3,
                                               ),
                                             ],
+                                          ),
+                                          child: const Icon(
+                                            Icons.notifications_none_rounded,
+                                            size: 24,
+                                            color: SweetsColors.grayDarker,
+                                          ),
+                                        ),
+                                        const Positioned(
+                                          right: 8,
+                                          top: 8,
+                                          child: CircleAvatar(
+                                            radius: 5,
+                                            backgroundColor: SweetsColors.primary,
                                           ),
                                         ),
                                       ],
                                     ),
-                                  ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
+                          const SizedBox(height: Spacing.spacing12),
+                          // Search bar
+                          Container(
+                            width: double.infinity,
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 14,
+                              vertical: 14,
+                            ),
+                            decoration: BoxDecoration(
+                              color: SweetsColors.white,
+                              borderRadius: BorderRadius.circular(Spacing.spacing12),
+                              border: Border.all(color: SweetsColors.border),
+                            ),
+                            child: Row(
+                              children: const [
+                                Icon(
+                                  Icons.search,
+                                  size: 20,
+                                  color: SweetsColors.gray,
                                 ),
-                                const SizedBox(height: Spacing.spacing12),
-                                // Search bar
-                                Container(
-                                  width: double.infinity,
-                                  padding: const EdgeInsets.symmetric(
-                                    horizontal: 14,
-                                    vertical: 14,
-                                  ),
-                                  decoration: BoxDecoration(
-                                    color: SweetsColors.white,
-                                    borderRadius: BorderRadius.circular(Spacing.spacing12),
-                                    border: Border.all(color: SweetsColors.border),
-                                  ),
-                                  child: Row(
-                                    children: const [
-                                      Icon(
-                                        Icons.search,
-                                        size: 20,
-                                        color: SweetsColors.gray,
-                                      ),
-                                      SizedBox(width: Spacing.xs),
-                                      Text(
-                                        'Search',
-                                        style: TextStyle(
-                                          fontFamily: 'Geist',
-                                          fontWeight: FontWeight.w400,
-                                          fontSize: 14,
-                                          height: 20 / 14,
-                                          color: SweetsColors.gray,
-                                        ),
-                                      ),
-                                    ],
+                                SizedBox(width: Spacing.xs),
+                                Text(
+                                  'Search',
+                                  style: TextStyle(
+                                    fontFamily: 'Geist',
+                                    fontWeight: FontWeight.w400,
+                                    fontSize: 14,
+                                    height: 20 / 14,
+                                    color: SweetsColors.gray,
                                   ),
                                 ),
                               ],
                             ),
                           ),
-                        ),
-                        const _HomeCategoriesRow(),
-                        const SizedBox(height: Spacing.md),
-                        const _HomeBannersSection(),
-                        Transform.translate(
-                          offset: const Offset(0, -32),
-                          child: const _BestProductsSection(),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                  const _HomeCategoriesRow(),
+                  const SizedBox(height: Spacing.md),
+                  const _HomeBannersSection(),
+                  Transform.translate(
+                    offset: const Offset(0, -32),
+                    child: const _BestProductsSection(),
+                  ),
+                  const SizedBox(height: Spacing.md),
+                ],
+              ),
             ),
-          ),
-          // Bottom tab bar + home indicator
-          const Positioned(
-            left: 0,
-            right: 0,
-            bottom: 0,
-            child: SweetsTabBar(activeTab: 'Home'),
           ),
           // Side menu overlay
           if (_showSideMenu)
@@ -195,6 +183,7 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
         ],
       ),
+      bottomNavigationBar: const SweetsTabBar(activeTab: 'Home'),
     );
   }
 }

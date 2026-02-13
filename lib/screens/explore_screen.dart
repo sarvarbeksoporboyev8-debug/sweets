@@ -14,34 +14,31 @@ class ExploreScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.white, // Creamy background
-      body: Column(
-        children: [
-          Expanded(
-            child: SingleChildScrollView(
-              padding: const EdgeInsets.only(bottom: 100),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  // White background with top bar (no gradient)
-                  Container(
-                    color: SweetsColors.kTopBar, // Pure white
-                    child: const ExploreTopBar(),
-                  ),
-                  const _ExploreHeaderSection(),
-                  const SizedBox(height: Spacing.md),
-                  const _ExplorePromoGridSection(),
-                  const SizedBox(height: Spacing.md),
-                  const _ExploreBannerCard(),
-                  const SizedBox(height: Spacing.md),
-                  const _BestProductsSection(),
-                ],
+      backgroundColor: SweetsColors.white,
+      body: SafeArea(
+        bottom: false,
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              // White background with top bar
+              Container(
+                color: SweetsColors.white,
+                child: const ExploreTopBar(),
               ),
-            ),
+              const _ExploreHeaderSection(),
+              const SizedBox(height: Spacing.md),
+              const _ExplorePromoGridSection(),
+              const SizedBox(height: Spacing.md),
+              const _ExploreBannerCard(),
+              const SizedBox(height: Spacing.md),
+              const _BestProductsSection(),
+              const SizedBox(height: Spacing.md),
+            ],
           ),
-          const SweetsTabBar(activeTab: 'Explore'),
-        ],
+        ),
       ),
+      bottomNavigationBar: const SweetsTabBar(activeTab: 'Explore'),
     );
   }
 }

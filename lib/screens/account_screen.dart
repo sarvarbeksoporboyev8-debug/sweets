@@ -13,12 +13,12 @@ class AccountScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: SweetsColors.white, // Creamy background
+      backgroundColor: SweetsColors.white,
       body: Column(
         children: [
-          // White background header (no gradient)
+          // White background header
           Container(
-            color: SweetsColors.kTopBar, // Pure white
+            color: SweetsColors.white,
             child: SafeArea(
               bottom: false,
               child: ProfileHeader(
@@ -81,10 +81,9 @@ class AccountScreen extends StatelessWidget {
               ),
             ),
           ),
-          // Bottom navigation
-          const SweetsTabBar(activeTab: 'Account'),
         ],
       ),
+      bottomNavigationBar: const SweetsTabBar(activeTab: 'Account'),
     );
   }
 }
