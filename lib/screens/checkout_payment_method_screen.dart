@@ -98,7 +98,7 @@ class _CheckoutPaymentMethodScreenState
                                   SizedBox(
                                     width: cardWidth,
                                     child: PaymentMethodCard(
-                                      imageUrl: 'images/payment/click_uz.png',
+                                      imageUrl: 'images/payment/click_uz.jpg',
                                       isSelected:
                                           selectedPaymentMethod == 'click',
                                       onTap: () {
@@ -112,7 +112,7 @@ class _CheckoutPaymentMethodScreenState
                                   SizedBox(
                                     width: cardWidth,
                                     child: PaymentMethodCard(
-                                      imageUrl: 'images/payment/payment_cards.png',
+                                      imageUrl: 'images/payment/payment_cards.jpg',
                                       isSelected:
                                           selectedPaymentMethod == 'card',
                                       onTap: () {
@@ -130,7 +130,7 @@ class _CheckoutPaymentMethodScreenState
                                   SizedBox(
                                     width: cardWidth,
                                     child: PaymentMethodCard(
-                                      imageUrl: 'images/payment/pr_uz.png',
+                                      imageUrl: 'images/payment/pr_uz.jpg',
                                       isSelected:
                                           selectedPaymentMethod == 'pr',
                                       onTap: () {
@@ -144,7 +144,7 @@ class _CheckoutPaymentMethodScreenState
                                   SizedBox(
                                     width: cardWidth,
                                     child: PaymentMethodCard(
-                                      imageUrl: 'images/payment/uzum.png',
+                                      imageUrl: 'images/payment/uzum.jpg',
                                       isSelected:
                                           selectedPaymentMethod == 'uzum',
                                       onTap: () {
