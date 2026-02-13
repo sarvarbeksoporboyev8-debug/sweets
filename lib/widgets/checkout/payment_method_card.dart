@@ -19,12 +19,17 @@ class PaymentMethodCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: onTap,
-      child: Container(
-        width: double.infinity,
-        height: 100,
-        padding: const EdgeInsets.all(16),
+    return LayoutBuilder(
+      builder: (context, constraints) {
+        // Calculate height to maintain 2:1 aspect ratio (width:height)
+        final cardHeight = constraints.maxWidth / 2;
+        
+        return GestureDetector(
+          onTap: onTap,
+          child: Container(
+            width: double.infinity,
+            height: cardHeight,
+            padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: SweetsColors.white,
           borderRadius: BorderRadius.circular(16),
@@ -116,6 +121,8 @@ class PaymentMethodCard extends StatelessWidget {
           ],
         ),
       ),
+        );
+      },
     );
   }
 }
