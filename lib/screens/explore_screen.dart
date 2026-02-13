@@ -283,10 +283,10 @@ class _BestProductsSection extends StatelessWidget {
                       },
                       onAddToCart: () {
                         context.read<CartProvider>().addItem(
-                          'explore_1',
-                          'Fruits tart',
-                          15.55,
-                          'assets/images/product_tart.png',
+                          productId: 'explore_1',
+                          title: 'Fruits tart',
+                          price: 15.55,
+                          imageUrl: 'assets/images/product_tart.png',
                         );
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -296,7 +296,12 @@ class _BestProductsSection extends StatelessWidget {
                         );
                       },
                       onFavorite: () {
-                        context.read<FavoritesProvider>().toggleFavorite('explore_1');
+                        context.read<FavoritesProvider>().toggleFavorite(
+                          productId: 'explore_1',
+                          title: 'Fruits tart',
+                          price: 15.55,
+                          category: 'Tarts',
+                        );
                       },
                     ),
                   ),
@@ -314,10 +319,10 @@ class _BestProductsSection extends StatelessWidget {
                       },
                       onAddToCart: () {
                         context.read<CartProvider>().addItem(
-                          'explore_2',
-                          'Fruit tart',
-                          15.55,
-                          'assets/images/product_tart.png',
+                          productId: 'explore_2',
+                          title: 'Fruit tart',
+                          price: 15.55,
+                          imageUrl: 'assets/images/product_tart.png',
                         );
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -327,7 +332,12 @@ class _BestProductsSection extends StatelessWidget {
                         );
                       },
                       onFavorite: () {
-                        context.read<FavoritesProvider>().toggleFavorite('explore_2');
+                        context.read<FavoritesProvider>().toggleFavorite(
+                          productId: 'explore_2',
+                          title: 'Fruit tart',
+                          price: 15.55,
+                          category: 'Tarts',
+                        );
                       },
                     ),
                   ),
@@ -345,10 +355,10 @@ class _BestProductsSection extends StatelessWidget {
                       },
                       onAddToCart: () {
                         context.read<CartProvider>().addItem(
-                          'explore_3',
-                          'Apple tart',
-                          15.55,
-                          'assets/images/product_tart.png',
+                          productId: 'explore_3',
+                          title: 'Apple tart',
+                          price: 15.55,
+                          imageUrl: 'assets/images/product_tart.png',
                         );
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -358,7 +368,12 @@ class _BestProductsSection extends StatelessWidget {
                         );
                       },
                       onFavorite: () {
-                        context.read<FavoritesProvider>().toggleFavorite('explore_3');
+                        context.read<FavoritesProvider>().toggleFavorite(
+                          productId: 'explore_3',
+                          title: 'Apple tart',
+                          price: 15.55,
+                          category: 'Tarts',
+                        );
                       },
                     ),
                   ),
@@ -376,10 +391,10 @@ class _BestProductsSection extends StatelessWidget {
                       },
                       onAddToCart: () {
                         context.read<CartProvider>().addItem(
-                          'explore_4',
-                          'Cupcakes',
-                          15.55,
-                          'assets/images/product_tart.png',
+                          productId: 'explore_4',
+                          title: 'Cupcakes',
+                          price: 15.55,
+                          imageUrl: 'assets/images/product_tart.png',
                         );
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -389,7 +404,12 @@ class _BestProductsSection extends StatelessWidget {
                         );
                       },
                       onFavorite: () {
-                        context.read<FavoritesProvider>().toggleFavorite('explore_4');
+                        context.read<FavoritesProvider>().toggleFavorite(
+                          productId: 'explore_4',
+                          title: 'Cupcakes',
+                          price: 15.55,
+                          category: 'Cupcake',
+                        );
                       },
                     ),
                   ),
@@ -407,10 +427,10 @@ class _BestProductsSection extends StatelessWidget {
                       },
                       onAddToCart: () {
                         context.read<CartProvider>().addItem(
-                          'explore_5',
-                          'Donuts',
-                          15.55,
-                          'assets/images/product_tart.png',
+                          productId: 'explore_5',
+                          title: 'Donuts',
+                          price: 15.55,
+                          imageUrl: 'assets/images/product_tart.png',
                         );
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -420,7 +440,12 @@ class _BestProductsSection extends StatelessWidget {
                         );
                       },
                       onFavorite: () {
-                        context.read<FavoritesProvider>().toggleFavorite('explore_5');
+                        context.read<FavoritesProvider>().toggleFavorite(
+                          productId: 'explore_5',
+                          title: 'Donuts',
+                          price: 15.55,
+                          category: 'Donuts',
+                        );
                       },
                     ),
                   ),
@@ -438,10 +463,10 @@ class _BestProductsSection extends StatelessWidget {
                       },
                       onAddToCart: () {
                         context.read<CartProvider>().addItem(
-                          'explore_6',
-                          'Berry pie',
-                          15.55,
-                          'assets/images/product_tart.png',
+                          productId: 'explore_6',
+                          title: 'Berry pie',
+                          price: 15.55,
+                          imageUrl: 'assets/images/product_tart.png',
                         );
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -451,7 +476,12 @@ class _BestProductsSection extends StatelessWidget {
                         );
                       },
                       onFavorite: () {
-                        context.read<FavoritesProvider>().toggleFavorite('explore_6');
+                        context.read<FavoritesProvider>().toggleFavorite(
+                          productId: 'explore_6',
+                          title: 'Berry pie',
+                          price: 15.55,
+                          category: 'Pies',
+                        );
                       },
                     ),
                   ),
@@ -469,10 +499,10 @@ class _BestProductsSection extends StatelessWidget {
                       },
                       onAddToCart: () {
                         context.read<CartProvider>().addItem(
-                          'explore_7',
-                          'Macarons',
-                          15.55,
-                          'assets/images/product_tart.png',
+                          productId: 'explore_7',
+                          title: 'Macarons',
+                          price: 15.55,
+                          imageUrl: 'assets/images/product_tart.png',
                         );
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -482,7 +512,12 @@ class _BestProductsSection extends StatelessWidget {
                         );
                       },
                       onFavorite: () {
-                        context.read<FavoritesProvider>().toggleFavorite('explore_7');
+                        context.read<FavoritesProvider>().toggleFavorite(
+                          productId: 'explore_7',
+                          title: 'Macarons',
+                          price: 15.55,
+                          category: 'Macarons',
+                        );
                       },
                     ),
                   ),
@@ -500,10 +535,10 @@ class _BestProductsSection extends StatelessWidget {
                       },
                       onAddToCart: () {
                         context.read<CartProvider>().addItem(
-                          'explore_8',
-                          'Fruits cake',
-                          15.55,
-                          'assets/images/product_tart.png',
+                          productId: 'explore_8',
+                          title: 'Fruits cake',
+                          price: 15.55,
+                          imageUrl: 'assets/images/product_tart.png',
                         );
                         ScaffoldMessenger.of(context).showSnackBar(
                           const SnackBar(
@@ -513,7 +548,12 @@ class _BestProductsSection extends StatelessWidget {
                         );
                       },
                       onFavorite: () {
-                        context.read<FavoritesProvider>().toggleFavorite('explore_8');
+                        context.read<FavoritesProvider>().toggleFavorite(
+                          productId: 'explore_8',
+                          title: 'Fruits cake',
+                          price: 15.55,
+                          category: 'Cake',
+                        );
                       },
                     ),
                   ),
