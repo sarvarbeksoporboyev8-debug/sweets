@@ -98,13 +98,12 @@ class _CheckoutPaymentMethodScreenState
                                   SizedBox(
                                     width: cardWidth,
                                     child: PaymentMethodCard(
-                                      imageUrl:
-                                          'images/figma/4c0a786c-86c9-4720-9c55-a32a3679afc1.png',
+                                      imageUrl: 'assets/images/payment/click_uz.png',
                                       isSelected:
-                                          selectedPaymentMethod == 'paypal',
+                                          selectedPaymentMethod == 'click',
                                       onTap: () {
                                         setState(() {
-                                          selectedPaymentMethod = 'paypal';
+                                          selectedPaymentMethod = 'click';
                                         });
                                       },
                                     ),
@@ -113,9 +112,7 @@ class _CheckoutPaymentMethodScreenState
                                   SizedBox(
                                     width: cardWidth,
                                     child: PaymentMethodCard(
-                                      imageUrl:
-                                          'images/figma/1fc72a13-dacf-43fc-a776-65f72d78a544.png',
-                                      isVisaMastercard: true,
+                                      imageUrl: 'assets/images/payment/payment_cards.png',
                                       isSelected:
                                           selectedPaymentMethod == 'card',
                                       onTap: () {
@@ -133,13 +130,12 @@ class _CheckoutPaymentMethodScreenState
                                   SizedBox(
                                     width: cardWidth,
                                     child: PaymentMethodCard(
-                                      imageUrl:
-                                          'images/figma/e4dd3010-ed8d-4bed-8ab3-c104f0f8c909.png',
+                                      imageUrl: 'assets/images/payment/pr_uz.png',
                                       isSelected:
-                                          selectedPaymentMethod == 'apple',
+                                          selectedPaymentMethod == 'pr',
                                       onTap: () {
                                         setState(() {
-                                          selectedPaymentMethod = 'apple';
+                                          selectedPaymentMethod = 'pr';
                                         });
                                       },
                                     ),
@@ -148,13 +144,12 @@ class _CheckoutPaymentMethodScreenState
                                   SizedBox(
                                     width: cardWidth,
                                     child: PaymentMethodCard(
-                                      imageUrl:
-                                          'images/figma/544e596b-6e32-481e-b9a4-0ff3186fcab5.png',
+                                      imageUrl: 'assets/images/payment/uzum.png',
                                       isSelected:
-                                          selectedPaymentMethod == 'google',
+                                          selectedPaymentMethod == 'uzum',
                                       onTap: () {
                                         setState(() {
-                                          selectedPaymentMethod = 'google';
+                                          selectedPaymentMethod = 'uzum';
                                         });
                                       },
                                     ),
